@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Staging build: the live preview is noindex, so this file keeps the same rule. Remove at launch. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>NewCoast Business Brokers | Hospitality Business Broker, Newcastle NSW</title>
+<meta name="description" content="Specialised hospitality business brokers. Sell your café, restaurant or bar, buy your next venture, or get an evidence-based appraisal with NewCoast Business Brokers.">
+<meta name="theme-color" content="#002A36">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://newcoast.vercel.app/img/hero-home-r.jpg" crossorigin>
+<!--
+  NEWCOAST HOME, ADVANCED BUILD
+  Brand tokens are taken from the live build (newcoast.vercel.app, inline CSS variables) and are not changed.
+  One accessibility adaptation: small-text button fills use the brand's own #4F737D (white text 4.9:1)
+  instead of #518B99 (white text 3.7:1). #518B99 stays for large headings, borders and decoration.
+  All page links and images point at https://newcoast.vercel.app/ . Find and replace that origin when the site moves.
+-->
+<style>
+:root{
+  --ink:#002A36;          /* brand dark / text */
+  --acc:#518B99;          /* brand accent */
+  --acc2:#9FC3D1;         /* brand light accent */
+  --btn:#4F737D;          /* brand button-hover tone, used as resting fill for AA contrast */
+  --btn-hi:#518B99;
+  --soft:#F7F2F1;         /* warm section background */
+  --tint:#F0F0F0;
+  --white:#FFFFFF;
+  --line:rgba(0,42,54,.12);
+  --line-d:rgba(255,255,255,.18);
+  --muted:#3d5a63;
+  --err:#B42318;
+  --err-d:#FFB4A8;
+  --wrap:1300px;
+  --gut:max(20px,calc((100% - var(--wrap))/2));
+  --r:14px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-io:cubic-bezier(.65,0,.35,1);
+  --head-h:84px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html.rm{scroll-behavior:auto}
+body{margin:0;background:var(--white);color:var(--ink);font-family:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+h2 em,h1 em{font-style:italic;font-weight:500;color:var(--acc)}
+.on-dark h2 em,.on-dark h3 em{color:var(--acc2)}
+p{margin:0;text-wrap:pretty}
+section[id],[id].anchor{scroll-margin-top:calc(var(--head-h) + 16px)}
+.wrap{padding-inline:var(--gut)}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:6px}
+.on-dark :focus-visible{outline-color:var(--acc2)}
+.skip{position:fixed;left:16px;top:-80px;z-index:200;background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:600;transition:top .2s}
+.skip:focus{top:16px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--btn)}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:currentColor}
+.on-dark .eyebrow{color:var(--acc2)}
+.h2{font-size:clamp(32px,3.6vw,52px)}
+.lead{font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:var(--muted)}
+.on-dark .lead{color:rgba(255,255,255,.78)}
+
+/* ---------- Buttons ---------- */
+.btn{--bg:var(--btn);--fg:#fff;--bd:var(--btn);position:relative;display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 8px 0 22px;border:1.5px solid var(--bd);background:var(--bg);color:var(--fg);border-radius:999px;font-size:16px;font-weight:600;text-decoration:none;white-space:nowrap;cursor:pointer;overflow:hidden;isolation:isolate;transition:color .35s var(--ease),border-color .35s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:translateY(101%);border-radius:inherit;transition:transform .45s var(--ease)}
+.btn:hover::before{transform:none}
+.btn .ic{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--btn);flex:none;transition:transform .45s var(--ease)}
+.btn:hover .ic{transform:rotate(45deg)}
+.btn--light{--bg:#fff;--fg:var(--ink);--bd:#fff}
+.btn--light .ic{background:var(--btn);color:#fff}
+.btn--light:hover{color:#fff}
+.btn--ghost{--bg:transparent;--fg:var(--ink);--bd:var(--ink)}
+.btn--ghost .ic{background:var(--ink);color:#fff}
+.btn--ghost:hover{color:#fff}
+.btn--ghost:hover .ic{background:#fff;color:var(--ink)}
+.on-dark .btn--ghost{--fg:#fff;--bd:rgba(255,255,255,.6)}
+.on-dark .btn--ghost .ic{background:#fff;color:var(--ink)}
+.on-dark .btn--ghost::before{background:#fff}
+.on-dark .btn--ghost:hover{color:var(--ink)}
+.on-dark .btn--ghost:hover .ic{background:var(--ink);color:#fff}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;padding-bottom:2px;transition:background-size .4s var(--ease)}
+.link-arrow:hover{background-size:100% 1.5px}
+svg.arr{width:10px;height:10px}
+
+/* ---------- Scroll progress + cursor ---------- */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:120;background:linear-gradient(90deg,var(--acc),var(--acc2));transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+/* Cursor: a small dot plus a soft follower that only appears while the pointer is over the page */
+.cursor,.cdot{position:fixed;left:0;top:0;pointer-events:none;z-index:250;opacity:0;transition:opacity .3s}
+.cdot{width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--acc)}
+.cursor{width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:1px solid rgba(81,139,153,.55);display:grid;place-items:center;transition:opacity .3s,width .45s var(--ease),height .45s var(--ease),margin .45s var(--ease),background .35s,border-color .35s}
+.cursor span{font-size:12px;font-weight:700;color:#fff;opacity:0;transition:opacity .25s}
+.cursor.is-on,.cdot.is-on{opacity:1}
+.cursor.is-hover{width:58px;height:58px;margin:-29px 0 0 -29px;background:rgba(159,195,209,.18);border-color:transparent}
+.cursor.is-label{width:86px;height:86px;margin:-43px 0 0 -43px;background:var(--ink);border-color:var(--ink)}
+.cursor.is-label span{opacity:1}
+.cursor.is-off,.cdot.is-off{opacity:0!important}
+@media (pointer:coarse){.cursor,.cdot{display:none}}
+/* Chapter label */
+.chap{position:fixed;right:var(--gut);bottom:22px;z-index:90;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;padding:7px 14px 7px 7px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 10px 30px -14px rgba(0,42,54,.45);opacity:0;transform:translateY(12px);transition:opacity .4s,transform .5s var(--ease);pointer-events:none}
+.chap.on{opacity:1;transform:none}
+.chap b{display:grid;place-items:center;min-width:28px;height:28px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;font-variant-numeric:tabular-nums}
+@media (max-width:1023px){.chap{display:none}}
+.grain{position:fixed;inset:0;z-index:240;pointer-events:none;overflow:hidden}
+.grain::before{content:"";position:absolute;inset:-50%;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+.prevdisc{position:fixed;left:0;top:0;z-index:160;width:170px;height:170px;margin:-85px 0 0 -85px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;text-align:center;pointer-events:none;transform:scale(0);opacity:0}
+.prevdisc svg{width:48px;height:48px;margin:0 auto}
+.prevdisc b{display:block;font-size:13px;margin-top:6px;padding:0 18px;line-height:1.3}
+@media (max-width:1023px),(pointer:coarse){.prevdisc{display:none}}
+
+/* ---------- Header ---------- */
+.hdr{position:fixed;inset:26px 0 auto 0;z-index:100;padding-inline:max(36px,var(--gut));transition:transform .5s var(--ease)}
+.hdr.is-hidden{transform:translateY(calc(-100% - 20px))}
+.hdr__bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px;padding:0 10px 0 22px;background:#fff;backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border:1px solid rgba(0,42,54,.06);border-radius:999px;box-shadow:0 10px 40px -18px rgba(0,42,54,.35);transition:height .4s var(--ease)}
+.hdr.is-compact .hdr__bar{height:58px}
+.hdr__logo img{height:34px;width:auto}
+.nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.nav a,.nav__btn{position:relative;font-size:15px;font-weight:500;text-decoration:none;color:var(--ink);background:none;border:0;padding:8px 0;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.nav a::after,.nav__btn::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1.5px;background:var(--acc);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav a:hover::after,.nav__btn:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.nav a[aria-current="page"]{color:var(--btn)}
+.nav__caret{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .3s}
+.nav__btn[aria-expanded="true"] .nav__caret{transform:rotate(-135deg) translateY(-1px)}
+.dd{position:relative}
+.dd__menu{position:absolute;top:calc(100% + 16px);left:50%;translate:-50% 0;min-width:270px;background:#fff;border-radius:18px;padding:10px;box-shadow:0 30px 60px -20px rgba(0,42,54,.35);border:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .4s var(--ease),visibility .3s}
+.dd__menu.is-open{opacity:1;visibility:visible;transform:none}
+.dd__menu a{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;font-weight:500}
+.dd__menu a::after{display:none}
+.dd__menu a:hover{background:var(--soft)}
+.dd__menu small{display:block;font-size:13px;color:var(--muted);font-weight:400}
+.hdr__cta{min-height:44px;font-size:15px}
+.hdr__cta .ic{width:28px;height:28px}
+.burger{display:none;width:48px;height:48px;border-radius:50%;border:0;background:var(--ink);color:#fff;cursor:pointer;place-content:center;gap:4px}
+.burger span{display:block;width:18px;height:1.5px;background:currentColor;margin:0;transition:transform .4s var(--ease),opacity .3s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:99;background:var(--ink);color:#fff;padding:120px max(28px,var(--gut)) 36px;display:flex;flex-direction:column;gap:0;overflow:auto;clip-path:circle(0 at calc(100% - 44px) 44px);visibility:hidden;transition:clip-path .7s var(--ease-io),visibility 0s .7s}
+.mnav.is-open{clip-path:circle(150% at calc(100% - 44px) 44px);visibility:visible;transition:clip-path .7s var(--ease-io),visibility 0s}
+.mnav a{font-size:clamp(19px,5.2vw,24px);font-weight:500;letter-spacing:-.01em;text-decoration:none;padding:14px 0;border-bottom:1px solid var(--line-d);display:flex;justify-content:space-between;align-items:center}
+.mnav a small{font-size:14px;font-weight:500;color:var(--acc2)}
+.mnav__foot{margin-top:auto;padding-top:28px;display:grid;gap:8px;font-size:15px}
+.mnav__foot a{font-size:15.5px;border:0;font-weight:500;padding:4px 0;color:rgba(255,255,255,.85)}
+@media (max-width:999px){.nav,.hdr__cta{display:none}.burger{display:grid}.hdr__bar{padding-right:8px}}
+
+/* ---------- Hero (content sits in normal flow, so nothing can slide under the header) ---------- */
+.hero{position:relative;padding:12px;background:#fff}
+.hero__frame{position:relative;height:max(600px,calc(100svh - 24px));border-radius:28px;overflow:hidden;background:var(--ink);color:#fff;isolation:isolate;
+  display:grid;grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:1fr auto;column-gap:clamp(24px,4vw,64px);row-gap:clamp(16px,2.6vh,26px);
+  padding:calc(var(--head-h) + 46px) max(24px,calc(var(--gut) + 12px)) clamp(18px,3vh,30px)}
+.slide{grid-area:1/1/2/2;align-self:end;visibility:hidden;transition:visibility 1.1s}
+.slide.is-active{visibility:visible}
+.slide__img{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;z-index:0;opacity:0;transform:scale(1.08);transition:opacity 1.1s var(--ease),transform 9s cubic-bezier(.2,.6,.3,1)}
+.slide.is-active .slide__img{opacity:1;transform:scale(1)}
+.slide[data-slide="0"] .slide__img{object-position:70% center}
+.hero.gl .slide__img{visibility:hidden}
+.hero__gl{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:0;transition:opacity .8s;pointer-events:none}
+.hero.gl .hero__gl{opacity:1}
+.hero__shade{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(0,42,54,.8) 0%,rgba(0,42,54,.45) 45%,rgba(0,42,54,.12) 100%),linear-gradient(0deg,rgba(0,42,54,.72) 0%,rgba(0,42,54,0) 45%)}
+.slide__body{position:relative;z-index:3;max-width:680px;opacity:0;transition:opacity .7s var(--ease)}
+.slide.is-active .slide__body{opacity:1}
+.slide__kick{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);font-size:13.5px;font-weight:500;margin-bottom:clamp(12px,2vh,20px)}
+.slide__kick b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--acc2);color:var(--ink);font-size:12px}
+.slide__title{font-size:clamp(36px,min(4.7vw,8.2vh),82px);line-height:1.02;letter-spacing:-.028em;font-weight:600;max-width:13.5ch}
+.slide__title em{color:var(--acc2);font-style:italic;font-weight:500}
+.slide__text{margin-top:clamp(12px,2vh,20px);font-size:clamp(14.5px,min(1.05vw,2.05vh),17.5px);line-height:1.6;max-width:500px;color:rgba(255,255,255,.9)}
+.slide__cta{margin-top:clamp(16px,3vh,30px);display:flex;flex-wrap:wrap;gap:14px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .16em;margin:0 -.04em -.16em}
+.w>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease)}
+.slide.is-active .w>span{transform:none}
+.slide__fade{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease) .45s,transform .9s var(--ease) .45s}
+.slide.is-active .slide__fade{opacity:1;transform:none}
+html:not(.js) .w>span,html:not(.js) .slide__fade{transform:none;opacity:1}
+html:not(.js) .slide[data-slide="0"]{visibility:visible}html:not(.js) .slide[data-slide="0"] .slide__img,html:not(.js) .slide[data-slide="0"] .slide__body{opacity:1}
+.hero__side{grid-area:1/2/2/3;position:relative;z-index:3;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:0}
+.brokers{display:flex;align-items:center;gap:12px;padding:8px 8px 8px 10px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brokers__av{position:relative;display:flex;flex:none}
+.brokers__av img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 15%;border:2px solid rgba(255,255,255,.85);background:#fff}
+.brokers__av img+img{margin-left:-12px}
+.brokers__on{position:absolute;right:-1px;bottom:1px;width:11px;height:11px;border-radius:50%;background:var(--acc2);border:2px solid var(--ink)}
+.brokers__t{flex:1;min-width:0;line-height:1.25}
+.brokers__t b{display:block;font-size:14px;font-weight:600}
+.brokers__t span{display:block;font-size:12.5px;color:rgba(255,255,255,.72)}
+.brokers__call{width:40px;height:40px;flex:none;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;transition:transform .4s var(--ease),background .3s}
+.brokers__call:hover{transform:rotate(-12deg) scale(1.06);background:var(--acc2)}
+.intent{position:relative;z-index:3;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border-radius:22px;padding:16px}
+.intent__t{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:12px;font-weight:600}
+.intent__list{display:grid;gap:8px;list-style:none;margin:0;padding:0}
+.intent a{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;font-size:15px;border-radius:14px;background:rgba(255,255,255,.08);text-decoration:none;font-weight:500;overflow:hidden;isolation:isolate;transition:color .4s,transform .5s var(--ease)}
+.intent a::before{content:"";position:absolute;inset:0;z-index:-1;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.intent a:hover{color:var(--ink);transform:translateX(4px)}
+.intent a:hover::before{transform:none}
+.intent a span{font-size:13px;opacity:.8;font-weight:400}
+.hero__bar{grid-area:2/1/3/2;position:relative;z-index:3;display:flex;align-items:center;gap:12px}
+.dot{width:64px;height:28px;padding:0;background:none;border:0;cursor:pointer;display:flex;align-items:center}
+.dot i{position:relative;display:block;width:100%;height:2px;background:rgba(255,255,255,.35);overflow:hidden}
+.dot i::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(var(--p,0));transform-origin:0 50%}
+.count{font-size:13px;letter-spacing:.12em;color:rgba(255,255,255,.85);font-variant-numeric:tabular-nums}
+.pp{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;cursor:pointer;display:grid;place-items:center}
+.nextchip{grid-area:2/2/3/3;justify-self:stretch;align-self:center;position:relative;z-index:3;display:flex;align-items:center;gap:12px;padding:6px 14px 6px 6px;border-radius:16px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);backdrop-filter:blur(12px);color:#fff;cursor:pointer;text-align:left;overflow:hidden;transition:background .3s}
+.nextchip:hover{background:rgba(255,255,255,.16)}
+.nextchip img{width:56px;height:42px;border-radius:10px;object-fit:cover;flex:none;transition:transform .6s var(--ease)}
+.nextchip:hover img{transform:scale(1.08)}
+.nextchip small{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.nextchip b{display:block;font-size:14px;font-weight:600;line-height:1.3}
+.nextchip i{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--acc2);transform-origin:0;transform:scaleX(var(--p,0))}
+.scroll-cue{display:none;grid-area:2/2/3/3;justify-self:end;align-self:center;position:relative;z-index:3;display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.scroll-cue i{position:relative;width:22px;height:34px;border:1.5px solid rgba(255,255,255,.6);border-radius:12px}
+.scroll-cue i::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#fff;animation:wheel 1.8s var(--ease) infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+@media (max-width:899px){
+  .hero__frame{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;padding:124px 20px 22px;min-height:0}
+  .slide{grid-area:1/1/2/2}
+  .hero__side{grid-area:2/1/3/2}
+  .brokers{display:none}
+  .intent{padding:14px}
+  .hero__bar{grid-area:3/1/4/2}
+  .scroll-cue{display:none}
+  .nextchip{display:none}
+  .hero__frame{height:auto}
+  .hero__shade{background:linear-gradient(180deg,rgba(0,42,54,.55) 0%,rgba(0,42,54,.6) 50%,#002A36 100%)}
+}
+
+/* ---------- Locations marquee ---------- */
+.loc{background:var(--acc);color:#fff;padding:18px 0 20px;overflow:hidden}
+.loc__t{text-align:center;font-size:14px;font-style:italic;font-weight:600;margin-bottom:6px;color:#fff}
+.marq{display:flex;width:max-content;animation:marq 40s linear infinite;will-change:transform}
+.loc:hover .marq,.loc:focus-within .marq{animation-play-state:paused}
+.marq span{white-space:nowrap;padding:0 clamp(18px,2.6vw,42px);font-weight:600;font-size:clamp(15px,1.3vw,18px);letter-spacing:.06em;display:inline-flex;align-items:center;gap:clamp(18px,2.6vw,42px)}
+.marq span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc2)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- Intro: local knowledge ---------- */
+.intro{padding:clamp(80px,9vw,140px) var(--gut) clamp(70px,8vw,120px);position:relative}
+.intro__grid{display:grid;grid-template-columns:1.05fr 1.2fr .8fr;gap:clamp(24px,4vw,64px);align-items:start;margin-top:clamp(40px,5vw,72px)}
+.intro__h{max-width:900px;padding-left:clamp(0px,14%,200px)}
+.media{position:relative;overflow:hidden;border-radius:var(--r)}
+.media img{width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
+.intro__a{aspect-ratio:253/271}
+.intro__b{aspect-ratio:147/178;margin-top:clamp(0px,6vw,90px)}
+.scrub{font-size:clamp(18px,1.6vw,24px);line-height:1.55;font-weight:500;color:var(--ink)}
+.js .scrub .sw{opacity:.18;transition:opacity .2s linear}
+.facts{display:flex;flex-wrap:wrap;gap:12px 28px;margin:32px 0 28px;padding:20px 0;border-block:1px solid var(--line)}
+.fact{display:flex;align-items:baseline;gap:10px}
+.fact b{font-size:clamp(34px,3.4vw,48px);font-weight:600;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.fact span{font-size:14px;color:var(--muted);max-width:140px;line-height:1.35}
+@media (max-width:899px){.intro__grid{grid-template-columns:1fr 1fr}.intro__copy{grid-column:1/-1;order:-1}.intro__h{padding-left:0}}
+
+/* ---------- Services (sticky media) ---------- */
+.svc{background:var(--ink);color:#fff;padding:clamp(80px,9vw,140px) var(--gut)}
+.svc__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(30px,6vw,100px);align-items:start}
+.svc__side{position:sticky;top:calc(var(--head-h) + 24px)}
+.svc__side .lead{margin-top:20px;max-width:480px}
+.svc__media{position:relative;margin-top:32px;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:#0b3a47}
+.svc__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;clip-path:inset(100% 0 0 0);transform:scale(1.15);transition:clip-path 1s var(--ease-io),transform 1.6s var(--ease)}
+.svc__media img.is-on{z-index:1;clip-path:inset(0 0 0 0);transform:none}
+.svc__media img.was-on{z-index:0;clip-path:inset(0 0 0 0)}
+.svc__media figcaption{position:absolute;left:14px;bottom:14px;z-index:2;background:rgba(0,42,54,.72);backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px;font-size:13px}
+.svc__meter{display:flex;align-items:center;gap:14px;margin-top:22px;font-size:13px;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.svc__bar{flex:1;height:2px;background:var(--line-d);position:relative;overflow:hidden}
+.svc__bar i{position:absolute;inset:0;background:var(--acc2);transform-origin:0;transform:scaleX(.1667);transition:transform .6s var(--ease)}
+.svc__list{list-style:none;margin:0;padding:0}
+.svc__item{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:34px 0;border-bottom:1px solid var(--line-d);transition:opacity .5s}
+.js .svc__item{opacity:.4}
+.js .svc__item.is-on{opacity:1}
+.svc__item:first-child{padding-top:0}
+.svc__ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(159,195,209,.12);color:var(--acc2)}
+.svc__item h3{font-size:clamp(21px,1.7vw,26px);font-weight:600}
+.svc__item p{margin-top:12px;color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.75}
+.svc__item .link-arrow{margin-top:16px;color:#fff}
+.svc__thumb{display:none}
+@media (max-width:899px){.svc__grid{grid-template-columns:1fr}.svc__side{position:static}.svc__media{display:none}.js .svc__item{opacity:1}.svc__thumb{display:block;grid-column:1/-1;aspect-ratio:16/9;border-radius:14px;overflow:hidden;margin-bottom:6px}.svc__thumb img{width:100%;height:100%;object-fit:cover}.svc__item{grid-template-columns:1fr}.svc__ico{display:none}}
+
+/* ---------- Expertise (clip reveal) ---------- */
+.exp{padding:clamp(80px,9vw,130px) var(--gut) clamp(40px,5vw,70px)}
+.exp__top{display:grid;grid-template-columns:1fr 1fr;gap:28px clamp(40px,6vw,100px);align-items:end;margin-bottom:clamp(40px,4vw,64px)}
+.exp__top .lead{color:var(--muted)}
+.exp__img{position:relative;aspect-ratio:775/413;overflow:hidden;border-radius:var(--r);clip-path:inset(var(--ci,0%) var(--cx,0%) var(--ci,0%) var(--cx,0%) round 22px)}
+.exp__img img{width:100%;height:100%;object-fit:cover;transform:scale(var(--cs,1))}
+.exp__tags{position:absolute;left:clamp(14px,3vw,36px);bottom:clamp(14px,3vw,36px);display:flex;flex-wrap:wrap;gap:8px;max-width:70%}
+.exp__tags span{background:rgba(255,255,255,.92);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;box-shadow:0 10px 30px -12px rgba(0,0,0,.4)}
+@media (max-width:899px){.exp__top{grid-template-columns:1fr}.exp__img{aspect-ratio:4/3}.exp__tags{max-width:100%;right:14px}.exp__tags span{font-size:13px;padding:6px 11px}}
+
+/* ---------- Journey (pinned horizontal process) ---------- */
+.jrny{position:relative;background:var(--soft)}
+.jrny__stick{position:relative;padding:clamp(80px,9vw,120px) 0}
+.jrny.is-pinned .jrny__stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--head-h) + 20px) 0 40px}
+.jrny__head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 40px;padding-inline:var(--gut)}
+.jrny__head .lead{max-width:520px;margin-top:14px}
+.tabs{display:inline-flex;padding:5px;background:#fff;border-radius:999px;border:1px solid var(--line);position:relative}
+.tab{position:relative;z-index:1;border:0;background:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;color:var(--ink);transition:color .4s}
+.tab[aria-selected="true"]{color:#fff}
+.tabs__pill{position:absolute;z-index:0;top:5px;bottom:5px;left:5px;border-radius:999px;background:var(--ink);transition:transform .5s var(--ease),width .5s var(--ease)}
+.jrny__track{display:flex;gap:20px;padding:clamp(36px,4vw,56px) var(--gut) 10px;will-change:transform}
+.jrny:not(.is-pinned) .jrny__track{flex-direction:column}
+.jrny.is-pinned .jrny__track::after{content:"";flex:none;width:1px;margin-left:calc(var(--gut) - 21px)}
+.jrny__track{position:relative}
+.jline{position:absolute!important;left:0;top:50%;height:140px;margin-top:-70px;pointer-events:none;list-style:none}
+.jline svg{overflow:visible;display:block}
+.jline path{fill:none;stroke:var(--acc);stroke-width:2}
+.jline .base{stroke-dasharray:5 9;opacity:.5}
+.jrny:not(.is-pinned) .jline{display:none}
+.jrny__big{position:absolute;right:var(--gut);bottom:-3vw;font-size:clamp(160px,28vw,480px);font-weight:700;line-height:.8;letter-spacing:-.07em;color:transparent;-webkit-text-stroke:1.5px rgba(0,42,54,.07);pointer-events:none;font-variant-numeric:tabular-nums;z-index:0}
+.jrny:not(.is-pinned) .jrny__big{display:none}
+.jrny__stick>*{position:relative;z-index:1}
+.jrny__stick>.jrny__big{position:absolute;z-index:0}
+.step{position:relative;flex:none;width:min(420px,82vw);min-height:300px;background:#fff;border-radius:22px;padding:28px 28px 30px;border:1px solid var(--line);display:flex;flex-direction:column;transition:background .5s,color .5s,transform .6s var(--ease)}
+.jrny:not(.is-pinned) .step{width:auto;min-height:0}
+.step__n{font-size:64px;line-height:1;font-weight:600;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.2px var(--acc);transition:-webkit-text-stroke-color .5s}
+.step h3{font-size:22px;margin-top:auto;padding-top:34px}
+.jrny:not(.is-pinned) .step h3{padding-top:18px}
+.step p{margin-top:12px;font-size:15.5px;line-height:1.7;color:var(--muted);transition:color .5s}
+.step.is-on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.step.is-on p{color:rgba(255,255,255,.82)}
+.step.is-on .step__n{-webkit-text-stroke-color:var(--acc2)}
+.step--end{background:var(--acc);color:#fff;border-color:var(--acc);justify-content:space-between}
+.step--end p{color:#fff}
+.step--end h3{padding-top:0;margin-top:0;font-size:26px}
+.jrny__rail{display:flex;align-items:center;gap:16px;padding:26px var(--gut) 0;font-size:13px;letter-spacing:.1em;font-variant-numeric:tabular-nums;color:var(--muted)}
+.jrny__rail .bar{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
+.jrny__rail .bar i{position:absolute;inset:0;background:var(--ink);transform-origin:0;transform:scaleX(0)}
+.jrny:not(.is-pinned) .jrny__rail{display:none}
+[role="tabpanel"][hidden]{display:none!important}
+
+/* ---------- Business types ---------- */
+.types{padding:clamp(80px,9vw,130px) var(--gut)}
+.types__top{display:grid;grid-template-columns:1.1fr 1fr;gap:24px 60px;align-items:end;margin-bottom:40px}
+.types__top .tabs{margin-top:22px;background:var(--soft);border-color:transparent}
+.chips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.chip a{position:relative;display:flex;align-items:center;gap:14px;padding:18px;border-radius:18px;background:var(--soft);text-decoration:none;font-weight:500;min-height:84px;overflow:hidden;isolation:isolate;transition:color .4s}
+.chip a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);clip-path:circle(0 at var(--mx,50%) var(--my,50%));transition:clip-path .6s var(--ease)}
+.chip a:hover,.chip a:focus-visible{color:#fff}
+.chip a:hover::before,.chip a:focus-visible::before{clip-path:circle(150% at var(--mx,50%) var(--my,50%))}
+.chip__ic{width:46px;height:46px;flex:none;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--ink);transition:transform .6s var(--ease)}
+.chip a:hover .chip__ic{transform:rotate(-12deg) scale(1.06)}
+.chip__go{margin-left:auto;opacity:.6}
+.js .chip{opacity:0;transform:translateY(16px)}
+.js .chips.is-in .chip{opacity:1;transform:none;transition:opacity .6s var(--ease) calc(var(--i)*60ms),transform .6s var(--ease) calc(var(--i)*60ms)}
+@media (max-width:1099px){.chips{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:899px){.types__top{grid-template-columns:1fr}}
+@media (max-width:480px){.chips{grid-template-columns:1fr}.chip a{min-height:70px;padding:14px}}
+
+/* ---------- Value explorer ---------- */
+.val{background:var(--ink);color:#fff;padding:clamp(80px,9vw,130px) var(--gut);position:relative;overflow:hidden}
+.val__glow{position:absolute;width:60vw;height:60vw;max-width:800px;max-height:800px;border-radius:50%;background:radial-gradient(closest-side,rgba(81,139,153,.35),transparent);right:-20vw;top:-10vw;pointer-events:none}
+.val__grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);align-items:center;margin-top:48px}
+.dial{position:relative;aspect-ratio:1;max-width:520px;width:100%;margin-inline:auto}
+.dial svg{width:100%;height:100%;overflow:visible}
+.dial .seg{fill:none;stroke:rgba(255,255,255,.12);stroke-width:46;cursor:pointer;transition:stroke .5s}
+.dial .seg.is-on{stroke:var(--acc)}
+.dial .seg:hover{stroke:rgba(159,195,209,.4)}
+.dial .seg.is-on:hover{stroke:var(--acc)}
+.dial .lbl{fill:rgba(255,255,255,.7);font-size:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;pointer-events:none;transition:fill .4s}
+.dial .lbl.is-on{fill:#fff}
+.dial{touch-action:none;cursor:grab;user-select:none}
+.dial.drag{cursor:grabbing}
+.dial__rot{transition:transform 1s var(--ease)}
+.dial.drag .dial__rot{transition:none}
+.dial .tick{stroke:rgba(255,255,255,.2);stroke-width:1}
+.dial__pt{position:absolute;left:50%;top:2%;translate:-50% 0;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:13px solid var(--acc2);z-index:2}
+.dial__hint{text-align:center;margin-top:12px;font-size:14px;color:rgba(255,255,255,.65)}
+.dial__core{position:absolute;inset:29%;border-radius:50%;background:rgba(255,255,255,.04);border:1px solid var(--line-d);display:grid;place-items:center;text-align:center;padding:16px}
+.dial__core b{display:block;font-size:clamp(20px,2vw,28px);font-weight:600;line-height:1.15}
+.dial__core span{display:block;margin-top:6px;font-size:13px;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase}
+.factors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.factor{border:1px solid var(--line-d);background:transparent;color:#fff;border-radius:12px;padding:12px 10px;font-weight:600;font-size:14px;cursor:pointer;text-align:left;transition:background .3s,border-color .3s,color .3s}
+.factor[aria-selected="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.factor:hover{border-color:var(--acc2)}
+.fpanel{margin-top:22px;min-height:150px;padding:24px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--line-d)}
+.fpanel h3{font-size:22px}
+.fpanel p{margin-top:10px;color:rgba(255,255,255,.82);line-height:1.75}
+.js .fpanel.is-swap{animation:swap .55s var(--ease)}
+@keyframes swap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.incl{margin-top:30px}
+.incl h3{font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc2);font-weight:600}
+.incl ul{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.incl li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)}
+.incl li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 5.2l1.7 1.7L7.6 3.4' stroke='%23fff' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.val__cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.val__note{font-size:13px;color:rgba(255,255,255,.6);max-width:520px;margin-top:14px}
+@media (max-width:999px){.val__grid{grid-template-columns:1fr}.dial{max-width:420px}}
+@media (max-width:520px){.factors{grid-template-columns:1fr 1fr}.incl ul{grid-template-columns:1fr}.dial__core b{font-size:17px}.dial__core span{font-size:11px}}
+
+/* ---------- Buyers (layered images) ---------- */
+.buyers{padding:clamp(80px,9vw,130px) var(--gut);overflow:hidden}
+.buyers__grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px clamp(40px,7vw,110px);align-items:center}
+.buyers__copy .lead{margin-top:22px}
+.buyers__copy .btn{margin-top:28px}
+.stack{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;align-items:start}
+.stack .media{border-radius:18px}
+.stack__a{aspect-ratio:253/264}
+.stack__col{display:grid;gap:12px;padding-top:30px}
+.stack__b{aspect-ratio:145/90}
+.stack__c{aspect-ratio:145/169}
+.badge{position:absolute;right:-8px;bottom:22px;background:#fff;color:var(--ink);border-radius:16px;padding:14px 16px;box-shadow:0 20px 50px -20px rgba(0,42,54,.45);display:flex;gap:12px;align-items:center;font-size:14px;font-weight:600;max-width:220px;line-height:1.35}
+.badge i{width:38px;height:38px;flex:none;border-radius:50%;background:var(--soft);display:grid;place-items:center;color:var(--btn)}
+@media (max-width:899px){.buyers__grid{grid-template-columns:1fr}.badge{right:8px}}
+
+/* ---------- Confidentiality protocol ---------- */
+.conf{padding:clamp(40px,5vw,70px) var(--gut) clamp(80px,9vw,130px)}
+.conf__grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(36px,6vw,100px);align-items:start}
+.conf__vis{position:sticky;top:calc(var(--head-h) + 30px);aspect-ratio:363/376;border-radius:22px;overflow:hidden}
+.conf__vis img{width:100%;height:100%;object-fit:cover}
+.lock{position:absolute;left:50%;top:50%;width:min(56%,240px);aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:rgba(0,42,54,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;place-items:center;color:#fff}
+.lock svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.lock circle{fill:none;stroke-width:5}
+.lock .trk{stroke:rgba(255,255,255,.18)}
+.lock .ful{stroke:var(--acc2);stroke-linecap:round;stroke-dasharray:var(--len);stroke-dashoffset:calc(var(--len) * (1 - var(--lp,0)));transition:stroke-dashoffset .8s var(--ease)}
+.lock__in{text-align:center;padding:12px;position:relative;z-index:2}
+.rings{position:absolute;inset:-60%;width:220%!important;height:220%!important;transform:none!important;pointer-events:none}
+.rings circle{fill:none;stroke:rgba(255,255,255,.3);stroke-width:1.5;transition:stroke .6s}
+.rings g{transform-origin:200px 200px}
+.rings g:nth-child(1){animation:spin 26s linear infinite}
+.rings g:nth-child(2){animation:spin 34s linear infinite reverse}
+.rings g:nth-child(3){animation:spin 20s linear infinite}
+.rings g:nth-child(4){animation:spin 40s linear infinite reverse}
+.rings g.lockd circle{stroke:var(--acc2);stroke-dasharray:none!important}
+@keyframes spin{to{transform:rotate(360deg)}}
+.conf__vis{overflow:hidden}
+.lock__in svg{position:static;transform:none;width:34px;height:34px;margin:0 auto 6px}
+.lock__in b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.lock__in span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.proto{list-style:none;margin:36px 0 0;padding:0;counter-reset:p}
+.proto li{position:relative;padding:22px 0 22px 64px;border-top:1px solid var(--line);counter-increment:p;transition:opacity .5s}
+.js .proto li{opacity:.35}
+.js .proto li.is-on{opacity:1}
+.proto li::before{content:counter(p,decimal-leading-zero);position:absolute;left:0;top:22px;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--acc);display:grid;place-items:center;font-size:14px;font-weight:600;color:var(--ink);transition:background .5s,color .5s}
+.proto li.is-on::before{background:var(--ink);border-color:var(--ink);color:#fff}
+.proto h3{font-size:20px}
+.proto p{margin-top:6px;color:var(--muted);font-size:15.5px}
+@media (max-width:899px){.conf__grid{grid-template-columns:1fr}.conf__vis{position:relative;top:0}.js .proto li{opacity:1}}
+
+/* ---------- Team ---------- */
+.team{background:var(--soft);padding:clamp(80px,9vw,130px) var(--gut);position:relative;overflow:hidden}
+.team__grid{display:grid;grid-template-columns:.95fr 1fr 1fr;gap:clamp(20px,3vw,40px);align-items:start}
+.team__intro .lead{margin-top:20px}
+.team__stat{display:flex;align-items:baseline;gap:10px;margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.team__stat b{font-size:clamp(34px,3.4vw,48px);font-weight:600;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.team__stat span{font-size:14px;line-height:1.35;color:var(--muted);max-width:160px}
+.team__intro .btn{margin-top:26px}
+.pf{position:relative;background:#fff;border-radius:24px;padding:10px;box-shadow:0 30px 70px -40px rgba(0,42,54,.45);display:flex;flex-direction:column;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.pf:hover{transform:translateY(-6px);box-shadow:0 44px 90px -40px rgba(0,42,54,.55)}
+.pf__stage{position:relative;aspect-ratio:1/1;border-radius:16px;overflow:hidden;isolation:isolate;background:radial-gradient(120% 90% at 50% 0%,#E4EFF3 0%,#9FC3D1 100%)}
+.pf:nth-child(2) .pf__stage{background:radial-gradient(120% 90% at 50% 0%,#F7F2F1 0%,#C9DBE1 100%)}
+.pf__init{position:absolute;inset:auto 0 -6% 0;text-align:center;font-size:clamp(110px,11vw,190px);font-weight:700;letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(0,42,54,.14);z-index:0;pointer-events:none;transition:transform .8s var(--ease)}
+.pf__img{position:absolute;inset:0;width:100%;height:108%;object-fit:cover;object-position:50% 0;mix-blend-mode:multiply;z-index:1;transition:transform 1s var(--ease)}
+
+.pf__badge{position:absolute;left:10px;top:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:5px 11px 5px 5px;border-radius:999px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);font-size:12.5px;font-weight:600;max-width:calc(100% - 20px)}
+.pf__badge i{width:20px;height:20px;font-size:11px;flex:none;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal}
+.pf__body{padding:16px 8px 6px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pf__name{display:flex;flex-direction:column;gap:4px}
+.pf h3{font-size:22px;line-height:1.15}
+.pf__lead{font-size:14px;font-weight:500;color:var(--btn)}
+.pf__creds{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.pf__creds li{display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 6px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:500;line-height:1.25;color:var(--muted)}
+.pf__creds li::before{content:"";width:16px;height:16px;flex:none;border-radius:50%;background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 5.2l1.7 1.7L7.6 3.4' stroke='%23fff' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/11px no-repeat}
+.pf__acts{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:auto;padding-top:6px}
+.pf__mail{grid-column:1/-1;grid-row:2}
+.pf__call,.pf__mail{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px 0 6px;border-radius:999px;text-decoration:none;font-weight:500;font-size:14.5px;transition:background .3s,color .3s,border-color .3s;max-width:100%}
+.pf__call{background:var(--ink);color:#fff;justify-self:start}
+.pf__call:hover{background:var(--btn);color:#fff}
+.pf__mail{border:1.5px solid var(--line);color:var(--ink);min-width:0}
+.pf__mail span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pf__mail:hover{border-color:var(--ink)}
+.pf__call i,.pf__mail i{width:32px;height:32px;flex:none;border-radius:50%;display:grid;place-items:center;font-style:normal}
+.pf__call i{background:#fff;color:var(--ink)}
+.pf__mail i{background:var(--soft);color:var(--ink)}
+.pf__copy{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .3s,background .3s,color .3s;position:relative}
+.pf__copy:hover{border-color:var(--ink)}
+.pf__copy.ok{background:var(--acc);border-color:var(--acc);color:#fff}
+.pf__tip{position:absolute;bottom:calc(100% + 8px);right:0;translate:0 4px;background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:5px 9px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s,translate .25s}
+.pf__copy.ok .pf__tip{opacity:1;translate:0 0}
+@media (max-width:999px){.team__grid{grid-template-columns:1fr 1fr}.team__intro{grid-column:1/-1}}
+@media (max-width:600px){.team__grid{grid-template-columns:1fr}}
+
+
+/* ---------- Testimonials ---------- */
+.tst{padding:clamp(80px,9vw,130px) 0}
+.tst__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;padding-inline:var(--gut);margin-bottom:40px}
+.arrows{display:flex;gap:10px}
+.arrows button{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;cursor:pointer;display:grid;place-items:center;transition:background .3s,color .3s}
+.arrows button:hover{background:var(--ink);color:#fff}
+.arrows button:disabled{opacity:.3;cursor:default;background:transparent;color:var(--ink)}
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gut) 20px;scroll-padding-inline:var(--gut);scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.is-drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.rail{perspective:1200px}
+.quote{transform-style:preserve-3d;will-change:transform;flex:none;width:min(420px,84vw);scroll-snap-align:start;background:var(--soft);border-radius:22px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;gap:30px;min-height:330px}
+.quote__mk{font-size:64px;line-height:.6;color:var(--acc);font-weight:600;height:30px}
+.quote blockquote{margin:0;font-size:18px;line-height:1.6;font-weight:500}
+.quote footer{display:flex;align-items:center;gap:12px}
+.quote footer span{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:600}
+.quote footer b{display:block;font-weight:600}
+.quote footer small{color:var(--muted);font-size:14px}
+.tst__meter{margin:16px var(--gut) 0;height:2px;background:var(--line);position:relative;overflow:hidden}
+.tst__meter i{position:absolute;inset:0;background:var(--ink);transform-origin:0;transform:scaleX(.3)}
+
+/* ---------- Contact / enquiry ---------- */
+.contact{padding:clamp(40px,5vw,70px) var(--gut) clamp(80px,9vw,130px)}
+.contact__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,90px);align-items:start}
+.contact__copy .lead{margin-top:22px}
+.contact__copy .lead strong{color:var(--ink)}
+.direct{margin-top:30px;display:grid;gap:12px}
+.direct a{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;border:1px solid var(--line);text-decoration:none;transition:border-color .3s,transform .4s var(--ease)}
+.direct a:hover{border-color:var(--acc);transform:translateX(4px)}
+.direct a i{width:44px;height:44px;flex:none;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--btn)}
+.direct small{display:block;font-size:13px;color:var(--muted)}
+.direct b{font-weight:600;font-size:clamp(14px,3.9vw,16px);overflow-wrap:anywhere}
+.form{background:var(--ink);color:#fff;border-radius:26px;padding:clamp(22px,3vw,40px);position:relative}
+.form h3{font-size:clamp(24px,2.2vw,30px)}
+.form__sub{margin-top:8px;color:rgba(255,255,255,.75);font-size:15px}
+.ctx{display:none;margin-top:16px;padding:12px 14px;border-radius:12px;background:rgba(159,195,209,.14);border:1px solid rgba(159,195,209,.35);font-size:14px;line-height:1.5}
+.ctx.is-on{display:block}
+.ctx button{background:none;border:0;color:var(--acc2);text-decoration:underline;cursor:pointer;padding:0;font-weight:600}
+fieldset{border:0;margin:24px 0 0;padding:0;min-width:0}
+legend{font-size:14px;font-weight:600;letter-spacing:.04em;margin-bottom:12px;padding:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill input{position:absolute;opacity:0;width:1px;height:1px}
+.pill span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.3);font-size:15px;font-weight:500;cursor:pointer;transition:background .3s,border-color .3s,color .3s}
+.pill input:checked+span{background:#fff;color:var(--ink);border-color:#fff}
+.pill input:focus-visible+span{outline:3px solid var(--acc2);outline-offset:3px}
+.pill span:hover{border-color:var(--acc2)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field--full{grid-column:1/-1}
+.field label{font-size:14px;font-weight:500;color:rgba(255,255,255,.88)}
+.field label .req{color:var(--acc2)}
+.field input,.field select,.field textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:12px;border:1.5px solid #4F737D;background:rgba(255,255,255,.04);color:#fff;font:inherit;font-size:16px;transition:border-color .3s,background .3s}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23fff' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:36px}
+.field select option{color:var(--ink)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.08)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.5)}
+.field [aria-invalid="true"]{border-color:var(--err-d)}
+.ferr{font-size:14px;color:var(--err-d);min-height:0}
+.ferr:empty{display:none}
+.errsum{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,180,168,.12);border:1px solid var(--err-d);font-size:15px}
+.errsum ul{margin:6px 0 0;padding-left:18px}
+.errsum a{color:#fff}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form__foot{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.form__priv{font-size:13px;color:rgba(255,255,255,.65);max-width:330px;line-height:1.5}
+.form__priv a{color:#fff}
+.form .btn{--bg:#fff;--fg:var(--ink);--bd:#fff}
+.form .btn .ic{background:var(--btn);color:#fff}
+.form .btn::before{background:var(--acc2)}
+.form .btn:hover{color:var(--ink)}
+.status{margin-top:22px;padding:20px;border-radius:16px;background:rgba(255,255,255,.06);border:1px dashed rgba(159,195,209,.6)}
+.status[hidden]{display:none}
+.status h4{font-size:18px}
+.status p{margin-top:8px;color:rgba(255,255,255,.82);font-size:15px}
+.status__sum{margin:12px 0 0;padding:12px 14px;border-radius:10px;background:rgba(0,0,0,.2);font-size:14px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.status__act{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.status__act a,.status__act button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.5);background:transparent;color:#fff;text-decoration:none;font-weight:600;font-size:15px;cursor:pointer}
+.status__act a:first-child{background:#fff;color:var(--ink);border-color:#fff}
+.demo-flag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(159,195,209,.18);color:var(--acc2);margin-bottom:14px}
+@media (max-width:999px){.contact__grid{grid-template-columns:1fr}}
+@media (max-width:560px){.fields{grid-template-columns:1fr}}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--ink);color:#fff;padding:clamp(80px,9vw,130px) var(--gut)}
+.faq__grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:start}
+.faq__side{position:sticky;top:calc(var(--head-h) + 24px)}
+.faq__side .lead{margin-top:18px}
+.faq__side .btn{margin-top:26px}
+.qa{border-top:1px solid var(--line-d)}
+.qa:last-child{border-bottom:1px solid var(--line-d)}
+.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 4px;font-size:clamp(17px,1.4vw,20px);font-weight:600;color:rgba(255,255,255,.75);transition:color .3s}
+.qa summary::-webkit-details-marker{display:none}
+.qa[open] summary,.qa summary:hover{color:#fff}
+.qa__ic{width:36px;height:36px;flex:none;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;transition:transform .5s var(--ease),background .3s}
+.qa[open] .qa__ic{transform:rotate(45deg);background:#fff;color:var(--ink);border-color:#fff}
+.qa__a{overflow:hidden}
+.qa__a p{padding:0 50px 26px 4px;color:rgba(255,255,255,.8);line-height:1.75}
+@media (max-width:899px){.faq__grid{grid-template-columns:1fr}.faq__side{position:static}.qa__a p{padding-right:4px}}
+
+/* ---------- Blog ---------- */
+.blog{padding:clamp(80px,9vw,130px) var(--gut)}
+.blog__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:40px}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:0}
+.post a{display:block;text-decoration:none}
+.post__img{aspect-ratio:812/487;border-radius:18px;overflow:hidden}
+.post__img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.post a:hover .post__img img{transform:scale(1.06)}
+.post__meta{margin-top:16px;font-size:14px;color:var(--btn);font-weight:500}
+.post h3{margin-top:8px;font-size:21px;line-height:1.3;background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;display:inline;transition:background-size .5s var(--ease)}
+.post a:hover h3{background-size:100% 1.5px}
+@media (max-width:899px){.posts{grid-template-columns:1fr}.post a{display:grid;grid-template-columns:minmax(120px,38%) 1fr;gap:16px;align-items:center}.post__meta{margin-top:0}}
+@media (max-width:420px){.post a{grid-template-columns:1fr}}
+
+/* ---------- Footer ---------- */
+.ftr{background:var(--ink);color:#fff;padding:clamp(70px,8vw,110px) var(--gut) 30px;overflow:hidden;position:relative}
+.ftr__cta{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:end;padding:clamp(40px,6vw,90px) clamp(24px,4vw,64px);border-radius:28px;background:radial-gradient(80% 90% at 30% 60%,#4F737D 0%,#002A36 75%)}
+.ftr__cta canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+.ftr__cta p{margin-top:14px;color:rgba(255,255,255,.82);max-width:52ch}
+.ftr__cta h2{font-size:clamp(36px,5vw,72px);letter-spacing:-.03em}
+.ftr__grid{display:grid;grid-template-columns:1fr 1fr 1.2fr 1.6fr;gap:40px;padding-top:clamp(50px,6vw,70px)}
+.ftr h3{font-size:16px;font-weight:600;margin-bottom:16px;color:var(--acc2);letter-spacing:.04em}
+.ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ftr a{text-decoration:none;color:rgba(255,255,255,.85)}
+.ftr a:hover{color:#fff;text-decoration:underline}
+.ftr .btn{color:var(--fg)}.ftr .btn:hover{text-decoration:none;color:#fff}
+.ftr__ct{display:grid;gap:4px;font-size:15px}
+.ftr__ct small{color:rgba(255,255,255,.6);margin-top:10px}
+.social{display:flex;gap:8px;margin-top:16px}
+.social a{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-d);display:grid;place-items:center;font-size:13px;font-weight:600}
+.social a:hover{background:#fff;color:var(--ink);text-decoration:none}
+.sub{background:#fff;color:var(--ink);border-radius:20px;padding:22px}
+.sub h3{color:var(--ink);font-size:20px;letter-spacing:0;margin-bottom:6px}
+.sub p{font-size:14px;color:var(--muted)}
+.sub__row{display:flex;gap:8px;margin-top:14px}
+.sub input{flex:1;min-width:0;min-height:48px;border-radius:999px;border:1.5px solid #AED4DD;padding:0 18px;font:inherit;font-size:16px;color:var(--ink);background:#F4FAFB}
+.sub input:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(81,139,153,.2)}
+.sub button{min-height:48px;padding:0 20px;border:0;border-radius:999px;background:var(--btn);color:#fff;font-weight:600;cursor:pointer}
+.sub button:hover{background:var(--ink)}
+.sub__msg{margin-top:10px;font-size:14px}
+.sub__msg.is-err{color:var(--err)}
+.ftr__word{margin-top:clamp(40px,6vw,80px);font-size:clamp(64px,17vw,260px);line-height:.85;font-weight:700;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(159,195,209,.35);white-space:nowrap;user-select:none;display:flex}
+.ftr__word span{display:inline-block;transition:color .6s var(--ease),-webkit-text-stroke-color .6s}
+.ftr__word:hover span{color:rgba(159,195,209,.12)}
+.ftr__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 30px;margin-top:20px;padding-top:22px;border-top:1px solid var(--line-d);font-size:14px;color:rgba(255,255,255,.65)}
+.mtoggle{background:none;border:1px solid var(--line-d);color:rgba(255,255,255,.85);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px}
+.logo-plate{display:inline-block;background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:22px}
+.logo-plate img{height:32px;width:auto}
+@media (max-width:999px){.ftr__cta{grid-template-columns:1fr}.ftr__grid{grid-template-columns:1fr 1fr}.sub{grid-column:1/-1}}
+@media (max-width:520px){.ftr__grid{grid-template-columns:1fr}.sub__row{flex-direction:column}}
+
+/* ---------- Mobile action bar ---------- */
+.mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:90;display:none;gap:8px;padding:8px;border-radius:999px;background:rgba(0,42,54,.94);backdrop-filter:blur(12px);box-shadow:0 20px 40px -14px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .5s var(--ease)}
+.mbar.is-on{transform:none}
+.mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:999px;text-decoration:none;font-weight:600;color:#fff}
+.mbar a:last-child{background:#fff;color:var(--ink)}
+@media (max-width:899px){.mbar{display:flex}body{padding-bottom:0}.ftr__base{padding-bottom:84px}}
+
+/* ---------- Reveal ---------- */
+.js [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js [data-reveal].is-in{opacity:1;transform:none}
+.js [data-split] .w>span{transform:translateY(105%)}
+.js [data-split].is-in .w>span{transform:none;transition:transform 1s var(--ease) calc(var(--i,0)*45ms)}
+
+/* ---------- Loader ---------- */
+.ld{position:fixed;inset:0;z-index:500;pointer-events:none}
+.ld__p{position:absolute;top:0;bottom:0;background:var(--ink)}
+.ld__in{position:absolute;inset:0;display:grid;place-items:center}
+.ld__plate{background:#fff;border-radius:18px;padding:16px 22px}
+.ld__plate img{height:44px;width:auto}
+.ld__n{position:absolute;right:var(--gut);bottom:26px;font-size:clamp(60px,12vw,180px);font-weight:700;letter-spacing:-.05em;line-height:.8;font-variant-numeric:tabular-nums;color:var(--acc2)}
+.ld__t{position:absolute;left:var(--gut);bottom:34px;font-size:15px;color:rgba(255,255,255,.7)}
+
+/* ================= MOBILE-ONLY LAYOUTS (each section gets its own phone treatment) ================= */
+.team__cards{display:contents}
+.swdots{display:none}
+@media (max-width:899px){
+  .swdots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+  .swdots i{width:6px;height:6px;border-radius:99px;background:currentColor;opacity:.25;transition:width .4s var(--ease),opacity .3s}
+  .swdots i.on{width:22px;opacity:.9}
+  .swipe{display:flex!important;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut);scroll-padding-inline:var(--gut);gap:12px}
+  .swipe::-webkit-scrollbar{display:none}
+  [class*="__grid"]>*,.svc__side,.team__intro,.val__grid>*>*{min-width:0}
+  .swipe{position:relative}
+  .swipe>*{flex:none;scroll-snap-align:start;position:relative}
+
+  /* Local insight: photo collage + swipeable fact cards */
+  .intro__grid{grid-template-columns:1fr;gap:0}
+  .intro__copy{order:-1}
+  .intro__a{width:80%;margin-top:34px;border-radius:22px}
+  .intro__b{width:46%;margin:-34% 0 0 auto;border-radius:20px;border:6px solid #fff;box-shadow:0 24px 50px -24px rgba(0,42,54,.45);position:relative;z-index:2}
+  .facts{border:0;padding:0;margin:24px calc(-1 * var(--gut)) 22px;padding-inline:var(--gut)}
+  .fact{width:62%;flex-direction:column;align-items:flex-start;gap:6px;background:var(--soft);border-radius:18px;padding:16px}
+  .fact span{max-width:none}
+
+  /* Services: swipe deck of cards */
+  .svc__side .lead{font-size:15px}
+  .svc__meter{display:none}
+  .svc__list{margin-top:26px;padding-bottom:4px}
+  .svc__item{width:84%;display:flex!important;flex-direction:column;padding:0!important;border:0!important;background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+  .svc__item>div:last-child{padding:18px 18px 20px}
+  .svc__thumb{aspect-ratio:16/10!important;border-radius:0!important;margin:0!important}
+  .svc__item h3{font-size:20px}
+  .svc__item p{font-size:14.5px;line-height:1.65;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+  .svc .swdots{color:#fff}
+
+  /* Expertise: edge-to-edge photo, tags scroll along the bottom */
+  .exp__img{margin-inline:calc(-1 * var(--gut));aspect-ratio:4/5!important;border-radius:0;clip-path:none!important}
+  .exp__tags{left:0;right:0;bottom:16px;max-width:none;flex-wrap:nowrap;overflow-x:auto;padding-inline:var(--gut);scrollbar-width:none}
+  .exp__tags::-webkit-scrollbar{display:none}
+  .exp__tags span{flex:none}
+
+  /* Process: vertical timeline instead of stacked cards */
+  .jrny:not(.is-pinned) .jrny__track{gap:0;padding-left:calc(var(--gut) + 46px);position:relative}
+  .jrny:not(.is-pinned) .jrny__track::before{content:"";position:absolute;left:calc(var(--gut) + 15px);top:60px;bottom:120px;width:2px;background:linear-gradient(var(--acc),rgba(81,139,153,.15))}
+  .jrny:not(.is-pinned) .step{position:relative;background:transparent!important;border:0;padding:0 0 26px;min-height:0;color:var(--ink)!important}
+  .jrny:not(.is-pinned) .step__n{position:absolute;left:-46px;top:0;width:32px;height:32px;border-radius:50%;background:#fff;border:2px solid var(--acc);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--ink);-webkit-text-stroke:0;letter-spacing:0;transition:background .4s,color .4s}
+  .jrny:not(.is-pinned) .step.is-on .step__n{background:var(--ink);border-color:var(--ink);color:#fff}
+  .jrny:not(.is-pinned) .step h3{padding-top:4px!important;font-size:19px}
+  .jrny:not(.is-pinned) .step p{color:var(--muted)!important;font-size:15px}
+  .jrny:not(.is-pinned) .step--end{margin-left:-46px;padding:22px!important;border-radius:20px;background:var(--acc)!important;color:#fff!important}
+  .jrny:not(.is-pinned) .step--end p{color:#fff!important}
+  .jrny .tabs{width:100%}.jrny .tab{flex:1}
+
+  /* Business types: two-column tiles */
+  .chips{grid-template-columns:1fr 1fr!important;gap:10px}
+  .chip a{position:relative;flex-direction:column;align-items:flex-start;justify-content:space-between;min-height:124px;padding:14px;gap:14px;font-size:15px;line-height:1.3}
+  .chip__go{position:absolute;top:16px;right:14px}
+
+  /* Value: factor pills scroll sideways, smaller dial */
+  .factors{margin-top:6px}
+  .factor{border-radius:999px;padding:10px 16px;white-space:nowrap}
+  .val .dial{max-width:300px}
+  .incl ul{grid-template-columns:1fr}
+
+  /* Buyers: photos first */
+  .stack{order:-1}
+
+  /* Confidential: short banner photo + step cards */
+  .conf__vis{aspect-ratio:16/12}
+  .proto li{background:var(--soft);border:0;border-radius:18px;padding:16px 16px 16px 64px;margin-bottom:10px}
+  .proto li::before{left:14px;top:16px;width:38px;height:38px}
+
+  /* Team: swipe between brokers */
+  .team__cards{display:flex}
+  .team__cards .pf{width:78%;border-radius:20px;padding:8px}
+  .team__cards .pf__stage{aspect-ratio:4/3.4;border-radius:14px}
+  .team__cards .pf__img{object-position:50% 8%}
+  .team__cards .pf__init{font-size:110px}
+  .team__cards .pf__body{padding:12px 6px 4px;gap:8px}
+  .team__cards .pf h3{font-size:19px}
+  .team__cards .pf__lead{font-size:13px}
+  .team__cards .pf__creds li{font-size:12px;padding:4px 9px 4px 5px}
+  .team__cards .pf__creds li::before{width:14px;height:14px;background-size:9px}
+  .team__cards .pf__call,.team__cards .pf__mail{min-height:40px;font-size:13.5px;padding:0 12px 0 4px}
+  .team__cards .pf__call i,.team__cards .pf__mail i{width:30px;height:30px}
+  .team__cards .pf__copy{width:40px;height:40px}
+  .team .swdots{color:var(--ink)}
+
+  /* Contact: compact call / email tiles */
+  .direct{grid-template-columns:1fr 1fr;gap:10px}
+  .direct a{flex-direction:column;align-items:flex-start;gap:10px;padding:14px}
+  .direct a:last-child{grid-column:1/-1;flex-direction:row;align-items:center}
+
+  /* Blog: swipe cards */
+  .posts{margin-top:4px}
+  .post{width:78%}
+  .post a{display:block!important}
+  .post__meta{margin-top:12px!important}
+  .blog .swdots{color:var(--ink)}
+
+  /* Footer: link columns side by side */
+  .ftr__grid{grid-template-columns:1fr 1fr!important;gap:30px 20px}
+  .ftr__grid>div:nth-child(3){grid-column:1/-1}
+  .sub{grid-column:1/-1}
+}
+@media (max-width:899px) and (prefers-reduced-motion:no-preference){.swipe{scroll-behavior:smooth}}
+
+/* ---------- Reduced motion (system or on-page toggle) ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+html.rm .marq{animation:none;width:100%;flex-wrap:wrap;justify-content:center;gap:6px 0}
+html.rm .marq [aria-hidden]{display:none}
+html.rm .js-par,html.rm .media img{transform:none!important}
+html.rm .scrub .sw{opacity:1!important}
+html.rm .exp__img{clip-path:none}
+html.rm .cursor,html.rm .cdot,html.rm .ld,html.rm .grain,html.rm .prevdisc{display:none!important}
+html.rm [data-reveal],html.rm .chip{opacity:1!important;transform:none!important}
+html.rm [data-split] .w>span,html.rm .w>span{transform:none!important}
+html.rm .scroll-cue::after{animation:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span></span></div><div class="cdot" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="prevdisc" aria-hidden="true"><div><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round"><path id="prevPath" d=""/></svg><b id="prevName"></b></div></div>
+<div class="chap" aria-hidden="true"><b id="chapN">01</b><span id="chapT">Welcome</span></div>
+
+<!-- ================= HEADER ================= -->
+<header class="hdr" id="hdr">
+  <div class="hdr__bar">
+    <a class="hdr__logo" href="https://newcoast.vercel.app/" aria-label="NewCoast Business Brokers, home"><img src="https://newcoast.vercel.app/img/logo.jpg" alt="NewCoast Business Brokers" width="301" height="95"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="https://newcoast.vercel.app/" aria-current="page">Home</a>
+      <a href="https://newcoast.vercel.app/SellBusiness.dc.html">Sell My Business</a>
+      <a href="https://newcoast.vercel.app/BuyBusiness.dc.html">Buy a Business</a>
+      <div class="dd">
+        <button class="nav__btn" type="button" aria-expanded="false" aria-controls="dd-services">Our Services <span class="nav__caret" aria-hidden="true"></span></button>
+        <div class="dd__menu" id="dd-services">
+          <a href="https://newcoast.vercel.app/Hospitality.dc.html"><span>Hospitality Services<small>Cafés, restaurants, bars, takeaways</small></span><span aria-hidden="true">→</span></a>
+          <a href="https://newcoast.vercel.app/Retail.dc.html"><span>Retail Services<small>Retail, fitness, playcentres, franchises</small></span><span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <a href="https://newcoast.vercel.app/About.dc.html">About Us</a>
+    </nav>
+    <a class="btn btn--ghost hdr__cta mag" href="#contact" data-intent="">Contact Us <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Menu">
+  <a href="https://newcoast.vercel.app/">Home <small>01</small></a>
+  <a href="https://newcoast.vercel.app/SellBusiness.dc.html">Sell My Business <small>02</small></a>
+  <a href="https://newcoast.vercel.app/BuyBusiness.dc.html">Buy a Business <small>03</small></a>
+  <a href="https://newcoast.vercel.app/Hospitality.dc.html">Hospitality Services <small>04</small></a>
+  <a href="https://newcoast.vercel.app/Retail.dc.html">Retail Services <small>05</small></a>
+  <a href="https://newcoast.vercel.app/About.dc.html">About Us <small>06</small></a>
+  <a href="#contact" data-close>Contact Us <small>07</small></a>
+  <div class="mnav__foot">
+    <a href="tel:0439877717">0439 877 717</a>
+    <a href="mailto:contact@newcoastbrokers.com.au">contact@newcoastbrokers.com.au</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" aria-label="Introduction" data-chapter="Welcome">
+  <div class="hero__frame" id="hero">
+    <canvas class="hero__gl" id="heroGL" aria-hidden="true"></canvas>
+    <div class="hero__shade" aria-hidden="true"></div>
+    <div class="slide is-active" data-slide="0">
+      <img class="slide__img" src="https://newcoast.vercel.app/img/hero-home-r.jpg" alt="Diners at a beachfront café" width="1200" height="1352" fetchpriority="high" crossorigin="anonymous">
+      <div class="slide__body">
+        <div class="slide__kick slide__fade"><b>NC</b> Newcastle · Central Coast · Sydney</div>
+        <h1 class="slide__title" data-words>Your Specialised <em>Hospitality</em> Business Broker</h1>
+        <p class="slide__text slide__fade">We know your neighbourhood and we know your hospitality customer base. Being familiar with the geographic area of a business means we understand your competition, your customers, your challenges and your potential.</p>
+        <div class="slide__cta slide__fade">
+          <a class="btn mag" href="https://newcoast.vercel.app/SellBusiness.dc.html">Sell My Business <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+          <a class="btn btn--light mag" href="https://newcoast.vercel.app/BuyBusiness.dc.html">Buy a Business <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+    <div class="slide" data-slide="1" aria-hidden="true">
+      <img class="slide__img" src="https://newcoast.vercel.app/img/hero-hosp.jpg" alt="Hospitality venue" width="1145" height="1054" crossorigin="anonymous">
+      <div class="slide__body">
+        <div class="slide__kick slide__fade"><b>NC</b> For buyers</div>
+        <h2 class="slide__title" data-words>Buy a <em>Hospitality</em> Business</h2>
+        <p class="slide__text slide__fade">NewCoast Business Brokers is always chosen as the reliable team that finds the best match for a buyer’s budget, experience and goals. Every business we list has been through a verifiable due diligence process as part of our market appraisal.</p>
+        <div class="slide__cta slide__fade">
+          <a class="btn mag" href="https://newcoast.vercel.app/BuyBusiness.dc.html" tabindex="-1">Buy a Business <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+          <a class="btn btn--light mag" href="#contact" data-intent="Buying a business" tabindex="-1">Contact Us <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__side">
+    <div class="brokers">
+      <div class="brokers__av" aria-hidden="true"><img src="https://newcoast.vercel.app/img/anthony.jpg" alt="" width="44" height="44"><img src="https://newcoast.vercel.app/img/kate.jpg" alt="" width="44" height="44"><span class="brokers__on"></span></div>
+      <div class="brokers__t"><b>Talk to Anthony or Kate</b><span>Licensed business brokers, NSW</span></div>
+      <a class="brokers__call" href="tel:0439877717" aria-label="Call 0439 877 717"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 2h3l1.5 3.5L6 7a8 8 0 003 3l1.5-1.5L14 10v3a1 1 0 01-1 1A11 11 0 012 3a1 1 0 011-1z"/></svg></a>
+    </div>
+    <nav class="intent" aria-label="Start here">
+      <div class="intent__t">What brings you here?</div>
+      <ul class="intent__list">
+        <li><a href="#journey" data-journey="sell" data-hero="0">I want to sell my business <span>7 steps →</span></a></li>
+        <li><a href="#journey" data-journey="buy" data-hero="1">I’m looking to buy <span>3 steps →</span></a></li>
+        <li><a href="#value">What is my business worth? <span>Explore →</span></a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="hero__bar" role="group" aria-label="Slideshow">
+      <button class="dot" type="button" aria-label="Slide 1: Sell" aria-current="true" data-go="0"><i></i></button>
+      <button class="dot" type="button" aria-label="Slide 2: Buy" aria-current="false" data-go="1"><i></i></button>
+      <span class="count" aria-hidden="true"><span id="slideNum">01</span> / 02</span>
+      <button class="pp" type="button" id="heroPause" aria-label="Pause slideshow" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path id="ppPath" d="M3 2v8M9 2v8" stroke="currentColor" stroke-width="2" fill="currentColor"/></svg></button>
+    </div>
+    <button class="nextchip" type="button" id="nextChip"><img id="nextImg" src="https://newcoast.vercel.app/img/hero-hosp.jpg" alt="" width="56" height="42"><span><small>Next</small><b id="nextT">Buy a Hospitality Business</b></span><i id="nextBar" aria-hidden="true"></i></button>
+  </div>
+</section>
+
+<!-- ================= LOCATIONS ================= -->
+<section class="loc" aria-label="Locations we service">
+  <div class="loc__t">Locations We Service:</div>
+  <p class="sr-only">Sydney, Newcastle, Central Coast, Lake Macquarie, Port Stephens and the Hunter Region NSW.</p>
+  <div class="marq" aria-hidden="true">
+    <span>SYDNEY</span><span>NEWCASTLE</span><span>CENTRAL COAST</span><span>LAKE MACQUARIE</span><span>PORT STEPHENS</span><span>HUNTER REGION NSW</span>
+    <span aria-hidden="true">SYDNEY</span><span aria-hidden="true">NEWCASTLE</span><span aria-hidden="true">CENTRAL COAST</span><span aria-hidden="true">LAKE MACQUARIE</span><span aria-hidden="true">PORT STEPHENS</span><span aria-hidden="true">HUNTER REGION NSW</span>
+  </div>
+</section>
+
+<!-- ================= INTRO / LOCAL KNOWLEDGE ================= -->
+<section class="intro" id="local" data-chapter="Local insight" aria-labelledby="local-h">
+  <div class="intro__h">
+    <span class="eyebrow" data-reveal>Local insight</span>
+    <h2 class="h2" id="local-h" data-split style="margin-top:16px">Experienced <em>Local</em> Hospitality Knowledge</h2>
+  </div>
+  <div class="intro__grid">
+    <div class="media intro__a"><img class="js-par" data-speed="-.06" src="https://newcoast.vercel.app/img/coastal-pool.jpg" alt="Coastal ocean pool" width="886" height="949" loading="lazy"></div>
+    <div class="intro__copy">
+      <p class="scrub" data-scrub>Our local hospitality insight ensures we present your business with confidence. We are able to demonstrate that your pricing, market positioning and expectations are grounded in lived experience in the area.</p>
+      <div class="facts" data-reveal>
+        <div class="fact"><b data-count="25" data-suffix="+">25+</b><span>years of hospitality experience</span></div>
+        <div class="fact"><b data-count="6">6</b><span>services under one roof</span></div>
+        <div class="fact"><b>NDA</b><span>signed before any business information is shared</span></div>
+      </div>
+      <p class="lead" data-reveal>Our job is to connect the right person with the right business, and this can only be achieved with awareness of your community. NewCoast Business Brokers stands out from the rest by providing a personal, specialised service for hospitality business owners.</p>
+      <a class="btn mag" style="margin-top:26px" href="https://newcoast.vercel.app/About.dc.html" data-reveal>Learn More <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+    </div>
+    <div class="media intro__b"><img class="js-par" data-speed=".08" src="https://newcoast.vercel.app/img/latte-pour.jpg" alt="Barista pouring latte art" width="515" height="623" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="svc on-dark" id="services" data-chapter="Services" aria-labelledby="svc-h">
+  <div class="svc__grid">
+    <div class="svc__side">
+      <span class="eyebrow">Our services</span>
+      <h2 class="h2" id="svc-h" data-split style="margin-top:16px">Hospitality <em>Business</em> Services</h2>
+      <p class="lead">Our mission is to guide hospitality and retail business owners through every stage of a sale with integrity, care and boutique expertise. We combine local knowledge with professional strategies to deliver trusted outcomes for vendors and buyers across Newcastle, Central Coast and Sydney.</p>
+      <figure class="svc__media" aria-hidden="true" style="margin-inline:0;margin-bottom:0">
+        <img class="is-on" src="https://newcoast.vercel.app/img/balcony.jpg" alt="" loading="lazy">
+        <img src="https://newcoast.vercel.app/img/two-men.jpg" alt="" loading="lazy">
+        <img src="https://newcoast.vercel.app/img/cafe-shelves.jpg" alt="" loading="lazy">
+        <img src="https://newcoast.vercel.app/img/barista.jpg" alt="" loading="lazy">
+        <img src="https://newcoast.vercel.app/img/street-cafe.jpg" alt="" loading="lazy">
+        <img src="https://newcoast.vercel.app/img/takeaway.jpg" alt="" loading="lazy">
+        <figcaption id="svcCap">Sell Your Hospitality Business</figcaption>
+      </figure>
+      <div class="svc__meter" aria-hidden="true"><span id="svcNum">01</span><span class="svc__bar"><i id="svcBar"></i></span><span>06</span></div>
+    </div>
+    <ol class="svc__list" id="svcList" style="list-style:none">
+      <li class="svc__item is-on">
+        <div class="svc__thumb"><img src="https://newcoast.vercel.app/img/balcony.jpg" alt="" loading="lazy"></div>
+        <span class="svc__ico" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M6 22l7-7 5 2 5-4 5 4 6 5M12 15l-6-3M28 13l6-3M14 24l4 4M18 22l4 4M22 21l3 3M17 7v4M23 6l-2 4M11 8l2 3"/></svg></span>
+        <div><h3>Sell Your Hospitality Business</h3><p>Expert business brokers delivering results. We won’t just list your business at any price and sit back. We complete a detailed business appraisal, find the right buyer, assist in navigating the lease and landlord approval, guide any handover process, support and consult through to settlement.</p><a class="link-arrow" href="https://newcoast.vercel.app/SellBusiness.dc.html">Learn More <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span class="sr-only"> about selling your hospitality business</span></a></div>
+      </li>
+      <li class="svc__item">
+        <div class="svc__thumb"><img src="https://newcoast.vercel.app/img/two-men.jpg" alt="" loading="lazy"></div>
+        <span class="svc__ico" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M6 15h28M7 15l2-8h22l2 8M8 15v18h24V15M15 33v-9h10v9M9 15c0 2 2 3 3.5 3S16 17 16 15c0 2 2 3 4 3s4-1 4-3c0 2 2 3 3.5 3S31 17 31 15"/></svg></span>
+        <div><h3>Buy a Hospitality Business</h3><p>NewCoast Business Brokers is always chosen as the reliable team that finds the best match for a buyer’s budget, experience and goals. Every business we list has been through a verifiable due diligence process as part of our market appraisal. Our buyers trust our process because we become intimate with all operational aspects of the business. This creates a transparent and smooth experience for the buyer, ensuring continued success.</p><a class="link-arrow" href="https://newcoast.vercel.app/BuyBusiness.dc.html">Learn More <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span class="sr-only"> about buying a hospitality business</span></a></div>
+      </li>
+      <li class="svc__item">
+        <div class="svc__thumb"><img src="https://newcoast.vercel.app/img/cafe-shelves.jpg" alt="" loading="lazy"></div>
+        <span class="svc__ico" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M14 8h12l4 6-10 11-10-11zM10 14h20M17 8l-2 6 5 11 5-11-2-6M5 30c4-2 7-3 10-2l6 2c2 1 1 3-1 3h-5M21 33l9-4c2-1 4 1 2 3l-8 5H5"/></svg></span>
+        <div><h3>Hospitality Business Appraisal</h3><p>Our appraisal process is different from the rest. We provide you with an evidence-based understanding of your current market value. Our appraisal highlights the strengths and opportunities within your business, showing where value is created and, if necessary, where improvements will lift your sale price. The appraisal allows us the ability to defend the value of your business and ensures all negotiations are undertaken with ease.</p><a class="link-arrow" href="#value">See what shapes value <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></a></div>
+      </li>
+      <li class="svc__item">
+        <div class="svc__thumb"><img src="https://newcoast.vercel.app/img/barista.jpg" alt="" loading="lazy"></div>
+        <span class="svc__ico" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M6 9h18v12H14l-5 4v-4H6zM18 25v3h9l5 4v-4h2V16h-6M10 13h10M10 17h7M25 20h5"/></svg></span>
+        <div><h3>Hospitality Consulting Services</h3><p>Economic pressures or changes can shift the way we do business. Looking for opportunities to expand, grow or transition your business into a more profitable position requires strategy. With an expert lens, our team will focus on your expenses, procedures and staffing to help unlock a more streamlined business model. We bring specific industry knowledge to help identify practical changes that will improve the performance of your hospitality business.</p><a class="link-arrow" href="https://newcoast.vercel.app/Hospitality.dc.html">Learn More <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span class="sr-only"> about hospitality consulting</span></a></div>
+      </li>
+      <li class="svc__item">
+        <div class="svc__thumb"><img src="https://newcoast.vercel.app/img/street-cafe.jpg" alt="" loading="lazy"></div>
+        <span class="svc__ico" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M10 34V10l9-4v28M19 14h10v20M6 34h28M13 14h2M13 19h2M13 24h2M13 29h2M23 18h2M23 23h2M23 28h2"/></svg></span>
+        <div><h3>Commercial Property Leasing</h3><p>Opening a second location or a new business means finding a strong lease, with appropriate rent, in a good location. Our team of experienced commercial real estate agents will help find and secure your next premises. With connections and knowledge of the real estate industry, we will look after this part while you focus on what’s important.</p><a class="link-arrow" href="https://newcoast.vercel.app/Hospitality.dc.html">Learn More <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span class="sr-only"> about commercial property leasing</span></a></div>
+      </li>
+      <li class="svc__item">
+        <div class="svc__thumb"><img src="https://newcoast.vercel.app/img/takeaway.jpg" alt="" loading="lazy"></div>
+        <span class="svc__ico" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M20 6a6 6 0 100 12 6 6 0 000-12zM20 9v6M18.5 10.5h3M18.5 13.5h3M5 30c4-2 7-3 10-2l6 2c2 1 1 3-1 3h-5M21 33l9-4c2-1 4 1 2 3l-8 5H5M20 2v2M27 5l-1.5 1.5M13 5l1.5 1.5"/></svg></span>
+        <div><h3>Commercial Property Sales</h3><p>NewCoast provides commercial real estate services. Often our clients are looking for both a business and a freehold, to be their own landlord. As licensed real estate agents, we will appraise, list and sell your commercial property in combination with your business. Alternatively, if you’d like to sell your commercial property separately, we can facilitate your sale utilising our extensive database of verified buyers.</p><a class="link-arrow" href="#contact" data-intent="Commercial property">Talk to us about property <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></a></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= EXPERTISE ================= -->
+<section class="exp" id="expertise" data-chapter="Expertise" aria-labelledby="exp-h">
+  <div class="exp__top">
+    <h2 class="h2" id="exp-h" data-split>Selling <em>Hospitality</em> Businesses Requires Expertise</h2>
+    <div data-reveal>
+      <p class="lead">With over 25 years hospitality experience, NewCoast Business Brokers understands the necessary operating expenses, lease arrangements, fitout requirements and regulatory obligations needed to run a successful business. We know the advantages and challenges of an owner operator business model as well as a fully managed or franchise structure.</p>
+      <a class="btn btn--ghost mag" style="margin-top:24px" href="#contact" data-intent="Selling my business">Get In Touch <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+    </div>
+  </div>
+  <div class="exp__img" id="expImg">
+    <img src="https://newcoast.vercel.app/img/street-cafe.jpg" alt="Busy street-side café" width="1800" height="960" loading="lazy">
+    <div class="exp__tags" aria-label="What we understand about your business">
+      <span>Operating expenses</span><span>Lease arrangements</span><span>Fitout requirements</span><span>Regulatory obligations</span><span>Owner operator, managed or franchise</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY (Process) ================= -->
+<section class="jrny" id="journey" data-chapter="Our process" aria-labelledby="jr-h">
+  <div class="jrny__stick">
+    <div class="jrny__big" id="jrBig" aria-hidden="true">01</div>
+    <div class="jrny__head">
+      <div>
+        <span class="eyebrow">Our process</span>
+        <h2 class="h2" id="jr-h" style="margin-top:14px">Your Path, <em>Step by Step</em></h2>
+        <p class="lead" id="jrLead">A simple, transparent 7-step process designed to make selling your hospitality business straightforward.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Choose your path" data-tabs="journey">
+        <span class="tabs__pill" aria-hidden="true"></span>
+        <button class="tab" role="tab" id="t-sell" aria-selected="true" aria-controls="p-sell" data-key="sell">I’m selling</button>
+        <button class="tab" role="tab" id="t-buy" aria-selected="false" aria-controls="p-buy" data-key="buy" tabindex="-1">I’m buying</button>
+      </div>
+    </div>
+    <div class="jrny__view">
+      <ol class="jrny__track" role="tabpanel" id="p-sell" aria-labelledby="t-sell" style="list-style:none;margin:0">
+        <li class="jline" aria-hidden="true"><svg><path class="base"/><path class="draw"/></svg></li>
+        <li class="step"><span class="step__n" aria-hidden="true">01</span><h3>Get In Touch</h3><p>NewCoast Business Brokers is ready to assist you. Get in touch for a free confidential consultation about your hospitality business, or send an email to contact@newcoastbrokers.com.au.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">02</span><h3>Complete a Business Appraisal</h3><p>A key metric assessment, a confidential site inspection, a Zoom consultation and an appraisal overview written for your business, giving you an evidence-based view of its current market value.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">03</span><h3>List Your Business</h3><p>Marketing tailored to capture a specific buyer profile. Every enquiry is qualified, and information is released only once a non-disclosure agreement has been signed.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">04</span><h3>Receive Offers On Your Business</h3><p>Offers come from buyers whose financial position, experience and goals have been checked against your business. The appraisal lets us defend its value through negotiation.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">05</span><h3>Lease and Landlord Application</h3><p>Buying an existing hospitality business involves an application to the landlord under the Retail Leases Act in NSW. We help prepare it and work through any council or strata limitations.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">06</span><h3>Facilitating Business Handover</h3><p>Agreed training terms, employee entitlements, liquor licence transfers, gift vouchers and function deposits, equipment inspections, stock valuation and supplier agreements.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">07</span><h3>Settlement</h3><p>We guide all parties from contract exchange to settlement. Customers are told at an agreed date, and staff once the sale is securely committed.</p></li>
+        <li class="step step--end"><h3>Ready to start with step one?</h3><p>Your first conversation is free and confidential.</p><a class="btn btn--light mag" href="#contact" data-intent="Selling my business" style="align-self:flex-start;margin-top:20px">Start the conversation <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a></li>
+      </ol>
+      <ol class="jrny__track" role="tabpanel" id="p-buy" aria-labelledby="t-buy" hidden style="list-style:none;margin:0">
+        <li class="jline" aria-hidden="true"><svg><path class="base"/><path class="draw"/></svg></li>
+        <li class="step"><span class="step__n" aria-hidden="true">01</span><h3>Get In Touch</h3><p>Reach out on 0439 877 717 or contact@newcoastbrokers.com.au to receive our hospitality business listings. Let’s have a chat so we can establish your expectations, experience and the type of business you’re looking for.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">02</span><h3>Sign an NDA</h3><p>Business information is provided only once a non-disclosure agreement has been signed. It protects the vendor’s staff, customers and financials throughout the sale.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">03</span><h3>Receive Information</h3><p>We work with the vendor to supply all information relevant to the business operation and answer your questions. We encourage you to complete your own due diligence before exchanging contracts.</p></li>
+        <li class="step step--end"><h3>Looking for your next venture?</h3><p>Tell us your budget, experience and the kind of business you want.</p><a class="btn btn--light mag" href="#contact" data-intent="Buying a business" style="align-self:flex-start;margin-top:20px">Ask for listings <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a></li>
+      </ol>
+    </div>
+    <div class="jrny__rail" aria-hidden="true"><span id="jrNum">01</span><span class="bar"><i id="jrBar"></i></span><span id="jrTot">07</span></div>
+  </div>
+</section>
+
+<!-- ================= BUSINESS TYPES ================= -->
+<section class="types" id="types" data-chapter="Businesses" aria-labelledby="ty-h">
+  <div class="types__top">
+    <div>
+      <h2 class="h2" id="ty-h" data-split><em>Businesses</em> We Work With</h2>
+      <div class="tabs" role="tablist" aria-label="Business category" data-tabs="types">
+        <span class="tabs__pill" aria-hidden="true"></span>
+        <button class="tab" role="tab" id="t-hosp" aria-selected="true" aria-controls="p-hosp" data-key="hosp">Hospitality</button>
+        <button class="tab" role="tab" id="t-ret" aria-selected="false" aria-controls="p-ret" data-key="ret" tabindex="-1">Retail</button>
+      </div>
+    </div>
+    <p class="lead" data-reveal>We work with a range of hospitality businesses across Newcastle, Central Coast and Sydney. This includes, but is not limited to, cafes, restaurants, takeaways and franchises.</p>
+  </div>
+  <div role="tabpanel" id="p-hosp" aria-labelledby="t-hosp">
+    <ul class="chips">
+      <li class="chip" style="--i:0"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2v5a1.5 1.5 0 003 0V2M6.5 7v7M11 2c-1.2 0-2 1.6-2 3.5S10 9 11 9v5"/></svg></span>Hospitality<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:1"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h8v4a3 3 0 01-3 3H6a3 3 0 01-3-3zM11 7h1.5a1.5 1.5 0 010 3H11M2 14h11M6 2v2M8.5 2v2"/></svg></span>Cafe and Espresso Bar<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:2"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 11h12M3 11a5 5 0 0110 0M8 4v2M6.5 4h3M3 13h10"/></svg></span>Restaurant<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:3"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2h10v5a4 4 0 01-4 4H7a4 4 0 01-4-4zM8 11v3M5 14h6M5 5h6"/></svg></span>Cocktail and Wine Bar<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:4"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h8l-1 9H5zM6 5V4a2 2 0 014 0v1"/></svg></span>Takeaway Shop<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:5"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v7H2zM3 6l1-3h8l1 3M5 9h6M7 13v-2h2v2"/></svg></span>Food Kiosk<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:6"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h12l-1.5 6h-9zM5 7V5h6v2M7 10h2"/></svg></span>Coffee Roastery<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:7"><a href="https://newcoast.vercel.app/Hospitality.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 6a3 3 0 016 0M4 6h8l-1 8H5zM8 3V1.5"/></svg></span>Gelato and Ice Creamery<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+    </ul>
+  </div>
+  <div role="tabpanel" id="p-ret" aria-labelledby="t-ret" hidden>
+    <ul class="chips">
+      <li class="chip" style="--i:0"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2l3 2 3-2 3 3-2 2v7H4V7L2 5z"/></svg></span>Clothing Stores and Brands<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:1"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h2M12 8h2M4 5v6M12 5v6M5.5 6.5v3M10.5 6.5v3M5.5 8h5"/></svg></span>Health and Fitness<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:2"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14V6l5-4 5 4v8M6 14v-3h4v3M3 9h10"/></svg></span>Playcentres<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:3"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3a2 2 0 100 4 2 2 0 000-4zM4 9a2 2 0 100 4 2 2 0 000-4zM5.6 6L14 12M5.6 10L14 4"/></svg></span>Beautician and Skincare<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:4"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h8l-1 9H5zM6 5V4a2 2 0 014 0v1"/></svg></span>Wholesale Food and Beverage<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:5"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v7H2zM3 6l1-3h8l1 3M5 9h6M7 13v-2h2v2"/></svg></span>Hospitality<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:6"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4h2l1.5 7h7L14 6H5M6.5 14a1 1 0 100-2 1 1 0 000 2zM11.5 14a1 1 0 100-2 1 1 0 000 2z"/></svg></span>Franchises<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+      <li class="chip" style="--i:7"><a href="https://newcoast.vercel.app/Retail.dc.html"><span class="chip__ic"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v3H2zM3 9h10v5H3zM8 6v8M8 6C6 3 4 4 5 6M8 6c2-3 4-2 3 0"/></svg></span>Leisure and Tourism<svg class="arr chip__go" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= VALUE EXPLORER (new) ================= -->
+<section class="val on-dark" id="value" data-chapter="Appraisal" aria-labelledby="val-h">
+  <div class="val__glow" aria-hidden="true"></div>
+  <div style="position:relative;max-width:760px">
+    <span class="eyebrow">Business appraisal</span>
+    <h2 class="h2" id="val-h" data-split style="margin-top:14px">What Shapes the <em>Value</em> of Your Business?</h2>
+    <p class="lead" style="margin-top:16px">The value of a business depends on several factors, including financial performance, location, lease terms, assets, customer base and future potential. Choose one to see how we look at it.</p>
+  </div>
+  <div class="val__grid">
+    <div>
+    <div class="dial" id="dial" aria-hidden="true" data-cursor="Drag">
+      <span class="dial__pt"></span>
+      <svg viewBox="-330 -330 660 660" id="dialSvg"></svg>
+      <div class="dial__core"><div><b id="dialName">Financial performance</b><span>1 of 6 factors</span></div></div>
+    </div>
+    <p class="dial__hint" aria-hidden="true">Drag the dial to turn it</p>
+    </div>
+    <div>
+      <div class="factors" role="tablist" aria-label="Value factors" id="factors">
+        <button class="factor" role="tab" aria-selected="true" aria-controls="fpanel" id="f0">Financial performance</button>
+        <button class="factor" role="tab" aria-selected="false" aria-controls="fpanel" id="f1" tabindex="-1">Location</button>
+        <button class="factor" role="tab" aria-selected="false" aria-controls="fpanel" id="f2" tabindex="-1">Lease terms</button>
+        <button class="factor" role="tab" aria-selected="false" aria-controls="fpanel" id="f3" tabindex="-1">Assets</button>
+        <button class="factor" role="tab" aria-selected="false" aria-controls="fpanel" id="f4" tabindex="-1">Customer base</button>
+        <button class="factor" role="tab" aria-selected="false" aria-controls="fpanel" id="f5" tabindex="-1">Future potential</button>
+      </div>
+      <div class="fpanel" id="fpanel" role="tabpanel" aria-labelledby="f0" tabindex="0">
+        <h3 id="fTitle">Financial performance</h3>
+        <p id="fText">We don’t just list a business at any price. The listing price is set to reflect the true business operation, which includes a thorough assessment of trading and financial history.</p>
+      </div>
+      <div class="incl">
+        <h3>Every appraisal includes</h3>
+        <ul>
+          <li>A comprehensive key metric assessment</li>
+          <li>A confidential site inspection</li>
+          <li>A Zoom consultation</li>
+          <li>A specific appraisal overview for your business</li>
+        </ul>
+      </div>
+      <div class="val__cta">
+        <a class="btn btn--light mag" href="#contact" data-intent="Business appraisal">Request an appraisal <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+      </div>
+      <p class="val__note">This is a guide to the factors we review, not a valuation. A figure for your business comes from the appraisal itself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUALIFIED BUYERS ================= -->
+<section class="buyers" id="buyers" data-chapter="Qualified buyers" aria-labelledby="by-h">
+  <div class="buyers__grid">
+    <div class="buyers__copy">
+      <h2 class="h2" id="by-h" data-split>Qualified <em>Buyers</em> For Your Business</h2>
+      <p class="lead" data-reveal>Focusing on hospitality means our qualified buyer database can be leveraged to connect the right people with your business. Our strategic marketing is tailored to capture the attention of a specific buyer profile. All prospective buyers are qualified to discover if their financial position, specific experience and goals match your business. This means we will only engage serious, verified buyer enquiries, which creates a confidential and efficient sales process.</p>
+      <a class="btn btn--ghost mag" href="https://newcoast.vercel.app/BuyBusiness.dc.html" data-reveal>Learn More <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+    </div>
+    <div class="stack" style="position:relative">
+      <div class="media stack__a"><img class="js-par" data-speed="-.05" src="https://newcoast.vercel.app/img/two-men.jpg" alt="Two men meeting over coffee" width="886" height="924" loading="lazy"></div>
+      <div class="stack__col">
+        <div class="media stack__b"><img class="js-par" data-speed=".06" src="https://newcoast.vercel.app/img/espresso.jpg" alt="Espresso machine pouring" width="508" height="315" loading="lazy"></div>
+        <div class="media stack__c"><img class="js-par" data-speed=".1" src="https://newcoast.vercel.app/img/barista.jpg" alt="Barista at work" width="508" height="592" loading="lazy"></div>
+      </div>
+      <div class="badge" data-reveal><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5l5 2v4c0 3-2.2 5.6-5 7-2.8-1.4-5-4-5-7v-4z"/><path d="M5.5 8l1.8 1.8L10.8 6"/></svg></i>Financial position, experience and goals checked</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONFIDENTIALITY (protocol) ================= -->
+<section class="conf" id="confidential" data-chapter="Confidentiality" aria-labelledby="cf-h">
+  <div class="conf__grid">
+    <div class="conf__vis">
+      <img src="https://newcoast.vercel.app/img/cafe-shelves.jpg" alt="Café interior with retail shelving" width="1271" height="1316" loading="lazy">
+      <div class="lock" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="46"/><circle class="ful" id="lockRing" cx="50" cy="50" r="46" style="--len:289"/></svg>
+        <svg class="rings" viewBox="0 0 400 400" id="rings"><g><circle cx="200" cy="200" r="80" stroke-dasharray="4 10"/></g><g><circle cx="200" cy="200" r="112" stroke-dasharray="30 12"/></g><g><circle cx="200" cy="200" r="146" stroke-dasharray="2 8"/></g><g><circle cx="200" cy="200" r="180" stroke-dasharray="60 20 8 20"/></g></svg>
+        <div class="lock__in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+          <b id="lockNum">0/4</b><span>Safeguards</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 class="h2" data-split id="cf-h">Dedicated and <em>Confidential</em> Support</h2>
+      <p class="lead" style="margin-top:20px" data-reveal>Our marketing and sales process is completely confidential, protecting your staff and customers from any disruption. Here is how that works in practice.</p>
+      <ol class="proto" id="proto">
+        <li><h3>Every enquiry is qualified</h3><p>We offer our clients confidential guidance and qualify any enquiries received through our marketing campaign, working carefully to identify serious buyers.</p></li>
+        <li><h3>NDA before information</h3><p>Information is provided only once a mandatory non-disclosure agreement has been signed.</p></li>
+        <li><h3>Discreet inspections</h3><p>We arrange discreet inspections outside business hours, with the business owner’s approval.</p></li>
+        <li><h3>Operations stay private</h3><p>The business operation and financials remain private throughout the sales process, and your staff and customers are protected from disruption.</p></li>
+      </ol>
+      <a class="btn mag" style="margin-top:30px" href="#contact" data-intent="Selling my business">Contact Us <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="team" id="team" data-chapter="Our team" aria-labelledby="tm-h">
+  <div class="team__grid">
+    <div class="team__intro">
+      <h2 class="h2" id="tm-h" data-split>Get to <em>Know Us</em></h2>
+      <p class="lead" data-reveal>NewCoast Business Brokers was founded by award-winning broker, Anthony Manks, to create a specialised brokerage that delivers a reliable and personalised service for hospitality business owners. NewCoast is a team of experienced hospitality business brokers and licensed real estate agents with over 25 years experience in operating and selling hospitality businesses. Whether you own a cafe, restaurant, bar or franchised food business, our team can help you sell your business or find your next venture.</p>
+      <div class="team__stat" data-reveal><b data-count="25" data-suffix="+">25+</b><span>years operating and selling hospitality businesses</span></div>
+      <a class="btn mag" href="#contact" data-intent="">Get In Touch <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+    </div>
+    <div class="team__cards">
+    <article class="pf" data-reveal>
+      <div class="pf__stage">
+        <span class="pf__init" aria-hidden="true">AM</span>
+        <img class="pf__img" src="https://newcoast.vercel.app/img/anthony.jpg" alt="Anthony Manks" width="900" height="1024" loading="lazy">
+        <span class="pf__badge"><i aria-hidden="true">★</i>Founder</span>
+      </div>
+      <div class="pf__body">
+        <div class="pf__name"><h3>Anthony Manks</h3><span class="pf__lead">Principal / Licensee in Charge</span></div>
+        <ul class="pf__creds" aria-label="Anthony Manks credentials"><li>Licensed Business Broker</li><li>Commercial Property Agent (NSW)</li><li>Hospitality Consultant</li></ul>
+        <div class="pf__acts">
+          <a class="pf__call" href="tel:0439877717"><i><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 2h3l1.5 3.5L6 7a8 8 0 003 3l1.5-1.5L14 10v3a1 1 0 01-1 1A11 11 0 012 3a1 1 0 011-1z"/></svg></i>0439 877 717</a>
+          <a class="pf__mail" href="mailto:anthony@newcoastbrokers.com.au"><i><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="M2.5 4.5L8 9l5.5-4.5"/></svg></i><span>anthony@newcoastbrokers.com.au</span></a>
+          <button class="pf__copy" type="button" data-copy="anthony@newcoastbrokers.com.au" aria-label="Copy Anthony Manks’s email address"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5"/></svg><span class="pf__tip" role="status"></span></button>
+        </div>
+      </div>
+    </article>
+    <article class="pf" data-reveal>
+      <div class="pf__stage">
+        <span class="pf__init" aria-hidden="true">KM</span>
+        <img class="pf__img" src="https://newcoast.vercel.app/img/kate.jpg" alt="Kate Manks" width="900" height="1017" loading="lazy">
+        <span class="pf__badge"><i aria-hidden="true">★</i>Australian Legal Practitioner (LLB)</span>
+      </div>
+      <div class="pf__body">
+        <div class="pf__name"><h3>Kate Manks</h3><span class="pf__lead">Licensed Business Broker</span></div>
+        <ul class="pf__creds" aria-label="Kate Manks credentials"><li>Commercial Property Agent (NSW)</li><li>Hospitality Consultant</li><li>Australian Legal Practitioner (LLB)</li></ul>
+        <div class="pf__acts">
+          <a class="pf__call" href="tel:0406856882"><i><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 2h3l1.5 3.5L6 7a8 8 0 003 3l1.5-1.5L14 10v3a1 1 0 01-1 1A11 11 0 012 3a1 1 0 011-1z"/></svg></i>0406 856 882</a>
+          <a class="pf__mail" href="mailto:kate@newcoastbrokers.com.au"><i><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="M2.5 4.5L8 9l5.5-4.5"/></svg></i><span>kate@newcoastbrokers.com.au</span></a>
+          <button class="pf__copy" type="button" data-copy="kate@newcoastbrokers.com.au" aria-label="Copy Kate Manks’s email address"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5"/></svg><span class="pf__tip" role="status"></span></button>
+        </div>
+      </div>
+    </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="tst" id="testimonials" data-chapter="Testimonials" aria-labelledby="ts-h">
+  <div class="tst__top">
+    <div>
+      <span class="eyebrow">Testimonials</span>
+      <h2 class="h2" id="ts-h" data-split style="margin-top:14px">What Our <em>Clients</em> Say About Us</h2>
+    </div>
+    <div class="arrows">
+      <button type="button" id="tPrev" aria-label="Previous testimonial" aria-controls="rail"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+      <button type="button" id="tNext" aria-label="Next testimonial" aria-controls="rail"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+    </div>
+  </div>
+  <div class="rail" id="rail" data-cursor="Drag" tabindex="0" role="region" aria-label="Client testimonials, scroll sideways">
+    <article class="quote"><div><div class="quote__mk" aria-hidden="true">“</div><blockquote>From the initial appraisal through to settlement, the NewCoast team made the entire process simple and stress-free. Their hospitality knowledge and personal approach gave me confidence every step of the way.</blockquote></div><footer><span aria-hidden="true">M</span><div><b>Mitchell, Café Owner</b><small>Newcastle, NSW</small></div></footer></article>
+    <article class="quote"><div><div class="quote__mk" aria-hidden="true">“</div><blockquote>The team at NewCoast understood our business from day one. Their knowledge of the hospitality industry and clear communication made the sale feel straightforward and well managed.</blockquote></div><footer><span aria-hidden="true">T</span><div><b>Turner, Restaurant Owner</b><small>Central Coast, NSW</small></div></footer></article>
+    <article class="quote"><div><div class="quote__mk" aria-hidden="true">“</div><blockquote>Selling a business can be stressful, but NewCoast guided us through every stage with professionalism and genuine care. We always felt informed and supported.</blockquote></div><footer><span aria-hidden="true">E</span><div><b>Emma Collins, Café Owner</b><small>Newcastle, NSW</small></div></footer></article>
+    <article class="quote"><div><div class="quote__mk" aria-hidden="true">“</div><blockquote>What stood out was their personal approach. They took the time to understand our business, found the right buyer and helped make the transition smooth from start to finish.</blockquote></div><footer><span aria-hidden="true">H</span><div><b>Harris, Hospitality Business</b><small>Newcastle, NSW</small></div></footer></article>
+  </div>
+  <div class="tst__meter" aria-hidden="true"><i id="tMeter"></i></div>
+</section>
+
+<!-- ================= CONTACT / ENQUIRY ================= -->
+<section class="contact" id="contact" data-chapter="Get in touch" aria-labelledby="ct-h">
+  <div class="contact__grid">
+    <div class="contact__copy">
+      <h2 class="h2" id="ct-h" data-split>Let’s Talk About <em>Your Business</em></h2>
+      <p class="lead">Whether you’re looking to sell your hospitality business, purchase your next opportunity, or simply want to understand what your business could be worth, our experienced business brokers are here to help.</p>
+      <p class="lead" style="margin-top:14px">Ask how NewCoast Business Brokers can help you take the next step. <strong>Call, email or fill out the contact form, to have a free confidential conversation today.</strong></p>
+      <div class="direct">
+        <a href="tel:0439877717"><i aria-hidden="true">☏</i><span><small>Call Anthony</small><b>0439 877 717</b></span></a>
+        <a href="tel:0406856882"><i aria-hidden="true">☏</i><span><small>Call Kate</small><b>0406 856 882</b></span></a>
+        <a href="mailto:contact@newcoastbrokers.com.au"><i aria-hidden="true">@</i><span><small>Email the team</small><b>contact@newcoastbrokers.com.au</b></span></a>
+      </div>
+    </div>
+
+    <form class="form on-dark" id="enquiry" novalidate aria-labelledby="form-h">
+      <span class="demo-flag">Preview form · not connected yet</span>
+      <h3 id="form-h">Get In Touch</h3>
+      <p class="form__sub">Takes about a minute. Fields marked <span aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.</p>
+      <div class="ctx" id="ctx" aria-live="polite"></div>
+      <div class="errsum" id="errsum" tabindex="-1" hidden></div>
+
+      <fieldset>
+        <legend>I’m interested in <span class="req" aria-hidden="true">*</span></legend>
+        <div class="pills" id="interest">
+          <label class="pill"><input type="radio" name="interest" value="Selling my business" required><span>Selling my business</span></label>
+          <label class="pill"><input type="radio" name="interest" value="Buying a business"><span>Buying a business</span></label>
+          <label class="pill"><input type="radio" name="interest" value="Business appraisal"><span>Business appraisal</span></label>
+          <label class="pill"><input type="radio" name="interest" value="Commercial property"><span>Commercial property</span></label>
+          <label class="pill"><input type="radio" name="interest" value="Something else"><span>Something else</span></label>
+        </div>
+        <p class="ferr" id="err-interest"></p>
+      </fieldset>
+
+      <div class="fields">
+        <div class="field field--full">
+          <label for="btype">Type of business <span style="opacity:.7">(optional)</span></label>
+          <select id="btype" name="btype">
+            <option value="">Choose one, or leave blank</option>
+            <option>Cafe and Espresso Bar</option><option>Restaurant</option><option>Cocktail and Wine Bar</option><option>Takeaway Shop</option><option>Food Kiosk</option><option>Coffee Roastery</option><option>Gelato and Ice Creamery</option><option>Retail business</option><option>Franchise</option><option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field"><label for="fn">First Name</label><input id="fn" name="first" autocomplete="given-name"></div>
+        <div class="field"><label for="ln">Last Name</label><input id="ln" name="last" autocomplete="family-name"></div>
+        <div class="field"><label for="em">Email Address <span class="req" aria-hidden="true">*</span></label><input id="em" name="email" type="email" autocomplete="email" required aria-describedby="err-email"><p class="ferr" id="err-email"></p></div>
+        <div class="field"><label for="ph">Phone Number <span class="req" aria-hidden="true">*</span></label><input id="ph" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="err-phone"><p class="ferr" id="err-phone"></p></div>
+        <div class="field field--full"><label for="msg">Message <span class="req" aria-hidden="true">*</span></label><textarea id="msg" name="message" rows="4" required aria-describedby="err-message msg-hint" placeholder="A little about your business or what you’re looking for"></textarea><p class="ferr" id="err-message"></p><p id="msg-hint" class="sr-only">Please avoid sharing financial details here. We discuss those after an NDA.</p></div>
+        <div class="hp" aria-hidden="true"><label for="hp">Leave this empty</label><input id="hp" name="company_site" tabindex="-1" autocomplete="off"></div>
+      </div>
+
+      <div class="form__foot">
+        <p class="form__priv">Your details are used only to reply to this enquiry. See our <a href="https://newcoast.vercel.app/Privacy.dc.html">Privacy Policy</a>.</p>
+        <button class="btn mag" type="submit" id="sendBtn">Submit <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></button>
+      </div>
+
+      <div class="status" id="status" hidden tabindex="-1" role="status">
+        <h4>Nothing has been sent yet</h4>
+        <p>This preview form isn’t connected to NewCoast’s inbox. Your details are kept below, so you can send them straight to the team instead:</p>
+        <div class="status__sum" id="sum"></div>
+        <div class="status__act">
+          <a id="mailBtn" href="mailto:contact@newcoastbrokers.com.au">Email these details</a>
+          <a href="tel:0439877717">Call 0439 877 717</a>
+          <button type="button" id="editBtn">Edit details</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq on-dark" id="faq" data-chapter="FAQ" aria-labelledby="fq-h">
+  <div class="faq__grid">
+    <div class="faq__side">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="h2" id="fq-h" data-split style="margin-top:14px">Frequently Asked <em>Questions</em></h2>
+      <p class="lead">Still unsure about something? Ask us directly. The first conversation is free and confidential.</p>
+      <a class="btn btn--ghost mag" href="#contact" data-intent="Something else">Ask a question <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+    </div>
+    <div>
+      <details class="qa" open><summary>How do I know what my hospitality business is worth? <span class="qa__ic" aria-hidden="true">+</span></summary><div class="qa__a"><p>The value of a business depends on several factors, including financial performance, location, lease terms, assets, customer base and future potential. Our appraisal combines a key metric assessment, a confidential site inspection and a Zoom consultation to give you an evidence-based view of your current market value.</p></div></details>
+      <details class="qa"><summary>Will the sale of my business remain confidential? <span class="qa__ic" aria-hidden="true">+</span></summary><div class="qa__a"><p>Yes. Enquiries are qualified, information is released only after a mandatory non-disclosure agreement is signed, and inspections are arranged outside business hours with your approval. Customers are told at an agreed date, and staff once the sale is securely committed.</p></div></details>
+      <details class="qa"><summary>How long does it take to sell a hospitality business? <span class="qa__ic" aria-hidden="true">+</span></summary><div class="qa__a"><p>Every sale moves at its own pace, depending on the business, the lease and landlord approval, and buyer finance. We’ll talk through the stages and what affects timing for your business in your first conversation.</p></div></details>
+      <details class="qa"><summary>What happens with the lease when a business is sold? <span class="qa__ic" aria-hidden="true">+</span></summary><div class="qa__a"><p>Buying an existing hospitality business involves an application to the landlord under the Retail Leases Act in NSW. We assess current and future lease terms during the appraisal, address council or strata limitations, and help buyers prepare the documents that show their hospitality background.</p></div></details>
+      <details class="qa"><summary>Can you sell my commercial property as well as the business? <span class="qa__ic" aria-hidden="true">+</span></summary><div class="qa__a"><p>Yes. As licensed real estate agents, we can appraise, list and sell your commercial property in combination with your business, or sell the property separately using our database of verified buyers.</p></div></details>
+      <details class="qa"><summary>Do you only work with hospitality businesses? <span class="qa__ic" aria-hidden="true">+</span></summary><div class="qa__a"><p>Hospitality is our specialty, from cafés and restaurants to bars, takeaways and franchises. We also work with retail businesses such as clothing stores, health and fitness, playcentres and beauty businesses.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<section class="blog" id="blog" data-chapter="Resources" aria-labelledby="bl-h">
+  <div class="blog__top">
+    <div>
+      <span class="eyebrow">Recent blog</span>
+      <h2 class="h2" id="bl-h" data-split style="margin-top:14px">Helpful <em>Resources</em> to Buy or Sell a Business</h2>
+    </div>
+    <a class="btn btn--ghost mag" href="https://newcoast.vercel.app/Blog.dc.html">All articles <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+  </div>
+  <ul class="posts">
+    <li class="post" data-reveal><a data-cursor="Read" href="https://newcoast.vercel.app/BlogPost.dc.html?slug=what-makes-a-hospitality-business-attractive-to-buyers"><div class="post__img"><img src="https://newcoast.vercel.app/img/blog-1.jpg" alt="" width="812" height="487" loading="lazy"></div><div><div class="post__meta">Hospitality · Aug 05, 2026</div><h3>What Makes A Hospitality Business Attractive To Buyers?</h3></div></a></li>
+    <li class="post" data-reveal><a data-cursor="Read" href="https://newcoast.vercel.app/BlogPost.dc.html?slug=5-key-factors-that-determine-the-value-of-your-restaurant"><div class="post__img"><img src="https://newcoast.vercel.app/img/blog-2.jpg" alt="" width="812" height="487" loading="lazy"></div><div><div class="post__meta">Restaurant · Aug 05, 2026</div><h3>5 Key Factors That Determine The Value Of Your Restaurant</h3></div></a></li>
+    <li class="post" data-reveal><a data-cursor="Read" href="https://newcoast.vercel.app/BlogPost.dc.html?slug=thinking-of-selling-your-cafe-what-you-need-to-know-first"><div class="post__img"><img src="https://newcoast.vercel.app/img/blog-3.jpg" alt="" width="812" height="487" loading="lazy"></div><div><div class="post__meta">Cafe · Aug 05, 2026</div><h3>Thinking Of Selling Your Café? What You Need To Know First</h3></div></a></li>
+  </ul>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="ftr on-dark">
+  <div class="ftr__cta">
+    <canvas id="waveGL" aria-hidden="true"></canvas>
+    <div><h2>Thinking about your <em>next move?</em></h2><p>Call, email or fill out the contact form, to have a free confidential conversation today.</p></div>
+    <div><a class="btn btn--light mag" href="#contact" data-intent="">Book a confidential chat <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a></div>
+  </div>
+  <div class="ftr__grid">
+    <nav aria-labelledby="fl1"><h3 id="fl1">Quick Links</h3><ul>
+      <li><a href="https://newcoast.vercel.app/">Home</a></li><li><a href="https://newcoast.vercel.app/About.dc.html">About Us</a></li><li><a href="https://newcoast.vercel.app/Hospitality.dc.html">Hospitality Services</a></li><li><a href="https://newcoast.vercel.app/Retail.dc.html">Retail Services</a></li><li><a href="https://newcoast.vercel.app/Blog.dc.html">Blogs</a></li><li><a href="https://newcoast.vercel.app/Confidentiality.dc.html">Confidentiality Agreement</a></li><li><a href="https://newcoast.vercel.app/Privacy.dc.html">Privacy Policy</a></li></ul></nav>
+    <nav aria-labelledby="fl2"><h3 id="fl2">Buy &amp; Sell</h3><ul><li><a href="https://newcoast.vercel.app/SellBusiness.dc.html">Sell My Business</a></li><li><a href="https://newcoast.vercel.app/BuyBusiness.dc.html">Buy a Business</a></li></ul></nav>
+    <div><h3>Contact Us</h3>
+      <div class="ftr__ct"><small>Phone:</small><a href="tel:0439877717">0439 877 717</a><small>Email:</small><a href="mailto:contact@newcoastbrokers.com.au">contact@newcoastbrokers.com.au</a></div>
+      <div class="social" aria-label="Social media">
+        <!-- Social profile URLs not supplied yet; these stay as placeholders, same as the live build. -->
+        <a href="#" aria-label="Instagram (link coming soon)">IG</a><a href="#" aria-label="Facebook (link coming soon)">f</a><a href="#" aria-label="LinkedIn (link coming soon)">in</a>
+      </div>
+    </div>
+    <form class="sub" id="subForm" novalidate>
+      <span class="logo-plate" style="padding:0;margin-bottom:12px"><img src="https://newcoast.vercel.app/img/logo.jpg" alt="NewCoast Business Brokers" width="301" height="95" style="height:30px"></span>
+      <h3>Subscribe to Receive Business Listings</h3>
+      <p>New listings, sent to your inbox.</p>
+      <div class="sub__row"><label for="subEmail" class="sr-only">Email Address</label><input id="subEmail" type="email" placeholder="Email Address *" autocomplete="email" aria-describedby="subMsg"><button type="submit">Subscribe</button></div>
+      <p class="sub__msg" id="subMsg" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="ftr__word" aria-hidden="true" id="ftrWord">NewCoast</div>
+  <div class="ftr__base">
+    <span>2026 © NewCoast Commercial Pty Ltd t/a NewCoast Business Brokers</span>
+    <button class="mtoggle" type="button" id="motionToggle" aria-pressed="false">Reduce motion: Off</button>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar" aria-label="Quick contact">
+  <a href="tel:0439877717"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 2h3l1.5 3.5L6 7a8 8 0 003 3l1.5-1.5L14 10v3a1 1 0 01-1 1A11 11 0 012 3a1 1 0 011-1z"/></svg>Call</a>
+  <a href="#contact" data-intent="">Enquire</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  'use strict';
+  const d = document, root = d.documentElement;
+  root.classList.add('js');
+  const $ = (s, c = d) => c.querySelector(s), $$ = (s, c = d) => Array.from(c.querySelectorAll(s));
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches || store.get('nc-rm') === '1';
+  root.classList.toggle('rm', RM);
+  const G = !!(window.gsap && window.ScrollTrigger) && !RM;
+  const fine = matchMedia('(pointer:fine)').matches;
+  const safe = (n, f) => { try { f(); } catch (e) { console.warn('[NewCoast] module failed:', n, e); } };
+  let lenis = null;
+  if (G) { gsap.registerPlugin(ScrollTrigger); root.classList.add('gsp'); }
+
+  /* ---------- Smooth scroll ---------- */
+  safe('lenis', () => {
+    if (!G || !window.Lenis) return;
+    lenis = new Lenis({ lerp: .1, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  });
+  const scrollToEl = (target, off = 0) => {
+    if (lenis) return lenis.scrollTo(target, { offset: off, duration: 1.4 });
+    if (typeof target === 'number') return scrollTo({ top: target, behavior: RM ? 'auto' : 'smooth' });
+    const y = target.getBoundingClientRect().top + scrollY + off; scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
+  };
+
+  /* ---------- Loader: brand plate, counter, panels lift (first visit per session) ---------- */
+  safe('loader', () => {
+    let seen = false; try { seen = !!sessionStorage.getItem('nc-v3'); sessionStorage.setItem('nc-v3', '1'); } catch (e) {}
+    if (!G || seen) return;
+    const ld = d.createElement('div'); ld.className = 'ld'; ld.setAttribute('aria-hidden', 'true');
+    ld.innerHTML = Array.from({ length: 5 }, (_, i) => `<div class="ld__p" style="left:${i * 20}%;width:20.3%"></div>`).join('') +
+      '<div class="ld__in"><div class="ld__plate"><img src="https://newcoast.vercel.app/img/logo.jpg" alt=""></div></div><div class="ld__t">Specialised hospitality business brokers</div><div class="ld__n">0</div>';
+    d.body.appendChild(ld); lenis && lenis.stop();
+    const n = $('.ld__n', ld), o = { v: 0 };
+    gsap.timeline({ onComplete: () => { ld.remove(); lenis && lenis.start(); } })
+      .from($('.ld__plate', ld), { y: 30, opacity: 0, duration: .7, ease: 'power3.out' })
+      .to(o, { v: 100, duration: 1.2, ease: 'power2.inOut', onUpdate: () => n.textContent = Math.round(o.v) }, 0)
+      .to([$('.ld__in', ld), n, $('.ld__t', ld)], { opacity: 0, y: -24, duration: .45, ease: 'power2.in' }, 1.25)
+      .to($$('.ld__p', ld), { yPercent: -100, duration: .95, ease: 'expo.inOut', stagger: .07 }, 1.45);
+  });
+
+  /* ---------- Split words (headings) ---------- */
+  safe('split', () => {
+    const wrap = el => { let i = 0; const walk = node => Array.from(node.childNodes).forEach(n => {
+      if (n.nodeType === 3) { const f = d.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) { f.appendChild(d.createTextNode(p)); return; }
+        const w = d.createElement('span'); w.className = 'w'; const s = d.createElement('span'); s.textContent = p; s.style.transitionDelay = (i++ * .045) + 's'; w.appendChild(s); f.appendChild(w); }); n.replaceWith(f); }
+      else if (n.nodeType === 1 && !n.classList.contains('w')) walk(n); }); walk(el); };
+    $$('[data-split],[data-words]').forEach(wrap);
+  });
+
+  /* ---------- Scrubbed statement ---------- */
+  const scrubs = [];
+  safe('scrub', () => { $$('[data-scrub]').forEach(el => {
+    const text = el.textContent.trim(), words = text.split(/\s+/); el.textContent = '';
+    const sr = d.createElement('span'); sr.className = 'sr-only'; sr.textContent = text; el.appendChild(sr);
+    const vis = d.createElement('span'); vis.setAttribute('aria-hidden', 'true'); vis.innerHTML = words.map(w => '<span class="sw">' + w.replace(/</g, '&lt;') + '</span>').join(' '); el.appendChild(vis);
+    scrubs.push({ el, ws: $$('.sw', el) }); }); });
+
+  /* ---------- Reveal + count ---------- */
+  safe('reveal', () => {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px', threshold: .05 });
+    $$('[data-reveal],[data-split],.chips').forEach(el => io.observe(el));
+    setTimeout(() => $$('[data-reveal],[data-split]').forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('is-in'); }), 1600);
+  });
+  safe('count', () => {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target);
+      const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || ''; if (RM) { el.textContent = to + suf; return; }
+      const t0 = performance.now(); const tick = t => { const p = clamp((t - t0) / 1600); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick);
+    }), { threshold: .6 });
+    $$('[data-count]').forEach(el => io.observe(el));
+  });
+
+  /* ---------- Header: dropdown + mobile menu ---------- */
+  safe('header', () => {
+    const hdr = $('#hdr'), ddBtn = $('.nav__btn'), dd = $('#dd-services'), ddWrap = ddBtn.parentElement;
+    const setDD = o => { ddBtn.setAttribute('aria-expanded', o); dd.classList.toggle('is-open', o); };
+    ddBtn.addEventListener('click', () => setDD(ddBtn.getAttribute('aria-expanded') !== 'true'));
+    if (matchMedia('(hover:hover)').matches) { ddWrap.addEventListener('mouseenter', () => setDD(true)); ddWrap.addEventListener('mouseleave', () => setDD(false)); }
+    d.addEventListener('click', e => { if (!ddWrap.contains(e.target)) setDD(false); });
+    ddWrap.addEventListener('keydown', e => { if (e.key === 'Escape') { setDD(false); ddBtn.focus(); } });
+    ddWrap.addEventListener('focusout', e => { if (!ddWrap.contains(e.relatedTarget)) setDD(false); });
+    const burger = $('.burger'), menu = $('#mnav');
+    const setMenu = o => {
+      burger.setAttribute('aria-expanded', o); burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
+      menu.classList.toggle('is-open', o); $('#mbar').style.visibility = o ? 'hidden' : '';
+      if (lenis) o ? lenis.stop() : lenis.start(); else d.body.style.overflow = o ? 'hidden' : '';
+      if (o) { hdr.classList.remove('is-hidden'); setTimeout(() => $('a', menu).focus(), 60); }
+      else if (menu.contains(d.activeElement)) burger.focus();
+    };
+    burger.addEventListener('click', () => setMenu(burger.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+    d.addEventListener('keydown', e => {
+      if (!menu.classList.contains('is-open')) return;
+      if (e.key === 'Escape') { setMenu(false); burger.focus(); }
+      if (e.key === 'Tab') { const f = $$('a', menu).concat([burger]), i = f.indexOf(d.activeElement);
+        if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); } }
+    });
+    addEventListener('resize', () => { if (innerWidth >= 1000 && menu.classList.contains('is-open')) setMenu(false); });
+    hdr.addEventListener('focusin', () => hdr.classList.remove('is-hidden'));
+  });
+
+  /* ---------- Hero slideshow (with liquid WebGL transition when available) ---------- */
+  const heroGL = { prog: 0 };
+  safe('hero', () => {
+    const frame = $('#hero'), slides = $$('.slide', frame), dots = $$('.dot', frame), num = $('#slideNum'), pp = $('#heroPause'), ppPath = $('#ppPath');
+    const DUR = 7000; let cur = 0, acc = 0, last = performance.now(), userPaused = RM, hover = false;
+    const show = i => {
+      cur = (i + slides.length) % slides.length; acc = 0;
+      slides.forEach((s, k) => { const on = k === cur; s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', !on); $$('a', s).forEach(a => a.tabIndex = on ? 0 : -1); });
+      dots.forEach((b, k) => { b.setAttribute('aria-current', k === cur); b.querySelector('i').style.setProperty('--p', k < cur ? 1 : 0); });
+      num.textContent = '0' + (cur + 1);
+      const nx = (cur + 1) % slides.length; $('#nextT').textContent = nx ? 'Buy a Hospitality Business' : 'Your Specialised Hospitality Business Broker'; $('#nextImg').src = $('.slide__img', slides[nx]).src;
+      if (G) gsap.to(heroGL, { prog: cur, duration: 1.6, ease: 'power2.inOut' }); else heroGL.prog = cur;
+    };
+    dots.forEach(b => b.addEventListener('click', () => show(+b.dataset.go)));
+    $('#nextChip').addEventListener('click', () => show(cur + 1));
+    const setPause = p => { userPaused = p; pp.setAttribute('aria-pressed', p); pp.setAttribute('aria-label', p ? 'Play slideshow' : 'Pause slideshow'); ppPath.setAttribute('d', p ? 'M3 2l7 4-7 4z' : 'M3 2v8M9 2v8'); };
+    pp.addEventListener('click', () => setPause(!userPaused)); setPause(userPaused);
+    frame.addEventListener('mouseenter', () => hover = true); frame.addEventListener('mouseleave', () => hover = false);
+    frame.addEventListener('focusin', () => hover = true); frame.addEventListener('focusout', e => { if (!frame.contains(e.relatedTarget)) hover = false; });
+    const loop = t => { const dt = t - last; last = t; if (!userPaused && !hover && !d.hidden) acc += dt; const p = clamp(acc / DUR); dots[cur].querySelector('i').style.setProperty('--p', p); $('#nextBar').style.setProperty('--p', p); if (p >= 1) show(cur + 1); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+    $$('[data-hero]').forEach(a => a.addEventListener('mouseenter', () => { if (!userPaused && cur !== +a.dataset.hero) show(+a.dataset.hero); }));
+    // Hero frame eases back as you scroll away
+    if (G) gsap.to(frame, { scale: .94, borderRadius: 44, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  });
+
+  /* ---------- WebGL helpers ---------- */
+  const VS = 'attribute vec2 p;varying vec2 vUv;void main(){vUv=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+  const makeGL = (canvas, fs) => {
+    const gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false }); if (!gl) return null;
+    const sh = (t, src) => { const o = gl.createShader(t); gl.shaderSource(o, src); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
+    const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr); gl.useProgram(pr);
+    const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const U = {}, u = n => U[n] || (U[n] = gl.getUniformLocation(pr, n));
+    const resize = () => { const r = Math.min(devicePixelRatio || 1, 1.75), w = canvas.clientWidth * r | 0, h = canvas.clientHeight * r | 0; if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); } return [w, h]; };
+    const tex = (img, unit) => { const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t); gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE)); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img); };
+    return { gl, u, resize, tex, draw: () => gl.drawArrays(gl.TRIANGLES, 0, 6) };
+  };
+  const onVisible = (el, cb) => new IntersectionObserver(es => cb(es[0].isIntersecting), { rootMargin: '120px' }).observe(el);
+
+  /* Hero: water ripple under the pointer, liquid noise dissolve between the two photos */
+  safe('heroGL', () => {
+    if (RM) return;
+    const FS = `precision highp float;varying vec2 vUv;uniform sampler2D t0,t1;uniform vec2 res,s0,s1,mouse;uniform float prog,time,hov;
+    vec2 cov(vec2 uv,vec2 s,float ox){float ra=res.x/res.y,ri=s.x/s.y;vec2 sc=ra>ri?vec2(1.,ri/ra):vec2(ra/ri,1.);return (uv-.5)*sc+vec2(ra>ri?.5:ox,.5);}
+    float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+    float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+    float fb(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*n(p);p*=2.;a*=.5;}return v;}
+    void main(){vec2 uv=vUv;vec2 asp=vec2(res.x/res.y,1.);vec2 dd=(uv-mouse)*asp;float ds=length(dd);
+    uv+=normalize(dd+1e-5)/asp*sin(ds*34.-time*4.)*exp(-ds*5.)*hov*.009;
+    uv.y+=sin(uv.x*5.+time*.5)*.0015;
+    float m=smoothstep(0.,1.,clamp(prog*1.7-.35+(fb(uv*3.+time*.03)-.5)*.9,0.,1.));
+    float edge=smoothstep(0.,.5,m)*smoothstep(1.,.5,m);
+    vec2 u0=cov(uv+vec2(0.,m*.05),s0,.68),u1=cov(uv-vec2(0.,(1.-m)*.05),s1,.5);float sh=edge*.004;
+    vec3 c0=vec3(texture2D(t0,u0+vec2(sh,0.)).r,texture2D(t0,u0).g,texture2D(t0,u0-vec2(sh,0.)).b);
+    vec3 c1=vec3(texture2D(t1,u1+vec2(sh,0.)).r,texture2D(t1,u1).g,texture2D(t1,u1-vec2(sh,0.)).b);
+    vec3 c=mix(c0,c1,m)+edge*vec3(.62,.76,.82)*.16;gl_FragColor=vec4(c,1.);}`;
+    const cv = $('#heroGL'), R = makeGL(cv, FS); if (!R) return;
+    const imgs = $$('.slide__img'), frame = $('#hero');
+    const start = () => {
+      try { R.tex(imgs[0], 0); R.tex(imgs[1], 1); } catch (e) { console.warn('[NewCoast] hero texture blocked', e); return; }
+      const { gl, u } = R; gl.uniform1i(u('t0'), 0); gl.uniform1i(u('t1'), 1);
+      gl.uniform2f(u('s0'), imgs[0].naturalWidth, imgs[0].naturalHeight); gl.uniform2f(u('s1'), imgs[1].naturalWidth, imgs[1].naturalHeight);
+      $('.hero').classList.add('gl');
+      let mx = .7, my = .5, tx = .7, ty = .5, hv = 0, th = 0, on = true; const t0 = performance.now();
+      frame.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); tx = (e.clientX - r.left) / r.width; ty = 1 - (e.clientY - r.top) / r.height; th = 1; });
+      frame.addEventListener('pointerleave', () => th = 0);
+      onVisible(frame, v => on = v);
+      const loop = t => { requestAnimationFrame(loop); if (!on) return; const [w, h] = R.resize(); mx += (tx - mx) * .08; my += (ty - my) * .08; hv += (th - hv) * .05;
+        gl.uniform2f(u('res'), w, h); gl.uniform2f(u('mouse'), mx, my); gl.uniform1f(u('hov'), hv); gl.uniform1f(u('time'), (t - t0) / 1000); gl.uniform1f(u('prog'), heroGL.prog); R.draw(); };
+      requestAnimationFrame(loop);
+    };
+    Promise.all(imgs.map(i => i.decode ? i.decode().catch(() => {}) : null)).then(() => { if (imgs.every(i => i.complete && i.naturalWidth)) start(); });
+  });
+
+  /* Footer call-to-action: coastal contour lines in brand colours */
+  safe('waveGL', () => {
+    const FS = `precision highp float;varying vec2 vUv;uniform vec2 res,mouse;uniform float time;
+    float h(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*45758.5453);}
+    float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+    float fb(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return v;}
+    void main(){vec2 p=vUv*vec2(res.x/res.y,1.)*1.5+(mouse-.5)*.25;float q=fb(p+vec2(time*.04,time*.02));float g=fb(p*1.4+q*1.8-vec2(time*.03,0.));
+    vec3 ink=vec3(0.,.165,.212),tide=vec3(.318,.545,.6),mist=vec3(.624,.765,.82),slate=vec3(.31,.451,.49);
+    vec3 c=mix(ink,slate,smoothstep(.25,.85,g));c=mix(c,tide,smoothstep(.55,.95,g)*.55);c+=mist*smoothstep(.06,0.,abs(fract(g*9.)-.5))*.2;
+    c*=mix(.6,1.,smoothstep(1.2,.2,length(vUv-.5)*1.6));gl_FragColor=vec4(c,1.);}`;
+    const cv = $('#waveGL'); if (!cv) return; const R = makeGL(cv, FS); if (!R) return;
+    const { gl, u } = R; let on = false, mx = .5, my = .5, tx = .5, ty = .5; const t0 = performance.now();
+    cv.parentElement.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); tx = (e.clientX - r.left) / r.width; ty = 1 - (e.clientY - r.top) / r.height; });
+    const frame = t => { const [w, h] = R.resize(); mx += (tx - mx) * .04; my += (ty - my) * .04; gl.uniform2f(u('res'), w, h); gl.uniform2f(u('mouse'), mx, my); gl.uniform1f(u('time'), RM ? 8 : (t - t0) / 1000); R.draw(); };
+    if (RM) { onVisible(cv, v => v && frame(0)); return; }
+    onVisible(cv, v => on = v); const loop = t => { requestAnimationFrame(loop); if (on) frame(t); }; requestAnimationFrame(loop);
+  });
+
+  /* ---------- Tabs (roving focus + sliding pill) ---------- */
+  const tabSets = {};
+  safe('tabs', () => { $$('[data-tabs]').forEach(list => {
+    const tabs = $$('[role="tab"]', list), pill = $('.tabs__pill', list);
+    const move = () => { const t = tabs.find(x => x.getAttribute('aria-selected') === 'true'); if (!t || !pill) return; pill.style.width = t.offsetWidth + 'px'; pill.style.transform = 'translateX(' + (t.offsetLeft - 5) + 'px)'; };
+    const select = (tab, focus) => { if (!tab) return;
+      tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; const p = d.getElementById(t.getAttribute('aria-controls')); if (p) p.hidden = !on; });
+      if (focus) tab.focus(); move();
+      const panel = d.getElementById(tab.getAttribute('aria-controls')), chips = panel && $('.chips', panel);
+      if (chips) { chips.classList.remove('is-in'); void chips.offsetWidth; chips.classList.add('is-in'); }
+      list.dispatchEvent(new CustomEvent('tabchange', { detail: tab.dataset.key })); };
+    tabs.forEach((t, i) => { t.addEventListener('click', () => select(t)); t.addEventListener('keydown', e => {
+      const k = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key]; if (k !== undefined) { e.preventDefault(); select(tabs[(k + tabs.length) % tabs.length], true); } }); });
+    tabSets[list.dataset.tabs] = { select: key => select(tabs.find(t => t.dataset.key === key)) };
+    requestAnimationFrame(move); addEventListener('resize', move); d.fonts && d.fonts.ready.then(move);
+  }); });
+
+  /* ---------- Journey: pinned horizontal scroll, drawn line, big step number ---------- */
+  const J = { sec: $('#journey'), pinned: false, dist: 0 };
+  J.track = () => $('.jrny__track:not([hidden])', J.sec);
+  const leads = { sell: 'A simple, transparent 7-step process designed to make selling your hospitality business straightforward.', buy: 'Three clear steps to receive our hospitality business listings and the information you need.' };
+  const drawLine = tr => {
+    const li = $('.jline', tr), svg = $('svg', li), w = tr.scrollWidth, cards = $$('.step', tr);
+    svg.setAttribute('width', w); svg.setAttribute('height', 140); svg.setAttribute('viewBox', `0 0 ${w} 140`);
+    let p = 'M0 70'; cards.forEach((c, i) => { const x = c.offsetLeft + c.offsetWidth / 2; p += ` S ${x - 110} ${i % 2 ? 6 : 134}, ${x} 70`; });
+    $$('path', svg).forEach(x => x.setAttribute('d', p));
+    const draw = $('.draw', svg), len = draw.getTotalLength(); draw.style.strokeDasharray = len; draw.style.strokeDashoffset = len; return { draw, len };
+  };
+  // Native sticky pin (robust with smooth scroll and tab switches); progress is eased in a rAF loop
+  J.cur = 0;
+  J.apply = p => {
+    const t = J.track(), real = $$('.step:not(.step--end)', t), D = J.dist;
+    t.style.transform = `translate3d(${-p * D}px,0,0)`; $('#jrBar').style.transform = `scaleX(${p})`;
+    if (J.line) J.line.draw.style.strokeDashoffset = J.line.len * (1 - p);
+    if (!RM) $$('.step', t).forEach(c => { const x = c.offsetLeft - p * D, r = clamp((innerWidth * 1.04 - x) / (innerWidth * .34)); c.style.transform = `translateY(${(1 - r) * 110}px) rotate(${(1 - r) * 3}deg)`; c.style.opacity = .15 + r * .85; });
+    const idx = Math.min(real.length - 1, Math.floor(p * real.length * 1.03)); real.forEach((c, k) => c.classList.toggle('is-on', k === idx));
+    const n = String(idx + 1).padStart(2, '0'); $('#jrNum').textContent = n; $('#jrBig').textContent = n;
+  };
+  const buildJourney = () => {
+    const wide = !RM && matchMedia('(min-width:1024px) and (min-height:600px)').matches;
+    J.sec.classList.toggle('is-pinned', wide); J.pinned = wide;
+    $$('.jrny__track', J.sec).forEach(t => t.style.transform = '');
+    $$('.step', J.sec).forEach(c => { c.style.transform = ''; c.style.opacity = ''; });
+    const tr = J.track(), real = $$('.step:not(.step--end)', tr);
+    $('#jrTot').textContent = String(real.length).padStart(2, '0');
+    if (!wide) { J.sec.style.height = ''; J.line = null; if (G) ScrollTrigger.refresh(); return; }
+    J.dist = Math.max(0, tr.scrollWidth - innerWidth); J.sec.style.height = (innerHeight + J.dist) + 'px';
+    J.line = drawLine(tr); J.apply(J.cur);
+    if (G) ScrollTrigger.refresh();
+  };
+  const jrTarget = () => { const r = J.sec.getBoundingClientRect(), total = J.sec.offsetHeight - innerHeight; return total > 0 ? clamp(-r.top / total) : 0; };
+  (function jrLoop() { if (J.pinned) { const t = jrTarget(), nx = RM ? t : J.cur + (t - J.cur) * .14; if (Math.abs(nx - J.cur) > .0002 || RM) { J.cur = nx; J.apply(J.cur); } } requestAnimationFrame(jrLoop); })();
+  safe('journey', () => {
+    buildJourney();
+    $('[data-tabs="journey"]').addEventListener('tabchange', e => {
+      $('#jrLead').textContent = leads[e.detail];
+      // Jump to the start of the section first (instantly), then rebuild on the next frame, so measurements are taken at rest
+      const top = J.sec.getBoundingClientRect().top + scrollY, inside = scrollY > top + 5;
+      J.cur = 0; buildJourney();
+      if (inside) { if (lenis) lenis.scrollTo(top, { immediate: true, force: true }); else scrollTo(0, top); }
+      onScroll();
+    });
+    $$('[data-journey]').forEach(a => a.addEventListener('click', () => tabSets.journey && tabSets.journey.select(a.dataset.journey)));
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { buildJourney(); onScroll(); }, 250); });
+    addEventListener('load', () => { buildJourney(); onScroll(); });
+    J.sec.addEventListener('focusin', e => { // keep a focused button inside the moving track on screen
+      if (!J.pinned) return; const c = e.target.closest('.step'); if (!c) return;
+      const tr = J.track(), dist = Math.max(1, tr.scrollWidth - innerWidth), p = clamp((c.offsetLeft - innerWidth * .3) / dist);
+      const top = J.sec.getBoundingClientRect().top + scrollY; scrollToEl(top + p * (J.sec.offsetHeight - innerHeight));
+    });
+  });
+
+  /* ---------- Value dial: drag to turn, snaps to a factor ---------- */
+  safe('value', () => {
+    const F = [
+      ['Financial performance', 'We don’t just list a business at any price. The listing price is set to reflect the true business operation, which includes a thorough assessment of trading and financial history.'],
+      ['Location', 'Being familiar with the geographic area of a business means we understand your competition, your customers, your challenges and your potential, so pricing and positioning are grounded in lived local experience.'],
+      ['Lease terms', 'We assess current and future lease terms so any limitations are addressed and factored into the listing price. That includes council or strata limitations and future rent and outgoing costs.'],
+      ['Assets', 'Fitout, equipment and stock all form part of what a buyer takes on. Equipment inspections and stock valuation are worked through as part of the handover terms.'],
+      ['Customer base', 'We know your hospitality customer base. A clear picture of who trades with the business, and why, helps us find a buyer who can keep it that way.'],
+      ['Future potential', 'Our appraisal highlights the strengths and opportunities within your business, showing where value is created and, if necessary, where improvements will lift your sale price.']
+    ];
+    const NS = 'http://www.w3.org/2000/svg', svg = $('#dialSvg'), n = F.length, R = 210;
+    const rot = d.createElementNS(NS, 'g'); rot.setAttribute('class', 'dial__rot'); svg.appendChild(rot);
+    const pt = (a, r) => [Math.cos(a) * r, Math.sin(a) * r];
+    for (let t = 0; t < 72; t++) { const a = t / 72 * Math.PI * 2, [x0, y0] = pt(a, 262), [x1, y1] = pt(a, t % 12 === 6 ? 286 : 274); const l = d.createElementNS(NS, 'line'); l.setAttribute('x1', x0); l.setAttribute('y1', y0); l.setAttribute('x2', x1); l.setAttribute('y2', y1); l.setAttribute('class', 'tick'); rot.appendChild(l); }
+    const segs = [], lbls = [];
+    F.forEach((f, i) => {
+      const a0 = (i / n) * Math.PI * 2 - Math.PI / 2 - Math.PI / n + .04, a1 = a0 + Math.PI * 2 / n - .08;
+      const [x0, y0] = pt(a0, R), [x1, y1] = pt(a1, R);
+      const p = d.createElementNS(NS, 'path'); p.setAttribute('d', `M${x0} ${y0} A${R} ${R} 0 0 1 ${x1} ${y1}`); p.setAttribute('class', 'seg'); rot.appendChild(p); segs.push(p);
+      const [lx, ly] = pt((a0 + a1) / 2, R), g = d.createElementNS(NS, 'g'); g.setAttribute('transform', `translate(${lx} ${ly})`);
+      const t = d.createElementNS(NS, 'text'); t.setAttribute('text-anchor', 'middle'); t.setAttribute('dominant-baseline', 'middle'); t.setAttribute('class', 'lbl'); t.textContent = f[0].split(' ')[0];
+      g.appendChild(t); rot.appendChild(g); lbls.push(t);
+      p.addEventListener('click', () => sel(i));
+    });
+    const tabs = $$('#factors .factor'), panel = $('#fpanel'), tt = $('#fTitle'), tx = $('#fText'), dn = $('#dialName'), dc = $('.dial__core span');
+    let cur = 0, angle = 0;
+    const setAngle = a => { angle = a; rot.style.transform = `rotate(${a}deg)`; lbls.forEach(t => t.setAttribute('transform', `rotate(${-a})`)); };
+    const sel = (i, focus) => {
+      const diff = ((i - cur) % n + n + n / 2) % n - n / 2; cur = i; setAngle(angle - diff * 360 / n);
+      tabs.forEach((t, k) => { const on = k === i; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
+      segs.forEach((s, k) => s.classList.toggle('is-on', k === i)); lbls.forEach((s, k) => s.classList.toggle('is-on', k === i));
+      panel.setAttribute('aria-labelledby', 'f' + i); tt.textContent = F[i][0]; tx.textContent = F[i][1]; dn.textContent = F[i][0]; dc.textContent = (i + 1) + ' of ' + n + ' factors';
+      panel.classList.remove('is-swap'); void panel.offsetWidth; panel.classList.add('is-swap');
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => { t.addEventListener('click', () => sel(i)); t.addEventListener('keydown', e => {
+      const cols = innerWidth <= 520 ? 2 : 3; const k = { ArrowRight: i + 1, ArrowLeft: i - 1, ArrowDown: i + cols, ArrowUp: i - cols, Home: 0, End: n - 1 }[e.key];
+      if (k !== undefined) { e.preventDefault(); sel((k % n + n) % n, true); } }); });
+    const dial = $('#dial'); let drag = false, a0 = 0, st = 0;
+    const ang = e => { const r = dial.getBoundingClientRect(); return Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI; };
+    dial.addEventListener('pointerdown', e => { if (e.target.closest('.seg')) return; drag = true; dial.classList.add('drag'); a0 = ang(e); st = angle; dial.setPointerCapture(e.pointerId); });
+    dial.addEventListener('pointermove', e => { if (drag) setAngle(st + (ang(e) - a0)); });
+    const end = () => { if (!drag) return; drag = false; dial.classList.remove('drag'); const step = 360 / n, k = Math.round(-angle / step); setAngle(-k * step); cur = ((k % n) + n) % n; sel(cur); };
+    dial.addEventListener('pointerup', end); dial.addEventListener('pointercancel', end);
+    sel(0);
+  });
+
+  /* ---------- Testimonials rail: drag, arrows, depth ---------- */
+  safe('rail', () => {
+    const rail = $('#rail'), prev = $('#tPrev'), next = $('#tNext'), meter = $('#tMeter'), qs = $$('.quote', rail);
+    const step = () => (qs[0] ? qs[0].offsetWidth + 20 : 300);
+    const depth = () => { if (RM) return; const c = innerWidth / 2; qs.forEach(q => { const r = q.getBoundingClientRect(), off = clamp(((r.left + r.width / 2) - c) / innerWidth, -1, 1);
+      q.style.transform = `perspective(1200px) rotateY(${off * -14}deg) translateZ(${-Math.abs(off) * 80}px)`; q.style.opacity = 1 - Math.abs(off) * .35; }); };
+    const sync = () => { const max = rail.scrollWidth - rail.clientWidth, p = max > 0 ? rail.scrollLeft / max : 1; meter.style.transform = 'scaleX(' + (.25 + p * .75) + ')'; prev.disabled = rail.scrollLeft < 4; next.disabled = rail.scrollLeft > max - 4; depth(); };
+    prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: RM ? 'auto' : 'smooth' }));
+    next.addEventListener('click', () => rail.scrollBy({ left: step(), behavior: RM ? 'auto' : 'smooth' }));
+    rail.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); addEventListener('scroll', depth, { passive: true }); sync();
+    rail.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); } });
+    let down = false, sx = 0, sl = 0;
+    rail.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl = rail.scrollLeft; rail.classList.add('is-drag'); rail.setPointerCapture(e.pointerId); });
+    rail.addEventListener('pointermove', e => { if (down) rail.scrollLeft = sl - (e.clientX - sx); });
+    const up = () => { if (!down) return; down = false; rail.classList.remove('is-drag'); };
+    rail.addEventListener('pointerup', up); rail.addEventListener('pointercancel', up);
+  });
+
+  /* ---------- FAQ: smooth details ---------- */
+  safe('faq', () => { $$('.qa').forEach(det => {
+    const sum = $('summary', det), body = $('.qa__a', det);
+    sum.addEventListener('click', e => { if (RM || !body.animate) return; e.preventDefault();
+      const done = () => G && ScrollTrigger.refresh();
+      if (det.open) { const h = body.offsetHeight; body.animate([{ height: h + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 380, easing: 'cubic-bezier(.22,1,.36,1)' }).onfinish = () => { det.open = false; done(); }; }
+      else { det.open = true; const h = body.offsetHeight; body.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 480, easing: 'cubic-bezier(.22,1,.36,1)' }).onfinish = done; } });
+  }); });
+
+  /* ---------- Enquiry form (truthful demo: nothing is transmitted) ---------- */
+  safe('form', () => {
+    const form = $('#enquiry'), ctx = $('#ctx'), errsum = $('#errsum'), status = $('#status'), sum = $('#sum'), mailBtn = $('#mailBtn'), radios = $$('input[name="interest"]', form);
+    let lastIntent = null;
+    const setIntent = v => { if (!v) return; const r = radios.find(x => x.value === v); if (!r) return; r.checked = true; lastIntent = v;
+      ctx.innerHTML = 'We’ve selected <strong></strong> from the button you used. <button type="button" id="ctxClear">Change or clear it</button>'; $('strong', ctx).textContent = v; ctx.classList.add('is-on');
+      $('#ctxClear').addEventListener('click', () => { r.checked = false; ctx.classList.remove('is-on'); ctx.textContent = ''; radios[0].focus(); }); };
+    window.__setIntent = setIntent;
+    radios.forEach(r => r.addEventListener('change', () => { if (lastIntent && r.value !== lastIntent) { ctx.classList.remove('is-on'); ctx.textContent = ''; lastIntent = null; } clearErr('interest'); }));
+    const F = { interest: { el: () => radios[0], msg: 'Choose what you’re interested in.' }, email: { el: () => $('#em'), msg: 'Enter an email address, like name@example.com.' }, phone: { el: () => $('#ph'), msg: 'Enter a phone number so we can call you back.' }, message: { el: () => $('#msg'), msg: 'Add a short message.' } };
+    const setErr = (k, m) => { $('#err-' + k).textContent = m; if (k !== 'interest') F[k].el().setAttribute('aria-invalid', 'true'); };
+    const clearErr = k => { const e = $('#err-' + k); if (e) e.textContent = ''; if (k !== 'interest' && F[k]) F[k].el().removeAttribute('aria-invalid'); };
+    ['em', 'ph', 'msg'].forEach(id => $('#' + id).addEventListener('input', () => clearErr({ em: 'email', ph: 'phone', msg: 'message' }[id])));
+    form.addEventListener('submit', e => {
+      e.preventDefault(); Object.keys(F).forEach(clearErr);
+      const v = Object.fromEntries(new FormData(form)), errs = [];
+      if (v.company_site) return;
+      if (!v.interest) errs.push('interest');
+      if (!v.email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim())) errs.push('email');
+      if (!v.phone || v.phone.replace(/\D/g, '').length < 8) errs.push('phone');
+      if (!v.message || v.message.trim().length < 2) errs.push('message');
+      if (errs.length) { errs.forEach(k => setErr(k, F[k].msg)); errsum.hidden = false;
+        errsum.innerHTML = '<strong>Please fix ' + errs.length + (errs.length > 1 ? ' things' : ' thing') + ':</strong><ul>' + errs.map(k => '<li><a href="#' + (k === 'interest' ? 'interest' : F[k].el().id) + '">' + F[k].msg + '</a></li>').join('') + '</ul>';
+        $$('a', errsum).forEach(a => a.addEventListener('click', ev => { ev.preventDefault(); ev.stopPropagation(); const k = a.getAttribute('href').slice(1); (k === 'interest' ? radios[0] : d.getElementById(k)).focus(); }));
+        errsum.focus(); return; }
+      errsum.hidden = true;
+      const name = [v.first, v.last].filter(Boolean).join(' ');
+      const lines = ['Interested in: ' + v.interest, v.btype ? 'Business type: ' + v.btype : null, name ? 'Name: ' + name : null, 'Email: ' + v.email.trim(), 'Phone: ' + v.phone.trim(), '', v.message.trim()].filter(x => x !== null);
+      sum.textContent = lines.join('\n');
+      mailBtn.href = 'mailto:contact@newcoastbrokers.com.au?subject=' + encodeURIComponent('Website enquiry: ' + v.interest) + '&body=' + encodeURIComponent(lines.join('\n'));
+      status.hidden = false; status.focus(); G && ScrollTrigger.refresh();
+    });
+    $('#editBtn').addEventListener('click', () => { status.hidden = true; $('#msg').focus(); });
+  });
+
+  /* ---------- Team: copy email ---------- */
+  safe('copy', () => { $$('.pf__copy').forEach(b => b.addEventListener('click', async () => {
+    const tip = $('.pf__tip', b), v = b.dataset.copy;
+    let ok = false; try { await navigator.clipboard.writeText(v); ok = true; } catch (e) {
+      try { const t = d.createElement('textarea'); t.value = v; t.style.position = 'fixed'; t.style.opacity = '0'; d.body.appendChild(t); t.select(); ok = d.execCommand('copy'); t.remove(); } catch (e2) {} }
+    tip.textContent = ok ? 'Email copied' : 'Copy not available';
+    b.classList.add('ok'); clearTimeout(b._t); b._t = setTimeout(() => { b.classList.remove('ok'); tip.textContent = ''; }, 1800);
+  })); });
+
+  /* ---------- Mobile swipe rows with dot indicators ---------- */
+  safe('swipe', () => {
+    const targets = [['#svcList'], ['.facts', false], ['.team__cards'], ['.posts'], ['.factors', false]];
+    const mq = matchMedia('(max-width:899px)');
+    const made = [];
+    targets.forEach(([sel, dots = true]) => { const el = $(sel); if (!el) return;
+      let bar = null; const items = () => Array.from(el.children).filter(c => c.offsetParent !== null);
+      const sync = () => { if (!bar) return; const kids = items(), x = el.scrollLeft + el.clientWidth * .3; let k = 0; kids.forEach((c, i) => { if (c.offsetLeft - el.offsetLeft <= x) k = i; }); $$('i', bar).forEach((d, i) => d.classList.toggle('on', i === k)); };
+      const apply = () => { const on = mq.matches; el.classList.toggle('swipe', on);
+        if (on && dots && !bar) { bar = d.createElement('div'); bar.className = 'swdots'; bar.setAttribute('aria-hidden', 'true'); bar.innerHTML = items().map(() => '<i></i>').join(''); el.after(bar); sync(); }
+        if (!on && bar) { bar.remove(); bar = null; } };
+      el.addEventListener('scroll', sync, { passive: true }); made.push(apply); apply(); });
+    mq.addEventListener ? mq.addEventListener('change', () => made.forEach(f => f())) : mq.addListener(() => made.forEach(f => f()));
+  });
+
+  /* ---------- Footer subscribe (truthful demo) ---------- */
+  safe('subscribe', () => { const f = $('#subForm'), i = $('#subEmail'), m = $('#subMsg');
+    f.addEventListener('submit', e => { e.preventDefault();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value.trim())) { m.className = 'sub__msg is-err'; m.textContent = 'Please enter a valid email address.'; i.setAttribute('aria-invalid', 'true'); i.focus(); return; }
+      i.removeAttribute('aria-invalid'); m.className = 'sub__msg';
+      m.innerHTML = 'Listing alerts aren’t connected in this preview, so you haven’t been subscribed. Email <a href="mailto:contact@newcoastbrokers.com.au?subject=Please%20add%20me%20to%20business%20listings">contact@newcoastbrokers.com.au</a> to be added.'; }); });
+
+  /* ---------- In-page links: smooth scroll, intents, journey shortcuts ---------- */
+  safe('links', () => { d.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return; const id = a.getAttribute('href'); if (id.length < 2) return;
+    const el = d.getElementById(id.slice(1)); if (!el) return; e.preventDefault();
+    if (a.dataset.journey && tabSets.journey) tabSets.journey.select(a.dataset.journey);
+    if (a.dataset.intent && window.__setIntent) window.__setIntent(a.dataset.intent);
+    scrollToEl(el, id === '#contact' ? -90 : 0);
+    if (id === '#main') el.focus();
+  }); });
+
+  /* ---------- Motion toggle ---------- */
+  safe('motion', () => { const b = $('#motionToggle'); b.setAttribute('aria-pressed', RM); b.textContent = 'Reduce motion: ' + (RM ? 'On' : 'Off');
+    b.addEventListener('click', () => { store.set('nc-rm', RM ? '0' : '1'); location.reload(); }); });
+
+  /* ---------- Cursor, magnetic buttons, tilt cards, chip spotlight + preview disc ---------- */
+  safe('pointer', () => {
+    if (!fine || RM) return;
+    const cur = $('.cursor'), dot = $('.cdot'), lab = $('span', cur), pv = $('.prevdisc');
+    let x = -100, y = -100, cx = -100, cy = -100, px = -100, py = -100;
+    addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; cur.classList.add('is-on'); dot.classList.add('is-on'); }, { passive: true });
+    d.documentElement.addEventListener('pointerleave', () => { cur.classList.remove('is-on'); dot.classList.remove('is-on'); });
+    d.addEventListener('pointerover', e => {
+      const t = e.target, lb = t.closest('[data-cursor]'), inter = t.closest('a,button,summary,label,.seg'), field = t.closest('input,textarea,select'), chip = t.closest('.chip a');
+      cur.classList.toggle('is-off', !!field || !!chip); dot.classList.toggle('is-off', !!field);
+      if (lb && !inter) { cur.classList.add('is-label'); cur.classList.remove('is-hover'); lab.textContent = lb.dataset.cursor; }
+      else if (lb && lb.dataset.cursor === 'Read') { cur.classList.add('is-label'); lab.textContent = 'Read'; }
+      else { cur.classList.remove('is-label'); cur.classList.toggle('is-hover', !!inter); }
+      if (chip) { $('#prevPath').setAttribute('d', $('path', chip).getAttribute('d')); $('#prevName').textContent = chip.textContent.trim(); pv.style.transition = 'transform .5s cubic-bezier(.34,1.56,.64,1),opacity .3s'; pv.style.opacity = 1; pv.dataset.on = '1'; }
+      else if (pv.dataset.on) { pv.style.opacity = 0; pv.dataset.on = ''; }
+    });
+    const loop = () => { cx += (x - cx) * .18; cy += (y - cy) * .18; px += (x - px) * .1; py += (y - py) * .1;
+      cur.style.transform = `translate(${cx}px,${cy}px)`; dot.style.transform = `translate(${x}px,${y}px)`;
+      pv.style.transform = `translate(${px}px,${py}px) scale(${pv.dataset.on ? 1 : 0})`; requestAnimationFrame(loop); };
+    loop();
+    $$('.mag').forEach(b => { b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .2}px,${(e.clientY - r.top - r.height / 2) * .3}px)`; });
+      b.addEventListener('pointerleave', () => b.style.transform = ''); });
+    $$('.pf').forEach(c => { const img = $('.pf__img', c), ini = $('.pf__init', c);
+      c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(), mx = (e.clientX - r.left) / r.width - .5, my = (e.clientY - r.top) / r.height - .5; img.style.transform = `translate(${mx * 12}px,${my * 8}px) scale(1.04)`; ini.style.transform = `translate(${mx * -28}px,${my * -14}px)`; });
+      c.addEventListener('pointerleave', () => { img.style.transform = ''; ini.style.transform = ''; }); });
+    $$('.chip a').forEach(a => a.addEventListener('pointerenter', e => { const r = a.getBoundingClientRect(); a.style.setProperty('--mx', (e.clientX - r.left) + 'px'); a.style.setProperty('--my', (e.clientY - r.top) + 'px'); }));
+  });
+
+  /* ---------- Chapter label ---------- */
+  safe('chapters', () => {
+    const chap = $('.chap'), n = $('#chapN'), t = $('#chapT'), secs = $$('[data-chapter]');
+    const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const i = secs.indexOf(e.target); n.textContent = String(i + 1).padStart(2, '0'); t.textContent = e.target.dataset.chapter; }), { rootMargin: '-50% 0px -50% 0px' });
+    secs.forEach(s => io.observe(s));
+    let past = false, hideT; new IntersectionObserver(es => { past = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; if (!past) chap.classList.remove('on'); }).observe($('.hero'));
+    // Show the label only while scrolling, so it never sits on top of content
+    addEventListener('scroll', () => { if (!past) return; chap.classList.add('on'); clearTimeout(hideT); hideT = setTimeout(() => chap.classList.remove('on'), 1300); }, { passive: true });
+    new IntersectionObserver(es => chap.style.visibility = es[0].isIntersecting ? 'hidden' : '', { rootMargin: '0px 0px -15% 0px' }).observe($('.ftr'));
+  });
+
+  /* ---------- GSAP extras: buyers mosaic, team wipe, marquee skew, footer word, expertise tags ---------- */
+  safe('gsapExtras', () => {
+    if (!G) return;
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '.stack', start: 'top 88%', end: 'center 50%', scrub: 1 } });
+    tl.fromTo('.stack__a', { rotate: -7, x: -50, y: 70, scale: .88 }, { rotate: 0, x: 0, y: 0, scale: 1, ease: 'none' }, 0)
+      .fromTo('.stack__b', { rotate: 9, x: 110, y: -30 }, { rotate: 0, x: 0, y: 0, ease: 'none' }, 0)
+      .fromTo('.stack__c', { rotate: -6, x: 70, y: 140 }, { rotate: 0, x: 0, y: 0, ease: 'none' }, 0);
+    $$('.pf').forEach((c, i) => {
+      gsap.fromTo($('.pf__stage', c), { clipPath: 'inset(100% 0% 0% 0% round 22px)' }, { clipPath: 'inset(0% 0% 0% 0% round 22px)', duration: 1.5, ease: 'expo.inOut', delay: i * .15, scrollTrigger: { trigger: c, start: 'top 85%' } });
+      gsap.fromTo($('.pf__img', c), { scale: 1.25 }, { scale: 1, duration: 2, ease: 'expo.out', delay: .2 + i * .15, clearProps: 'transform', scrollTrigger: { trigger: c, start: 'top 85%' } });
+      gsap.from($$('.pf__creds li', c), { y: 16, opacity: 0, stagger: .06, duration: .8, ease: 'power3.out', delay: .6 + i * .15, scrollTrigger: { trigger: c, start: 'top 85%' } });
+      gsap.fromTo($('.pf__init', c), { yPercent: 30 }, { yPercent: -10, ease: 'none', scrollTrigger: { trigger: c, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+    const skew = gsap.quickTo('.marq', 'skewX', { duration: .5, ease: 'power3' });
+    ScrollTrigger.create({ onUpdate: s => { const v = s.getVelocity(); skew(clamp(v / -300, -7, 7)); $$('.marq').forEach(m => m.getAnimations().forEach(a => a.playbackRate = 1 + Math.min(5, Math.abs(v) / 400))); } });
+    gsap.from('.exp__tags span', { y: 30, opacity: 0, stagger: .08, duration: .9, ease: 'back.out(1.8)', scrollTrigger: { trigger: '#expImg', start: 'top 60%' } });
+    gsap.from('.ftr__cta', { y: 60, scale: .96, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '.ftr', start: 'top 85%' } });
+    gsap.from('.dial', { rotate: -100, scale: .75, opacity: 0, duration: 1.8, ease: 'expo.out', scrollTrigger: { trigger: '#dial', start: 'top 80%' } });
+    $$('.post__img img').forEach(im => gsap.fromTo(im, { scale: 1.25 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: im, start: 'top bottom', end: 'bottom top', scrub: true } }));
+  });
+
+  /* ---------- One scroll loop for everything else scroll-linked ---------- */
+  const bar = $('.progress'), hdr = $('#hdr'), mbar = $('#mbar'), pars = $$('.js-par');
+  const svcItems = $$('#svcList .svc__item'), svcImgs = $$('.svc__media img'), svcNum = $('#svcNum'), svcBar = $('#svcBar'), svcCap = $('#svcCap');
+  const expImg = $('#expImg'), lockRing = $('#lockRing'), lockNum = $('#lockNum'), proto = $$('#proto li'), rings = $$('#rings g');
+  const heroEl = $('#hero'), contactEl = $('#contact');
+  let lastY = scrollY, ticking = false, svcIdx = -1;
+  function onScroll() {
+    ticking = false;
+    const y = scrollY, vh = innerHeight, docH = d.documentElement.scrollHeight - vh;
+    bar.style.transform = 'scaleX(' + (docH > 0 ? y / docH : 0) + ')';
+    const menuOpen = $('#mnav').classList.contains('is-open');
+    hdr.classList.toggle('is-compact', y > 40);
+    if (!menuOpen && !hdr.contains(d.activeElement) && y > lastY && y > 400) hdr.classList.add('is-hidden');
+    if (y < lastY) hdr.classList.remove('is-hidden');
+    lastY = y;
+    const hb = heroEl.getBoundingClientRect().bottom, cr = contactEl.getBoundingClientRect();
+    mbar.classList.toggle('is-on', hb < 0 && !(cr.top < vh && cr.bottom > 0));
+    if (!RM) {
+      pars.forEach(img => { const r = img.parentElement.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return; const c = (r.top + r.height / 2 - vh / 2) / vh; img.style.transform = `translate3d(0,${c * parseFloat(img.dataset.speed || .1) * -100}%,0) scale(1.12)`; });
+      scrubs.forEach(({ el, ws }) => { const r = el.getBoundingClientRect(), p = clamp((vh * .85 - r.top) / (vh * .55)), k = Math.floor(p * ws.length * 1.05); ws.forEach((w, i) => w.style.opacity = i < k ? 1 : .18); });
+      if (expImg) { const r = expImg.getBoundingClientRect(), p = clamp((vh - r.top) / (vh * .8)); expImg.style.setProperty('--cx', ((1 - p) * 12).toFixed(2) + '%'); expImg.style.setProperty('--ci', ((1 - p) * 8).toFixed(2) + '%'); expImg.style.setProperty('--cs', (1.15 - p * .15).toFixed(3)); }
+    }
+    if (svcItems.length) { let a = 0; svcItems.forEach((c, i) => { if (c.getBoundingClientRect().top < vh * .5) a = i; });
+      if (a !== svcIdx) { const prev = svcIdx; svcIdx = a;
+        svcItems.forEach((c, i) => c.classList.toggle('is-on', i === a));
+        svcImgs.forEach((im, i) => { im.classList.toggle('was-on', i === prev); im.classList.toggle('is-on', i === a); });
+        svcNum.textContent = '0' + (a + 1); svcBar.style.transform = 'scaleX(' + ((a + 1) / svcItems.length) + ')'; svcCap.textContent = $('h3', svcItems[a]).textContent; } }
+    if (proto.length) { let k = 0; proto.forEach((li, i) => { const on = li.getBoundingClientRect().top < vh * .62; li.classList.toggle('is-on', on); if (on) k = i + 1; });
+      lockRing.style.setProperty('--lp', k / proto.length); lockNum.textContent = k + '/' + proto.length; rings.forEach((g, i) => g.classList.toggle('lockd', i < k)); }
+    if (J.pinned) { /* handled by jrLoop */ } else if (!J.pinned) { $$('.step', J.track()).forEach(s => { const r = s.getBoundingClientRect(); s.classList.toggle('is-on', !s.classList.contains('step--end') && r.top < vh * .55 && r.bottom > vh * .3); }); }
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+
+  /* ---------- Marquee speed (no GSAP fallback) + footer word ---------- */
+  safe('marquee', () => { if (G) return; const m = $('.marq'); if (!m || !m.getAnimations) return; let py = scrollY, v = 0;
+    const loop = () => { const dy = scrollY - py; py = scrollY; v += (dy - v) * .1; if (!RM) m.getAnimations().forEach(a => a.playbackRate = 1 + Math.min(4, Math.abs(v) * .15)); requestAnimationFrame(loop); }; loop(); });
+  safe('word', () => { const w = $('#ftrWord'), t = w.textContent; w.textContent = '';
+    [...t].forEach((ch, i) => { const s = d.createElement('span'); s.textContent = ch; s.style.transitionDelay = (i * 30) + 'ms'; w.appendChild(s); });
+    if (G) gsap.from($$('span', w), { yPercent: 100, opacity: 0, stagger: .05, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: w, start: 'top 95%' } }); });
+
+  if (G) { const rf = () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); }; d.fonts && d.fonts.ready.then(rf); addEventListener('load', rf); }
+})();
+</script>
+</body>
+</html>
