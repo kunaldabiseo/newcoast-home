@@ -72,6 +72,8 @@ section[id],[id].anchor{scroll-margin-top:calc(var(--head-h) + 16px)}
 .btn:hover::before{transform:none}
 .btn .ic{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--btn);flex:none;transition:transform .45s var(--ease)}
 .btn:hover .ic{transform:rotate(45deg)}
+/* Figma: filled teal buttons use an outlined white circle around the arrow */
+.btn:not(.btn--light):not(.btn--ghost) .ic{background:transparent;border:1.4px solid currentColor;color:inherit}
 .btn--light{--bg:#fff;--fg:var(--ink);--bd:#fff}
 .btn--light .ic{background:var(--btn);color:#fff}
 .btn--light:hover{color:#fff}
@@ -241,16 +243,17 @@ html:not(.js) .slide[data-slide="0"]{visibility:visible}html:not(.js) .slide[dat
 
 /* ---------- Intro: local knowledge ---------- */
 .intro{padding:clamp(80px,9vw,140px) var(--gut) clamp(70px,8vw,120px);position:relative}
-.intro__grid{display:grid;grid-template-columns:1.05fr 1.2fr .8fr;gap:clamp(24px,4vw,64px);align-items:start;margin-top:clamp(40px,5vw,72px)}
+.intro__grid{display:grid;grid-template-columns:1fr 1fr .62fr;gap:clamp(28px,5.5vw,86px);align-items:start;margin-top:clamp(40px,5vw,64px)}
 .intro__h{max-width:900px;padding-left:clamp(0px,14%,200px)}
 .media{position:relative;overflow:hidden;border-radius:var(--r)}
 .media img{width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
 .intro__a{aspect-ratio:253/271}
-.intro__b{aspect-ratio:147/178;margin-top:clamp(0px,6vw,90px)}
+.intro__b{aspect-ratio:200/240;margin-top:clamp(0px,3.4vw,46px)}
 .scrub{font-size:clamp(18px,1.6vw,24px);line-height:1.55;font-weight:500;color:var(--ink)}
 .js .scrub .sw{opacity:.18;transition:opacity .2s linear}
 .facts{display:flex;flex-wrap:wrap;gap:12px 28px;margin:32px 0 28px;padding:20px 0;border-block:1px solid var(--line)}
 .fact{display:flex;align-items:baseline;gap:10px}
+@media (min-width:900px){.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.fact{flex-direction:column;align-items:flex-start;gap:6px}.fact span{max-width:none}}
 .fact b{font-size:clamp(34px,3.4vw,48px);font-weight:600;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
 .fact span{font-size:14px;color:var(--muted);max-width:140px;line-height:1.35}
 @media (max-width:899px){.intro__grid{grid-template-columns:1fr 1fr}.intro__copy{grid-column:1/-1;order:-1}.intro__h{padding-left:0}}
@@ -258,9 +261,9 @@ html:not(.js) .slide[data-slide="0"]{visibility:visible}html:not(.js) .slide[dat
 /* ---------- Services (sticky media) ---------- */
 .svc{background:var(--ink);color:#fff;padding:clamp(80px,9vw,140px) var(--gut)}
 .svc__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(30px,6vw,100px);align-items:start}
-.svc__side{position:sticky;top:calc(var(--head-h) + 24px)}
+.svc__side{position:sticky;top:calc(var(--head-h) + 8px)}
 .svc__side .lead{margin-top:20px;max-width:480px}
-.svc__media{position:relative;margin-top:32px;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:#0b3a47}
+.svc__media{position:relative;margin-top:24px;aspect-ratio:auto;height:clamp(200px,calc(100vh - var(--head-h) - 470px),400px);border-radius:18px;overflow:hidden;background:#0b3a47}
 .svc__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;clip-path:inset(100% 0 0 0);transform:scale(1.15);transition:clip-path 1s var(--ease-io),transform 1.6s var(--ease)}
 .svc__media img.is-on{z-index:1;clip-path:inset(0 0 0 0);transform:none}
 .svc__media img.was-on{z-index:0;clip-path:inset(0 0 0 0)}
@@ -1333,7 +1336,7 @@ html.rm .scroll-cue::after{animation:none}
   </div>
   <div class="ftr__grid">
     <nav aria-labelledby="fl1"><h3 id="fl1">Quick Links</h3><ul>
-      <li><a href="https://newcoast.vercel.app/">Home</a></li><li><a href="https://newcoast.vercel.app/About.dc.html">About Us</a></li><li><a href="https://newcoast.vercel.app/Hospitality.dc.html">Hospitality Services</a></li><li><a href="https://newcoast.vercel.app/Retail.dc.html">Retail Services</a></li><li><a href="https://newcoast.vercel.app/Blog.dc.html">Blogs</a></li><li><a href="https://newcoast.vercel.app/Confidentiality.dc.html">Confidentiality Agreement</a></li><li><a href="https://newcoast.vercel.app/Privacy.dc.html">Privacy Policy</a></li></ul></nav>
+      <li><a href="https://newcoast.vercel.app/">Home</a></li><li><a href="https://newcoast.vercel.app/About.dc.html">About Us</a></li><li><a href="https://newcoast.vercel.app/Hospitality.dc.html">Hospitality Services</a></li><li><a href="https://newcoast.vercel.app/Retail.dc.html">Retail Services</a></li><li><a href="https://newcoast.vercel.app/Blog.dc.html">Blogs</a></li><li><a href="https://newcoast.vercel.app/Privacy.dc.html">Privacy Policy</a></li></ul></nav>
     <nav aria-labelledby="fl2"><h3 id="fl2">Buy &amp; Sell</h3><ul><li><a href="https://newcoast.vercel.app/SellBusiness.dc.html">Sell My Business</a></li><li><a href="https://newcoast.vercel.app/BuyBusiness.dc.html">Buy a Business</a></li></ul></nav>
     <div><h3>Contact Us</h3>
       <div class="ftr__ct"><small>Phone:</small><a href="tel:0439877717">0439 877 717</a><small>Email:</small><a href="mailto:contact@newcoastbrokers.com.au">contact@newcoastbrokers.com.au</a></div>
