@@ -1989,6 +1989,59 @@ html.rm .sp2 *{transition:none!important;animation:none!important}
 .xcs__n{margin:0;line-height:1.65;text-wrap:wrap}
 .xhl__t{text-wrap:wrap}
 
+/* ---------------- BUYER CHECKLIST (Buy page) ---------------- */
+.xck{padding:var(--sp) 0;background:var(--soft)}
+.xck__board{position:relative;margin:clamp(36px,4vw,56px) var(--gut) 0;background:#fff;border-radius:34px;padding:14px;display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);min-height:660px;box-shadow:0 50px 90px -60px rgba(0,42,54,.5);border:1px solid rgba(0,42,54,.06)}
+.xck__top{grid-column:1;display:flex;align-items:center;gap:14px;padding:18px 18px 12px}
+.xck__lab{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.xck__count{font-size:14px;font-weight:500;white-space:nowrap}
+.xck__count b{font-weight:700}
+.xck__bar{flex:1;height:4px;border-radius:4px;background:var(--soft);overflow:hidden}
+.xck__bar i{display:block;height:100%;width:var(--p,20%);background:linear-gradient(90deg,var(--acc),var(--ink));border-radius:4px;transition:width .7s var(--ease)}
+.xck__list{grid-column:1;list-style:none;margin:0;padding:4px 8px 8px;display:flex;flex-direction:column;gap:6px}
+.xck__h{margin:0;font:inherit}
+.xck__tab{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:44px minmax(0,1fr) 18px;gap:14px;align-items:center;padding:16px 16px;border-radius:22px;cursor:pointer;color:var(--ink);transition:background .4s,color .4s,transform .5s var(--ease)}
+.xck__tab:hover{background:var(--soft)}
+.xck__tab:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.xck__it.is-on .xck__tab{background:var(--ink);color:#fff;transform:translateX(6px)}
+.xck__box{position:relative;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(0,42,54,.2);display:grid;place-items:center;transition:background .45s,border-color .45s,color .45s}
+.xck__box em{font-style:normal;font-size:13px;font-weight:700;transition:opacity .3s,transform .4s var(--ease)}
+.xck__box svg{position:absolute;inset:0;margin:auto;width:20px;height:20px;opacity:0}
+.xck__box svg path{stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .5s var(--ease) .1s}
+.xck__it.is-done .xck__box{background:var(--acc);border-color:var(--acc);color:#fff}
+.xck__it.is-done .xck__box em{opacity:0;transform:scale(.6)}
+.xck__it.is-done .xck__box svg{opacity:1}
+.xck__it.is-done .xck__box svg path{stroke-dashoffset:0}
+.xck__it.is-on .xck__box{border-color:rgba(255,255,255,.5);color:#fff}
+.xck__tt small{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin-bottom:2px}
+.xck__it.is-on .xck__tt small{color:var(--acc2)}
+.xck__tt b{display:block;font-size:clamp(17px,1.4vw,20px);font-weight:600;line-height:1.25}
+.xck__chev{display:grid;opacity:.4;transform:rotate(-90deg);transition:transform .4s var(--ease),opacity .3s}
+.xck__chev svg{width:14px;height:14px}
+.xck__it.is-on .xck__chev{opacity:1}
+.xck__panel{position:absolute;top:14px;right:14px;bottom:14px;width:calc(59% - 21px);display:flex;flex-direction:column;border-radius:26px;overflow:hidden;background:var(--ink);color:#fff;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .5s,transform .7s var(--ease),visibility .5s}
+.xck__it.is-on .xck__panel{opacity:1;visibility:visible;transform:none}
+.xck__img{position:relative;flex:1;min-height:220px;overflow:hidden}
+.xck__img>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 1.6s var(--ease)}
+.xck__it.is-on .xck__img>img{transform:scale(1)}
+.xck__img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,42,54,.15),rgba(0,42,54,0) 40%,rgba(0,42,54,.6))}
+.xck__ic{position:absolute;z-index:1;top:18px;left:18px;width:52px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
+.xck__step{position:absolute;z-index:1;top:24px;right:18px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink);font-size:12.5px;font-weight:600}
+.xck__txt{padding:clamp(22px,2.4vw,32px) clamp(22px,2.6vw,36px) clamp(24px,2.6vw,34px)}
+.xck__txt h4{font-size:clamp(22px,2vw,28px);letter-spacing:-.01em}
+.xck__txt p{margin-top:10px;font-size:15.5px;line-height:1.65;color:rgba(255,255,255,.88)}
+.xck__next{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-weight:600;font-size:15px;color:var(--acc2);padding:6px 0;border-bottom:1.5px solid rgba(234,241,240,.35);transition:color .3s,border-color .3s,gap .4s var(--ease)}
+.xck__next:hover{color:#fff;border-color:#fff;gap:14px}
+.xck__next:focus-visible{outline:3px solid #fff;outline-offset:4px;border-radius:4px}
+.xck__next .arr{width:11px;height:11px}
+.xck__txt .btn{margin-top:18px}
+
+/* ---------------- TESTIMONIALS: swipe row (small screens only) ---------------- */
+.xqs{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.xqs__nav{display:none}
+.xck__side{justify-self:end;display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:44ch}
+.xform .cap__note{color:var(--acc)}
+
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
    Desktop (1024px+) is untouched by everything in this file.
@@ -2362,4 +2415,85 @@ html.rm .sp2 *{transition:none!important;animation:none!important}
 }
 @media (min-width:600px) and (max-width:1023px){
   .xh__facts:has(li:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+
+/* Buy: checklist on small screens = disclosure list with the panel under its tab */
+@media (max-width:1023px){
+  .xck__board{grid-template-columns:1fr;min-height:0;margin-top:22px;padding:8px;border-radius:26px}
+  .xck__top{padding:12px 12px 8px}
+  .xck__list{padding:2px 2px 4px;gap:6px}
+  .xck__tab{padding:10px 12px;grid-template-columns:38px minmax(0,1fr) 16px;gap:12px;border-radius:18px}
+  .xck__it.is-on .xck__tab{transform:none;border-radius:18px 18px 0 0}
+  .xck__box{width:38px;height:38px}
+  .xck__tt b{font-size:16.5px}
+  .xck__tt small{font-size:11px}
+  .xck__chev{transform:none}
+  .xck__it.is-on .xck__chev{transform:rotate(180deg)}
+  .xck__panel{position:static;width:auto;display:none;border-radius:0 0 18px 18px;opacity:1;visibility:visible;transform:none}
+  .xck__it.is-on .xck__panel{display:flex}
+  .xck__img{flex:none;aspect-ratio:16/8;min-height:0}
+  .xck__ic{width:40px;height:40px;border-radius:12px;top:12px;left:12px}
+  .xck__ic img{width:22px;height:22px}
+  .xck__step{top:16px;right:12px;font-size:11.5px}
+  .xck__txt{padding:16px 16px 18px}
+  .xck__txt h4{display:none}
+  .xck__txt p{margin-top:0;font-size:15px;line-height:1.6}
+  .xck__next{margin-top:12px;font-size:14.5px}
+  .xck__txt .btn{margin-top:14px}
+  /* due diligence checklist image fills its card */
+  .xdoc__in{padding-bottom:0;overflow:hidden}
+  .xdoc__img{justify-self:stretch;max-width:none!important;width:calc(100% + 48px);margin:6px -24px 0;transform:none!important;border-radius:0;box-shadow:none}
+  .xdoc__img img{width:100%;aspect-ratio:4/3;object-fit:cover}
+  /* testimonials: one row, moved only by the visitor's finger */
+  .xqw--swipe .xqw__rows{display:none}
+  .xqs{position:static;width:auto;height:auto;clip:auto;white-space:normal;display:flex;gap:12px;margin-top:22px;padding:4px var(--gut) 10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .xqs::-webkit-scrollbar{display:none}
+  .xqs:focus-visible{outline:3px solid var(--acc);outline-offset:-3px}
+  .xqs .xqw__c{flex:0 0 min(86%,360px);width:auto;scroll-snap-align:start}
+  .xqs__nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px var(--gut) 0}
+  .xqs__dots{display:flex;gap:6px}
+  .xqs__dot{appearance:none;border:0;padding:0;width:28px;height:28px;background:transparent;cursor:pointer;display:grid;place-items:center}
+  .xqs__dot::before{content:"";width:8px;height:8px;border-radius:999px;background:rgba(0,42,54,.22);transition:width .4s var(--ease),background .3s}
+  .xqs__dot.is-on::before{width:24px;background:var(--ink)}
+  .xqs__dot:focus-visible{outline:2px solid var(--acc);outline-offset:1px;border-radius:6px}
+  .xqs__hint{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+}
+@media (max-width:599px){
+  .xdoc__img{width:calc(100% + 48px)}
+}
+@media (max-width:1023px){.xck__side{justify-self:start;gap:12px}}
+
+/* Compact enquiry + agreement forms on phones: one screen, labels stay visible */
+@media (max-width:599px){
+  .xform{padding:16px 16px 14px;border-radius:20px}
+  .xform__top{gap:6px 10px}
+  .xform__top h3{font-size:19px}
+  .xform__flag{font-size:10px;padding:3px 8px}
+  .xform__int{margin-top:12px}
+  .xform__int legend{font-size:13px;margin-bottom:6px}
+  .xform__pills{gap:6px}
+  .xpillr span{padding:6px 11px;font-size:13px;border-width:1.2px}
+  .xform__row,.xform--nda .xform__row{grid-template-columns:1fr 1fr;gap:0 12px}
+  .xf{margin-top:10px}
+  .xf label{font-size:12px}
+  .xf input,.xf textarea{font-size:16px;padding:5px 0 6px}
+  .xf textarea{height:56px;min-height:56px}
+  .xf__err{font-size:12px;margin-top:3px}
+  .xform__foot{flex-direction:row;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+  .xform__foot .captcha{margin-top:0;flex:1;min-width:0}
+  .xform__foot .cap{width:100%;min-height:48px;padding:6px 8px 6px 10px;gap:8px}
+  .xform__foot .cap label{font-size:12.5px;gap:8px}
+  .xform__foot .cap__box{width:22px;height:22px}
+  .xform__foot .cap__box::after{left:6px;top:1px;width:6px;height:12px}
+  .xform__foot .cap__side{font-size:8px}
+  .xform__foot .cap__side svg{width:20px;height:20px}
+  .xform__foot .btn{flex:none;min-height:46px}
+  .xform__foot .captcha .cap__note,.xform__foot .captcha .ferr{font-size:11.5px}
+  .xform__note{margin-top:8px;font-size:11.5px}
+  .xform__ok{margin-top:10px;padding:12px 14px}
+  .xform--nda .terms{margin-top:12px}
+  .xform--nda .terms__b{max-height:130px;font-size:13px}
+  .xform--nda .agree{margin-top:10px;font-size:13px}
+  .xform--nda .captcha{margin-top:10px}
+  .xform--nda .xform__foot .btn{width:100%;justify-content:center}
 }
