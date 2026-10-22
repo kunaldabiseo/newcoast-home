@@ -2200,6 +2200,9 @@ html.rm .xhz__card{transition:none}
   .xhz__ctrl{padding-top:clamp(8px,1.4vh,14px)}
   .xhz.is-pinned .xhz__ctrl{display:none}
 }
+.xban{padding-bottom:clamp(56px,6vw,100px)}
+@media (max-width:1023px){.xban{padding-bottom:40px}}
+#good-food{background:var(--soft)}
 
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
