@@ -644,7 +644,7 @@
     const P = window.NC_POSTS || [], slug = new URLSearchParams(location.search).get('slug');
     const p = P.find(x => x.slug === slug) || P[0]; if (!p) return;
     $('#artMeta').textContent = p.cat + ' · ' + p.date; $('#artTitle').textContent = p.title; d.title = p.title + ' | NewCoast Business Brokers';
-    $('#artImg').src = p.img;
+    $('#artImg').src = p.img; const ml = $('[data-mail]'); if (ml) ml.href = 'mailto:?subject=' + encodeURIComponent(p.title) + '&body=' + encodeURIComponent(location.href);
     $$('.xbl__list li, .xbl__big').forEach(n => { const h = (n.getAttribute('href') || ($('a', n) || {}).getAttribute && $('a', n).getAttribute('href')) || ''; if (h.indexOf('slug=' + p.slug) > -1 && n.tagName === 'LI') n.remove(); }); });
 
   /* Reading progress (article + agreement pages) */
@@ -860,4 +860,17 @@
     set(0); apply(); DESK.addEventListener ? DESK.addEventListener('change', () => { apply(); window.ScrollTrigger && ScrollTrigger.refresh(); }) : DESK.addListener(apply);
     addEventListener('load', () => window.ScrollTrigger && ScrollTrigger.refresh());
   } catch (e) { console.warn('[NewCoast] story reel failed', e); }
+})();
+
+/* Article + privacy: contents list highlights the section being read; copy link */
+(() => {
+  'use strict';
+  try {
+    document.querySelectorAll('.xpa__toc, .xpv__toc').forEach(toc => {
+      const links = Array.from(toc.querySelectorAll('a[href^="#"]')), secs = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+      let raf = 0; const tick = () => { raf = 0; let k = 0; secs.forEach((s, i) => { if (s.getBoundingClientRect().top < innerHeight * .35) k = i; }); links.forEach((a, i) => a.classList.toggle('is-on', i === k)); };
+      addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true }); tick(); });
+    const cp = document.querySelector('[data-copy]');
+    if (cp) cp.addEventListener('click', async () => { try { await navigator.clipboard.writeText(location.href); cp.textContent = 'Link copied'; } catch (e) { cp.textContent = 'Copy failed'; } cp.classList.add('is-done'); setTimeout(() => { cp.textContent = 'Copy link'; cp.classList.remove('is-done'); }, 2200); });
+  } catch (e) { console.warn('[NewCoast] contents list failed', e); }
 })();
