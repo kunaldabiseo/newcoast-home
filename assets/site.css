@@ -2110,6 +2110,36 @@ html.rm .sp2 *{transition:none!important;animation:none!important}
 html.rm .xps__panel.is-anim *{animation:none!important}
 .xps__word{display:none}
 
+/* ---------------- ABOUT: story chapters ---------------- */
+.xsty{padding:var(--sp) var(--gut)}
+.xsty__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px 64px;align-items:end}
+.xsty__head .h2{margin-top:14px}
+.xsty__pills{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.xsty__pills li{padding:18px;border-radius:20px;background:var(--soft)}
+.xsty__pills b{display:block;font-size:clamp(30px,2.8vw,42px);font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--acc)}
+.xsty__pills span{display:block;margin-top:8px;font-size:13.5px;line-height:1.45}
+.xsty__grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,80px);margin-top:clamp(40px,5vw,72px);align-items:start}
+.xsty__stage{position:sticky;top:120px;height:min(600px,calc(100vh - 170px));border-radius:30px;overflow:hidden;isolation:isolate;background:var(--ink)}
+.xsty__imgs img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .9s var(--ease),transform 2s var(--ease)}
+.xsty__imgs img.is-on{opacity:1;transform:none}
+.xsty__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,42,54,0) 45%,rgba(0,42,54,.85))}
+.xsty__cap{position:absolute;left:28px;right:28px;bottom:34px;color:#fff;display:flex;flex-direction:column;gap:4px}
+.xsty__big{font-size:clamp(80px,8vw,130px);font-weight:300;letter-spacing:-.05em;line-height:.85;color:transparent;-webkit-text-stroke:1.5px #fff}
+.xsty__ttl{font-size:clamp(20px,1.7vw,26px);font-weight:500}
+.xsty__cap .is-flip{animation:sp2flip .7s var(--ease) both}
+.xsty__prog{position:absolute;left:28px;right:28px;bottom:18px;height:3px;border-radius:3px;background:rgba(255,255,255,.25);overflow:hidden}
+.xsty__prog i{display:block;height:100%;width:var(--p,20%);background:#fff;transition:width .6s var(--ease)}
+.xsty__list{list-style:none;margin:0;padding:0}
+.xsty__c{display:grid;grid-template-columns:70px minmax(0,1fr);gap:18px;padding:clamp(26px,4vh,44px) 0;border-top:1px solid var(--line);opacity:.35;transition:opacity .6s var(--ease)}
+.xsty__c:last-child{border-bottom:1px solid var(--line)}
+.xsty__c.is-on{opacity:1}
+.xsty__n{font-size:15px;font-weight:600;color:var(--acc);padding-top:6px}
+.xsty__k{display:block;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.xsty__c h3{margin:8px 0 0;font-size:clamp(26px,2.4vw,36px);letter-spacing:-.02em;line-height:1.15}
+.xsty__c h3 em{font-style:italic;color:var(--acc);font-weight:500}
+.xsty__c p{margin-top:14px;font-size:16.5px;line-height:1.75;max-width:56ch}
+.xsty__mimg{display:none}
+
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
    Desktop (1024px+) is untouched by everything in this file.
@@ -2615,4 +2645,28 @@ html.rm .xps__panel.is-anim *{animation:none!important}
   .xps__ln{display:none}
   .xps__creds{display:none}
   .xps__q{font-size:18px}
+}
+
+/* About story on small screens: chapter list, one open at a time, each with its photo */
+@media (max-width:1023px){
+  .xsty__head{grid-template-columns:1fr;gap:16px}
+  .xsty__pills{gap:8px}
+  .xsty__pills li{padding:12px;border-radius:16px}
+  .xsty__pills b{font-size:26px}
+  .xsty__pills span{font-size:12px;margin-top:4px}
+  .xsty__grid{grid-template-columns:1fr;margin-top:18px}
+  .xsty__stage{display:none}
+  .xsty__c{opacity:1;grid-template-columns:34px minmax(0,1fr);gap:8px;padding:10px 0}
+  .xsty__n{padding-top:16px;font-size:13px}
+  .xsty__k{font-size:11px}
+  .xsty__c h3{font-size:19px;margin-top:2px}
+  .xsty__mimg{display:block;margin-top:12px;border-radius:16px;overflow:hidden;aspect-ratio:16/8}
+  .xsty__mimg img{width:100%;height:100%;object-fit:cover}
+  .xsty__c p{margin-top:10px;font-size:15px;line-height:1.6}
+}
+@media (max-width:1023px){.macc__lab{flex:1;min-width:0}}
+@media (max-width:599px){
+  .xsty__mimg{aspect-ratio:16/7;margin-top:10px}
+  .xsty__c p{font-size:14.5px;line-height:1.55;margin-top:8px}
+  .xsty__pills span{font-size:11.5px}
 }

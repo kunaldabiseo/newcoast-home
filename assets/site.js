@@ -725,14 +725,14 @@
       items.forEach((it, i) => { const h = $('[data-macc-h]', it), bodies = $$('[data-macc-b]', it); if (!h) return;
         const ids = bodies.map(b => b.id || (b.id = 'macc' + (++uid)));
         const btn = d.createElement('button'); btn.type = 'button'; btn.className = 'macc__btn'; btn.setAttribute('aria-controls', ids.join(' '));
-        while (h.firstChild) btn.appendChild(h.firstChild); btn.insertAdjacentHTML('beforeend', CHEV); h.appendChild(btn); it._maccBtn = btn; it._maccH = h;
+        const lab = d.createElement('span'); lab.className = 'macc__lab'; while (h.firstChild) lab.appendChild(h.firstChild); btn.appendChild(lab); btn.insertAdjacentHTML('beforeend', CHEV); h.appendChild(btn); it._maccBtn = btn; it._maccH = h;
         btn.addEventListener('click', e => { e.stopPropagation(); const open = !it.classList.contains('is-open');
           items.forEach(o => setOpen(o, false)); setOpen(it, open);
           if (open && !reduced() && window.gsap) gsap.fromTo(bodies.filter(b => b.offsetParent), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .45, ease: 'power2.out', clearProps: 'opacity,transform' });
           refit(); });
         setOpen(it, i === 0); }); });
     const teardown = () => groups.forEach(g => { if (!g._macc) return; g._macc = false; g.classList.remove('macc-on');
-      $$('[data-macc-i]', g).forEach(it => { const b = it._maccBtn, h = it._maccH; if (!b) return; $('.macc__ic', b).remove(); while (b.firstChild) h.insertBefore(b.firstChild, b); b.remove(); it._maccBtn = null; it.classList.remove('is-open'); }); });
+      $$('[data-macc-i]', g).forEach(it => { const b = it._maccBtn, h = it._maccH; if (!b) return; $('.macc__ic', b).remove(); const lab = $('.macc__lab', b) || b; while (lab.firstChild) h.insertBefore(lab.firstChild, b); b.remove(); it._maccBtn = null; it.classList.remove('is-open'); }); });
     const apply = () => (SMALL.matches ? build() : teardown()); apply(); onMQ(SMALL, () => { apply(); refit(); });
   });
 
@@ -806,4 +806,22 @@
       const top = sec.querySelector('.xps__tabs').getBoundingClientRect().top + scrollY - 100; if (top < scrollY) scrollTo({ top, behavior: document.documentElement.classList.contains('rm') ? 'auto' : 'smooth' }); }));
     sec.dataset.i = 0;
   } catch (e) { console.warn('[NewCoast] people switcher failed', e); }
+})();
+
+/* About: story chapters drive the sticky photo on desktop */
+(() => {
+  'use strict';
+  const sec = document.querySelector('.xsty'); if (!sec) return;
+  try {
+    const chs = Array.from(sec.querySelectorAll('.xsty__c')), imgs = Array.from(sec.querySelectorAll('.xsty__imgs img'));
+    const num = sec.querySelector('#xstyNum'), ttl = sec.querySelector('#xstyTtl'), bar = sec.querySelector('#xstyBar'), DESK = matchMedia('(min-width:1024px)');
+    let cur = -1;
+    const flip = el => { el.classList.remove('is-flip'); void el.offsetWidth; el.classList.add('is-flip'); };
+    const set = i => { if (i === cur) return; cur = i;
+      chs.forEach((c, j) => c.classList.toggle('is-on', j === i)); imgs.forEach((im, j) => im.classList.toggle('is-on', j === i));
+      num.textContent = String(i + 1).padStart(2, '0'); ttl.textContent = chs[i].querySelector('.xsty__k').textContent; flip(num); flip(ttl);
+      bar.style.setProperty('--p', ((i + 1) / chs.length * 100) + '%'); };
+    let raf = 0; const tick = () => { raf = 0; if (!DESK.matches) return; const mid = innerHeight * .55; let k = 0; chs.forEach((c, j) => { if (c.getBoundingClientRect().top < mid) k = j; }); set(k); };
+    addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true }); addEventListener('resize', tick); set(0); tick();
+  } catch (e) { console.warn('[NewCoast] story chapters failed', e); }
 })();
