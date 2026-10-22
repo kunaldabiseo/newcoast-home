@@ -696,7 +696,8 @@ legend{font-size:14px;font-weight:600;letter-spacing:.04em;margin-bottom:12px;pa
   .h2{font-size:clamp(28px,6.6vw,42px);line-height:1.1}
   .lead{font-size:clamp(15px,2.1vw,16.5px);line-height:1.6}
   .eyebrow{font-size:12.5px}
-  .btn{min-height:44px}
+  .btn{min-height:44px;justify-content:center}
+  .team__intro .btn{align-self:stretch}
 
   /* Compact header: less of the screen taken by chrome */
   .hdr{inset:10px 0 auto 0;padding-inline:10px}
@@ -805,7 +806,8 @@ legend{font-size:14px;font-weight:600;letter-spacing:.04em;margin-bottom:12px;pa
   .jrny:not(.is-pinned) .step--end h3{padding:0!important;font-size:16px;cursor:default}
   .jrny:not(.is-pinned) .step--end h3::after{display:none}
   .jrny:not(.is-pinned) .step--end p{display:none}
-  .jrny:not(.is-pinned) .step--end .btn{margin-top:0!important}
+  .jrny:not(.is-pinned) .step--end{flex-direction:column;justify-content:center;text-align:center;gap:14px;padding:18px 16px}
+  .jrny:not(.is-pinned) .step--end .btn{margin-top:0!important;align-self:center!important}
 
   /* ---------- Businesses: two-column compact tiles ---------- */
   .types__top{grid-template-columns:1fr;gap:12px;margin-bottom:18px}
