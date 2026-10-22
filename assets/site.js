@@ -701,3 +701,63 @@
     cur = -1; set(0); req();
   } catch (e) { console.warn('[NewCoast] sale process failed', e); }
 })();
+
+/* ================= SMALL SCREENS (1023px and below): scene-sized reading. Nothing here runs on desktop. ================= */
+(() => {
+  'use strict';
+  const d = document, $ = (s, c = d) => c.querySelector(s), $$ = (s, c = d) => Array.from(c.querySelectorAll(s));
+  const SMALL = matchMedia('(max-width:1023px)'), PHONE = matchMedia('(max-width:599px)');
+  const RMQ = matchMedia('(prefers-reduced-motion: reduce)');
+  const reduced = () => RMQ.matches || d.documentElement.classList.contains('rm');
+  const onMQ = (mq, f) => mq.addEventListener ? mq.addEventListener('change', f) : mq.addListener(f);
+  const safe = (n, f) => { try { f(); } catch (e) { console.warn('[NewCoast] small-screen module failed:', n, e); } };
+  const CHEV = '<svg class="macc__ic" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  let refit = () => {};
+
+  /* Long lists become one-open-at-a-time disclosures, so the whole list fits one screen.
+     The heading itself becomes the button (h3 > button), the answer stays in normal document flow. */
+  safe('macc', () => {
+    const groups = $$('[data-macc]'); if (!groups.length) return;
+    let uid = 0;
+    const setOpen = (it, open) => { it.classList.toggle('is-open', open); const b = it._maccBtn; if (b) b.setAttribute('aria-expanded', open); };
+    const build = () => groups.forEach(g => { if (g._macc) return; g._macc = true; g.classList.add('macc-on');
+      const items = $$('[data-macc-i]', g).filter(i => i.closest('[data-macc]') === g);
+      items.forEach((it, i) => { const h = $('[data-macc-h]', it), bodies = $$('[data-macc-b]', it); if (!h) return;
+        const ids = bodies.map(b => b.id || (b.id = 'macc' + (++uid)));
+        const btn = d.createElement('button'); btn.type = 'button'; btn.className = 'macc__btn'; btn.setAttribute('aria-controls', ids.join(' '));
+        while (h.firstChild) btn.appendChild(h.firstChild); btn.insertAdjacentHTML('beforeend', CHEV); h.appendChild(btn); it._maccBtn = btn; it._maccH = h;
+        btn.addEventListener('click', e => { e.stopPropagation(); const open = !it.classList.contains('is-open');
+          items.forEach(o => setOpen(o, false)); setOpen(it, open);
+          if (open && !reduced() && window.gsap) gsap.fromTo(bodies.filter(b => b.offsetParent), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .45, ease: 'power2.out', clearProps: 'opacity,transform' });
+          refit(); });
+        setOpen(it, i === 0); }); });
+    const teardown = () => groups.forEach(g => { if (!g._macc) return; g._macc = false; g.classList.remove('macc-on');
+      $$('[data-macc-i]', g).forEach(it => { const b = it._maccBtn, h = it._maccH; if (!b) return; $('.macc__ic', b).remove(); while (b.firstChild) h.insertBefore(b.firstChild, b); b.remove(); it._maccBtn = null; it.classList.remove('is-open'); }); });
+    const apply = () => (SMALL.matches ? build() : teardown()); apply(); onMQ(SMALL, () => { apply(); refit(); });
+  });
+
+  /* The tail of a very long paragraph: hidden behind an inline "Read more" on small screens only */
+  safe('tail', () => { const tails = $$('[data-m-tail]'); if (!tails.length) return;
+    tails.forEach((t, i) => { t.id = t.id || 'mt' + i; const b = d.createElement('button'); b.type = 'button'; b.className = 'm-tail-btn'; b.setAttribute('aria-controls', t.id); b.textContent = 'Read more'; t.after(b);
+      b.addEventListener('click', () => { const open = t.classList.toggle('is-open'); b.setAttribute('aria-expanded', open); b.textContent = open ? 'Show less' : 'Read more'; refit(); }); });
+    const apply = () => tails.forEach(t => { const b = t.nextElementSibling; t.classList.remove('is-open'); b.setAttribute('aria-expanded', 'false'); b.textContent = 'Read more'; });
+    apply(); onMQ(SMALL, apply); });
+
+  /* Sections that fit the usable screen become gentle (proximity) snap points; anything taller flows naturally */
+  safe('fit', () => { const secs = $$('main > section, main > article'); let t = 0;
+    const run = () => { const on = SMALL.matches && !reduced(); const vh = innerHeight;
+      secs.forEach(s => { const fit = on && s.offsetHeight <= vh * 1.02 && s.offsetHeight >= vh * .45; s.classList.toggle('m-fit', fit); }); };
+    refit = () => { clearTimeout(t); t = setTimeout(run, 650); };
+    addEventListener('load', run); addEventListener('resize', refit); if (d.fonts && d.fonts.ready) d.fonts.ready.then(run); run(); });
+
+  /* Gentle entrances for small screens only (GSAP matchMedia reverts everything on desktop / reduced motion) */
+  safe('mgsap', () => { if (!window.gsap || !window.ScrollTrigger) return;
+    gsap.matchMedia().add({ small: '(max-width:1023px) and (prefers-reduced-motion: no-preference)' }, ctx => {
+      if (d.documentElement.classList.contains('rm')) return;
+      const grp = (sel, trig, o) => { const els = $$(sel); if (!els.length) return; gsap.from(els, Object.assign({ y: 18, opacity: 0, duration: .6, ease: 'power2.out', stagger: .06, clearProps: 'transform,opacity', scrollTrigger: { trigger: trig || els[0].parentElement, start: 'top 82%', once: true } }, o || {})); };
+      $$('[data-macc]').forEach(g => { const kids = Array.from(g.children).filter(c => c.matches('[data-macc-i]')); if (kids.length) gsap.from(kids, { y: 16, opacity: 0, duration: .55, ease: 'power2.out', stagger: .06, clearProps: 'transform,opacity', scrollTrigger: { trigger: g, start: 'top 85%', once: true } }); });
+      grp('.xt__grid li', '.xt__grid'); grp('.xstat__t', '.xstat__grid'); grp('.xbl__list li', '.xbl__list'); grp('.xct__tile', '.xct__info');
+      $$('.xh__strip figure').forEach((f, i) => gsap.to(f, { yPercent: (i % 2 ? -6 : 6), ease: 'none', scrollTrigger: { trigger: '.xh__strip', start: 'top bottom', end: 'bottom top', scrub: true } }));
+    });
+  });
+})();
