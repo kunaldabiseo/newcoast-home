@@ -2203,6 +2203,7 @@ html.rm .xhz__card{transition:none}
 .xban{padding-bottom:clamp(56px,6vw,100px)}
 @media (max-width:1023px){.xban{padding-bottom:40px}}
 #good-food{background:var(--soft)}
+@media (min-width:1024px){.xhl__t{font-size:clamp(20px,1.55vw,25px);font-weight:500;letter-spacing:-.015em}.xhl__row{grid-template-columns:56px minmax(0,1fr) minmax(0,1.2fr) 46px;padding:clamp(16px,1.6vw,22px) 0}.xhl__go{width:44px;height:44px}}
 
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
