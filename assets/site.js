@@ -789,3 +789,21 @@
     dots.forEach((d, i) => d.addEventListener('click', () => { const pad = parseFloat(getComputedStyle(row).paddingLeft || 0); row.scrollTo({ left: cards[i].offsetLeft - row.offsetLeft - pad, behavior: document.documentElement.classList.contains('rm') ? 'auto' : 'smooth' }); }));
   } catch (e) { console.warn('[NewCoast] reviews row failed', e); } });
 })();
+
+/* About: people switcher (tabs with arrow-key support; content swaps with a short reveal) */
+(() => {
+  'use strict';
+  const sec = document.querySelector('.xps'); if (!sec) return;
+  try {
+    const tabs = Array.from(sec.querySelectorAll('.xps__tab')), panels = Array.from(sec.querySelectorAll('.xps__panel'));
+    const set = (i, focus) => { sec.dataset.i = i;
+      tabs.forEach((t, j) => { t.setAttribute('aria-selected', j === i); t.tabIndex = j === i ? 0 : -1; });
+      panels.forEach((p, j) => { const on = j === i; p.hidden = !on; p.classList.toggle('is-on', on); p.classList.remove('is-anim'); if (on) { void p.offsetWidth; p.classList.add('is-anim'); } });
+      if (focus) tabs[i].focus(); };
+    tabs.forEach((t, i) => { t.addEventListener('click', () => set(i));
+      t.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); set((i + 1) % tabs.length, true); } }); });
+    sec.querySelectorAll('.xps__next').forEach(b => b.addEventListener('click', () => { set(+b.dataset.go, true);
+      const top = sec.querySelector('.xps__tabs').getBoundingClientRect().top + scrollY - 100; if (top < scrollY) scrollTo({ top, behavior: document.documentElement.classList.contains('rm') ? 'auto' : 'smooth' }); }));
+    sec.dataset.i = 0;
+  } catch (e) { console.warn('[NewCoast] people switcher failed', e); }
+})();
