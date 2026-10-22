@@ -694,8 +694,8 @@ legend{font-size:14px;font-weight:600;letter-spacing:.04em;margin-bottom:12px;pa
   /* Every scene: fills the usable screen, content centred, one topic only */
   /* The header slides away while scrolling down, so scenes only keep a small top margin.
      The bottom margin reserves the real height of the Call / Enquire bar on phones. */
-  :root{--scene-top:clamp(24px,4.5vh,44px);--scene-bot:clamp(28px,5vh,56px)}
-  main>section:not(.loc):not(.hero):not(.team):not(.contact),.m-scene{min-height:var(--sv);display:flex;flex-direction:column;justify-content:center;
+  :root{--scene-top:clamp(48px,7vh,72px);--scene-bot:clamp(40px,6vh,64px)}
+  main>section:not(.loc):not(.hero):not(.team):not(.contact),.m-scene{display:flex;flex-direction:column;justify-content:flex-start;
     padding-top:var(--scene-top);padding-bottom:var(--scene-bot);scroll-snap-align:start;scroll-margin-top:0}
 
   /* "Read more" for supporting paragraphs on phones only */
@@ -954,7 +954,7 @@ legend{font-size:14px;font-weight:600;letter-spacing:.04em;margin-bottom:12px;pa
   .sub{grid-column:1/-1}
 }
 
-@media (max-width:899px){:root{--scene-bot:calc(80px + env(safe-area-inset-bottom,0px))}}
+@media (max-width:899px){:root{--scene-bot:clamp(40px,6vh,64px)}}
 /* Phones (599px and below) */
 @media (max-width:599px){
   .proto.m-acc li{padding:0 0 0 0;border-top:1px solid rgba(0,42,54,.12)}
