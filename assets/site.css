@@ -2140,6 +2140,49 @@ html.rm .xps__panel.is-anim *{animation:none!important}
 .xsty__c p{margin-top:14px;font-size:16.5px;line-height:1.75;max-width:56ch}
 .xsty__mimg{display:none}
 
+/* ---------------- ABOUT: story as a horizontal chapter reel ---------------- */
+.xhz{position:relative;background:var(--ink);color:#fff}
+.xhz__pin{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(90px,8vw,120px) 0 clamp(40px,4vw,60px);overflow:hidden;isolation:isolate}
+.xhz__bg{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 85% 10%,rgba(81,139,153,.35),transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(81,139,153,.2),transparent 70%)}
+.xhz__top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;padding-inline:var(--gut)}
+.xhz__intro .h2{margin-top:12px;color:#fff;font-size:clamp(34px,3.6vw,54px)}
+.xhz__pills{list-style:none;margin:0;padding:0;display:flex;gap:10px}
+.xhz__pills li{width:200px;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.xhz__pills b{display:block;font-size:32px;font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--acc)}
+.xhz__pills span{display:block;margin-top:8px;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.8)}
+.xhz__line{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:clamp(26px,3vw,40px) var(--gut) 0}
+.xhz__rail{position:absolute;left:0;right:0;top:7px;height:2px;background:rgba(255,255,255,.18);border-radius:2px;overflow:hidden}
+.xhz__rail i{display:block;height:100%;width:var(--p,0%);background:var(--acc)}
+.xhz__stop{all:unset;position:relative;cursor:pointer;display:flex;flex-direction:column;gap:12px;color:rgba(255,255,255,.55);font-size:13.5px;font-weight:600;letter-spacing:.04em;transition:color .4s}
+.xhz__stop i{width:16px;height:16px;border-radius:50%;background:var(--ink);border:2px solid rgba(255,255,255,.35);transition:background .4s,border-color .4s,box-shadow .4s}
+.xhz__stop.is-done i{background:var(--acc);border-color:var(--acc)}
+.xhz__stop.is-on{color:#fff}
+.xhz__stop.is-on i{background:#fff;border-color:#fff;box-shadow:0 0 0 6px rgba(81,139,153,.45)}
+.xhz__stop:focus-visible{outline:3px solid var(--acc);outline-offset:4px;border-radius:6px}
+.xhz__view{margin-top:clamp(22px,2.6vw,34px);overflow:hidden}
+.xhz__track{display:flex;gap:22px;padding-inline:var(--gut);will-change:transform}
+.xhz__card{flex:0 0 min(1060px,78vw);height:min(470px,52vh);min-height:380px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);border-radius:30px;overflow:hidden;background:var(--soft);color:var(--ink);transition:transform .7s var(--ease),opacity .7s}
+.xhz__card:not(.is-on){opacity:.55;transform:scale(.96)}
+.xhz__img{position:relative;overflow:hidden}
+.xhz__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.4s var(--ease)}
+.xhz__card.is-on .xhz__img img{transform:none}
+.xhz__img::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(0,42,54,0) 50%,rgba(0,42,54,.55))}
+.xhz__num{position:absolute;z-index:1;left:22px;bottom:4px;font-size:clamp(90px,9vw,150px);font-weight:300;letter-spacing:-.06em;line-height:1;color:transparent;-webkit-text-stroke:1.6px #fff}
+.xhz__txt{padding:clamp(26px,3vw,46px);display:flex;flex-direction:column;justify-content:center}
+.xhz__k{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.xhz__txt h3{margin-top:12px;font-size:clamp(28px,2.6vw,40px);letter-spacing:-.025em;line-height:1.1}
+.xhz__txt h3 em{font-style:italic;font-weight:500;color:var(--acc)}
+.xhz__txt p{margin-top:16px;font-size:16px;line-height:1.7}
+.xhz__ctrl{display:flex;align-items:center;gap:14px;justify-content:flex-end;padding:20px var(--gut) 0}
+.xhz__arw{appearance:none;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.45);background:transparent;color:#fff;font-size:18px;cursor:pointer;transition:background .3s,color .3s,opacity .3s}
+.xhz__arw:hover{background:#fff;color:var(--ink)}
+.xhz__arw:disabled{opacity:.3;cursor:default;background:transparent;color:#fff}
+.xhz__cnt{font-size:14px;color:rgba(255,255,255,.8)}
+.xhz__cnt b{color:#fff}
+/* pinned mode (desktop with GSAP): no manual arrows needed, scroll moves the reel */
+.xhz.is-pinned .xhz__ctrl .xhz__arw{display:none}
+html.rm .xhz__card{transition:none}
+
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
    Desktop (1024px+) is untouched by everything in this file.
@@ -2669,4 +2712,33 @@ html.rm .xps__panel.is-anim *{animation:none!important}
   .xsty__mimg{aspect-ratio:16/7;margin-top:10px}
   .xsty__c p{font-size:14.5px;line-height:1.55;margin-top:8px}
   .xsty__pills span{font-size:11.5px}
+}
+
+/* About story reel on small screens: swipe with a finger, one card per screen */
+@media (max-width:1023px){
+  .xhz__pin{min-height:0;padding:52px 0 40px}
+  .xhz__top{flex-direction:column;align-items:flex-start;gap:16px}
+  .xhz__pills{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .xhz__pills li{width:auto;padding:12px;border-radius:16px}
+  .xhz__pills b{font-size:24px}
+  .xhz__pills span{font-size:11.5px}
+  .xhz__line{margin-top:20px}
+  .xhz__stop{font-size:0;gap:0}
+  .xhz__view{overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;overscroll-behavior-x:contain;margin-top:18px}
+  .xhz__view::-webkit-scrollbar{display:none}
+  .xhz__track{gap:12px;transform:none!important;width:max-content}
+  .xhz__card{flex:0 0 calc(100vw - 2 * var(--gut) - 24px);max-width:560px;height:auto;min-height:0;grid-template-columns:1fr;scroll-snap-align:start;border-radius:22px}
+  .xhz__card:not(.is-on){opacity:1;transform:none}
+  .xhz__img{aspect-ratio:16/9}
+  .xhz__img img{transform:none}
+  .xhz__num{font-size:72px;left:16px;bottom:0}
+  .xhz__txt{padding:18px 18px 20px;justify-content:flex-start}
+  .xhz__txt h3{font-size:22px;margin-top:8px}
+  .xhz__txt p{font-size:14.5px;line-height:1.6;margin-top:10px}
+  .xhz__ctrl{justify-content:space-between;padding-top:14px}
+  .xhz__ctrl .xhz__arw{width:44px;height:44px}
+}
+@media (max-width:599px){
+  .xhz__intro .h2{font-size:clamp(28px,8vw,34px)}
+  .xhz__img{aspect-ratio:16/8}
 }

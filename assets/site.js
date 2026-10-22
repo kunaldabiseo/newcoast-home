@@ -825,3 +825,39 @@
     addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true }); addEventListener('resize', tick); set(0); tick();
   } catch (e) { console.warn('[NewCoast] story chapters failed', e); }
 })();
+
+/* About: story reel. Desktop with GSAP: pinned, scroll moves chapters sideways. Otherwise: native horizontal swipe + arrows. */
+(() => {
+  'use strict';
+  const sec = document.querySelector('.xhz'); if (!sec) return;
+  try {
+    const view = sec.querySelector('.xhz__view'), track = sec.querySelector('.xhz__track'), cards = Array.from(sec.querySelectorAll('.xhz__card'));
+    const stops = Array.from(sec.querySelectorAll('.xhz__stop')), rail = sec.querySelector('.xhz__rail i'), cnt = sec.querySelector('.xhz__cnt b'), arws = Array.from(sec.querySelectorAll('.xhz__arw'));
+    const n = cards.length, DESK = matchMedia('(min-width:1024px) and (min-height:640px)');
+    const rm = () => document.documentElement.classList.contains('rm') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let cur = -1, st = null;
+    const set = i => { i = Math.max(0, Math.min(n - 1, i)); if (i === cur) return; cur = i;
+      cards.forEach((c, j) => c.classList.toggle('is-on', j === i));
+      stops.forEach((s, j) => { s.classList.toggle('is-on', j === i); s.classList.toggle('is-done', j < i); s.setAttribute('aria-current', j === i ? 'step' : 'false'); });
+      rail.style.setProperty('--p', (i / (n - 1) * 100) + '%'); cnt.textContent = String(i + 1).padStart(2, '0');
+      arws[0].disabled = i === 0; arws[1].disabled = i === n - 1; };
+    /* native mode */
+    const step = () => cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : view.clientWidth;
+    const goNative = i => view.scrollTo({ left: i * step(), behavior: rm() ? 'auto' : 'smooth' });
+    view.addEventListener('scroll', () => { if (!st) set(Math.round(view.scrollLeft / step())); }, { passive: true });
+    /* pinned mode */
+    const pin = () => { if (st || !window.gsap || !window.ScrollTrigger || rm()) return;
+      const dist = () => cards[n - 1].offsetLeft - cards[0].offsetLeft;
+      const tw = gsap.to(track, { x: () => -dist(), ease: 'none' });
+      st = ScrollTrigger.create({ trigger: sec, pin: sec.querySelector('.xhz__pin'), start: 'top top', end: () => '+=' + Math.max(dist(), 1) * 1.1, scrub: .6, animation: tw, invalidateOnRefresh: true, snap: { snapTo: 1 / (n - 1), duration: { min: .2, max: .6 }, delay: .08, ease: 'power2.inOut' },
+        onUpdate: s => set(Math.round(s.progress * (n - 1))) });
+      sec.classList.add('is-pinned'); };
+    const unpin = () => { if (!st) return; const tw = st.animation; st.kill(true); if (tw) tw.kill(); gsap.set(track, { clearProps: 'transform' }); st = null; sec.classList.remove('is-pinned'); };
+    const go = i => { if (st) { const y = st.start + (st.end - st.start) * (i / (n - 1)); if (window.__ncScroll) window.__ncScroll(y); else scrollTo({ top: y, behavior: rm() ? 'auto' : 'smooth' }); } else goNative(i); };
+    stops.forEach((s, i) => s.addEventListener('click', () => go(i)));
+    arws.forEach(a => a.addEventListener('click', () => go(cur + +a.dataset.d)));
+    const apply = () => { if (DESK.matches) pin(); else unpin(); };
+    set(0); apply(); DESK.addEventListener ? DESK.addEventListener('change', () => { apply(); window.ScrollTrigger && ScrollTrigger.refresh(); }) : DESK.addListener(apply);
+    addEventListener('load', () => window.ScrollTrigger && ScrollTrigger.refresh());
+  } catch (e) { console.warn('[NewCoast] story reel failed', e); }
+})();
