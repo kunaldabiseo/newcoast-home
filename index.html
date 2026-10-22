@@ -842,7 +842,12 @@ legend{font-size:14px;font-weight:600;letter-spacing:.04em;margin-bottom:12px;pa
   .conf .btn{margin-top:16px!important}
 
   /* ---------- Team: two scenes (who we are, then the two brokers) ---------- */
-  .team{padding:0 var(--gut);min-height:0}
+  .team{padding:var(--scene-top) var(--gut) var(--scene-bot);min-height:0}
+  .contact{padding-top:var(--scene-top)!important}
+  /* Team intro + cards, and contact details + form, now flow together with normal spacing (no empty gap between them) */
+  .team .m-scene,.contact .m-scene{min-height:0;padding-top:0;padding-bottom:0;justify-content:flex-start}
+  .team__cards.m-scene{margin-top:28px}
+  .contact__copy.m-scene{margin-bottom:24px}
   .team__grid{display:block}
   .team__intro{display:flex}
   .team__intro .lead{margin-top:14px}
