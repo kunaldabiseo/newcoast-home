@@ -30,6 +30,7 @@
     if (typeof target === 'number') return scrollTo({ top: target, behavior: RM ? 'auto' : 'smooth' });
     const y = target.getBoundingClientRect().top + scrollY + off; scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
   };
+  window.__ncScroll = scrollToEl;
 
   /* ---------- Loader: brand plate, counter, panels lift (first visit per session) ---------- */
   safe('loader', () => {
@@ -523,53 +524,100 @@
   if (G) { const rf = () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); }; d.fonts && d.fonts.ready.then(rf); addEventListener('load', rf); }
 })();
 
-/* ================= INNER PAGES (runs after the shared home script) ================= */
+/* ================= INNER PAGES v2 (runs after the shared header/footer script) ================= */
 (() => {
   'use strict';
   const d = document, $ = (s, c = d) => c.querySelector(s), $$ = (s, c = d) => Array.from(c.querySelectorAll(s));
   const safe = (n, f) => { try { f(); } catch (e) { console.warn('[NewCoast] page module failed:', n, e); } };
+  const RM = () => d.documentElement.classList.contains('rm');
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const DESK = matchMedia('(min-width:1024px)');
 
-  /* Page hero entrance */
-  safe('phero', () => { const h = $('.phero'); if (!h) return; requestAnimationFrame(() => requestAnimationFrame(() => h.classList.add('is-in'))); });
+  /* Statement: words light up as the paragraph scrolls through the screen */
+  safe('words', () => $$('[data-xwords]').forEach(el => {
+    const walk = node => Array.from(node.childNodes).forEach(n => {
+      if (n.nodeType === 3) { const f = d.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) { f.appendChild(d.createTextNode(p)); return; } const s = d.createElement('span'); s.className = 'xw'; s.textContent = p; f.appendChild(s); }); n.replaceWith(f); }
+      else if (n.nodeType === 1) walk(n); });
+    walk(el); const ws = $$('.xw', el);
+    const upd = () => { const r = el.getBoundingClientRect(), vh = innerHeight; const p = Math.max(0, Math.min(1, (vh * .85 - r.top) / (r.height + vh * .35))); const k = RM() ? ws.length : Math.round(p * ws.length); ws.forEach((w, i) => w.classList.toggle('on', i < k)); };
+    addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd(); }));
 
-  /* Results bars grow when the stats come into view */
-  safe('stats', () => { const s = $('.stats'); if (!s) return;
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { s.classList.add('is-in'); io.disconnect(); } }), { threshold: .25 }); io.observe(s); });
+  /* Count-up numbers in stat tiles */
+  safe('count', () => { const els = $$('[data-xcount]'); if (!els.length) return;
+    const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target); const el = e.target, raw = el.dataset.xcount, m = raw.match(/^(\d+)(%?)$/); if (!m || RM()) return;
+      const end = +m[1], t0 = performance.now(), dur = 1400; const step = t => { const p = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - p, 3))); el.textContent = v + m[2]; if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); }), { threshold: .4 });
+    els.forEach(el => io.observe(el)); });
 
-  /* "Services we offer" accordion: one open at a time */
-  safe('offers', () => { const items = $$('.offer'); if (!items.length) return;
-    const set = (it, on) => { it.classList.toggle('is-open', on); $('.offer__q', it).setAttribute('aria-expanded', on); };
-    items.forEach(it => $('.offer__q', it).addEventListener('click', () => { const on = !it.classList.contains('is-open'); items.forEach(o => set(o, false)); set(it, on); })); });
+  /* Expanding service panels */
+  safe('expand', () => $$('.xexp__row').forEach(row => { const ps = $$('.xexp__p', row);
+    const set = p => ps.forEach(x => x.classList.toggle('is-on', x === p));
+    ps.forEach(p => { p.addEventListener('mouseenter', () => { if (DESK.matches) set(p); }); p.addEventListener('focus', () => set(p)); p.addEventListener('click', e => { if (!p.classList.contains('is-on')) { e.preventDefault(); set(p); } }); }); }));
 
-  /* Shared spam-check box behaviour for extra forms on a page */
-  const capOk = box => { const c = $('input[type="checkbox"]', box); return !!(c && c.checked); };
-  safe('caps', () => $$('.cap input').forEach(c => { if (c.id === 'capChk') return; const note = c.closest('.captcha').querySelector('.cap__note');
-    c.addEventListener('change', () => { if (note) note.hidden = !c.checked; const e = c.closest('.captcha').querySelector('.ferr'); if (e && c.checked) e.textContent = ''; }); }));
+  /* Hover list: floating photo follows the cursor */
+  safe('hoverlist', () => $$('.xhl').forEach(sec => { const fl = $('.xhl__float', sec), im = $('img', fl); let x = 0, y = 0, cx = 0, cy = 0, raf = 0;
+    const loop = () => { cx += (x - cx) * .18; cy += (y - cy) * .18; fl.style.left = cx + 'px'; fl.style.top = cy + 'px'; raf = fl.classList.contains('on') ? requestAnimationFrame(loop) : 0; };
+    $$('.xhl__r', sec).forEach(r => { r.addEventListener('mouseenter', e => { if (!DESK.matches || RM()) return; im.src = r.dataset.img; x = cx = e.clientX; y = cy = e.clientY; fl.classList.add('on'); if (!raf) raf = requestAnimationFrame(loop); });
+      r.addEventListener('mousemove', e => { x = e.clientX; y = e.clientY; }); r.addEventListener('mouseleave', () => fl.classList.remove('on')); }); }));
 
-  /* Business finder (hospitality page): preview only, nothing is sent */
-  safe('finder', () => { const f = $('#finder'); if (!f) return;
-    f.addEventListener('submit', e => { e.preventDefault(); const box = $('.captcha', f), err = $('.ferr', box);
-      if (!capOk(box)) { err.textContent = 'Please tick “I’m not a robot”.'; $('input', box).focus(); return; }
-      const v = Object.fromEntries(new FormData(f)), ok = $('#finderOk');
-      $('#finderSum').textContent = [v.type, v.where, v.involve, v.budget].filter(x => x && !/^Select|^I.m Interested|^\$$/i.test(x)).join(' · ') || 'No preferences chosen yet';
+  /* Testimonial slider */
+  safe('quotes', () => $$('.xq').forEach(sec => { const ss = $$('.xq__s', sec), ws = $$('.xq__who', sec), bar = $('.xq__bar i', sec); let i = 0, tm = 0, hover = false;
+    const go = n => { i = (n + ss.length) % ss.length; ss.forEach((s, j) => { s.classList.toggle('is-on', j === i); s.setAttribute('aria-hidden', j !== i); }); ws.forEach((w, j) => w.classList.toggle('is-on', j === i)); restart(); };
+    const restart = () => { clearTimeout(tm); bar.classList.remove('run'); void bar.offsetWidth; if (RM() || hover) return; bar.classList.add('run'); tm = setTimeout(() => go(i + 1), 7000); };
+    $$('.xq__arw', sec).forEach(b => b.addEventListener('click', () => go(i + +b.dataset.d))); ws.forEach(w => w.addEventListener('click', () => go(+w.dataset.i)));
+    sec.addEventListener('mouseenter', () => { hover = true; restart(); }); sec.addEventListener('mouseleave', () => { hover = false; restart(); });
+    const io = new IntersectionObserver(es => { if (es[0].isIntersecting) restart(); else clearTimeout(tm); }); io.observe(sec); }));
+
+  /* FAQ: tabs on desktop, accordion on small screens */
+  safe('faq', () => $$('.xfaq').forEach(sec => { const its = $$('.xfaq__it', sec);
+    its.forEach(it => $('.xfaq__q', it).addEventListener('click', () => { const on = it.classList.contains('is-on');
+      if (on && DESK.matches) return; its.forEach(o => { o.classList.remove('is-on'); $('.xfaq__q', o).setAttribute('aria-expanded', 'false'); });
+      if (!on || DESK.matches) { it.classList.add('is-on'); $('.xfaq__q', it).setAttribute('aria-expanded', 'true'); } })); }));
+
+  /* Demo spam check note */
+  safe('caps', () => $$('.cap input').forEach(c => { const box = c.closest('.captcha'), note = $('.cap__note', box), err = $('.ferr', box);
+    c.addEventListener('change', () => { if (note) note.hidden = !c.checked; if (c.checked && err) err.textContent = ''; }); }));
+  const capOk = box => { const c = box && $('input[type="checkbox"]', box); return !!(c && c.checked); };
+
+  /* Contact form (preview only: nothing is sent) */
+  safe('form', () => { const f = $('#xForm'); if (!f) return; const radios = $$('input[name="interest"]', f), ok = $('#xOk');
+    window.__setIntent = v => { const r = radios.find(x => x.value === v); if (r) { r.checked = true; err('interest', ''); } };
+    const err = (k, m) => { const e = $('#' + k + '-e'); if (e) e.textContent = m; const w = e && e.closest('.xf'); if (w) w.classList.toggle('is-err', !!m); };
+    radios.forEach(r => r.addEventListener('change', () => err('interest', '')));
+    ['xemail', 'xphone', 'xmsg'].forEach(k => $('#' + k).addEventListener('input', () => err(k, '')));
+    f.addEventListener('submit', e => { e.preventDefault(); let first = null; const bad = (k, m, el) => { err(k, m); if (!first) first = el; };
+      const v = { interest: (radios.find(r => r.checked) || {}).value, first: $('#xfirst').value.trim(), last: $('#xlast').value.trim(), email: $('#xemail').value.trim(), phone: $('#xphone').value.trim(), msg: $('#xmsg').value.trim() };
+      if (!v.interest) bad('interest', 'Choose what you’re interested in.', radios[0]);
+      if (!EMAIL.test(v.email)) bad('xemail', 'Enter an email address, like name@example.com.', $('#xemail'));
+      if (v.phone.replace(/\D/g, '').length < 8) bad('xphone', 'Enter a phone number so we can call you back.', $('#xphone'));
+      if (!v.msg) bad('xmsg', 'Add a short message.', $('#xmsg'));
+      const cap = $('.captcha', f); if (!capOk(cap)) { $('.ferr', cap).textContent = 'Please tick “I’m not a robot”.'; if (!first) first = $('input', cap); }
+      if (first) { first.focus(); ok.hidden = true; return; }
+      const body = `Interested in: ${v.interest}\nName: ${v.first} ${v.last}\nEmail: ${v.email}\nPhone: ${v.phone}\n\n${v.msg}`;
+      $('#xMail').href = 'mailto:contact@newcoastbrokers.com.au?subject=' + encodeURIComponent('Website enquiry: ' + v.interest) + '&body=' + encodeURIComponent(body);
       ok.hidden = false; ok.focus(); }); });
 
-  /* Confidentiality agreement form: preview only, honest status */
-  safe('nda', () => { const f = $('#ndaForm'); if (!f) return;
-    const msg = $('#ndaErr'), ok = $('#ndaOk');
+  /* Pre-select the interest passed from another page (?intent=...) */
+  safe('intent', () => { const q = new URLSearchParams(location.search).get('intent'); if (q && window.__setIntent) window.__setIntent(q); });
+
+  /* Business finder (preview only) */
+  safe('finder', () => { const f = $('#finder'); if (!f) return;
+    f.addEventListener('submit', e => { e.preventDefault(); const box = $('.captcha', f);
+      if (!capOk(box)) { $('.ferr', box).textContent = 'Please tick “I’m not a robot”.'; $('input', box).focus(); return; }
+      const v = Object.fromEntries(new FormData(f)), ok = $('#finderOk');
+      $('#finderSum').textContent = [v.type, v.where, v.involve, v.budget].filter(x => x && x !== '$').join(' · ') || 'No preferences chosen yet';
+      ok.hidden = false; ok.focus(); }); });
+
+  /* Confidentiality agreement form (preview only) */
+  safe('nda', () => { const f = $('#ndaForm'); if (!f) return; const msg = $('#ndaErr'), ok = $('#ndaOk');
     f.addEventListener('submit', e => { e.preventDefault(); const v = Object.fromEntries(new FormData(f)), errs = [];
       if (!v.phone || v.phone.replace(/\D/g, '').length < 8) errs.push('a phone number');
       if (!v.email || !EMAIL.test(v.email.trim())) errs.push('a valid email address');
       if (!v.agree) errs.push('agreement to the terms');
       if (!capOk($('.captcha', f))) errs.push('the “I’m not a robot” check');
-      if (errs.length) { msg.textContent = 'Please complete ' + errs.join(', ') + '.'; msg.hidden = false; msg.focus(); return; }
+      if (errs.length) { msg.textContent = 'Please complete ' + errs.join(', ') + '.'; msg.hidden = false; msg.focus(); ok.hidden = true; return; }
       msg.hidden = true; ok.hidden = false; ok.focus(); }); });
 
-  /* Contact page: pre-select the interest passed from another page (?intent=...) */
-  safe('intent', () => { const q = new URLSearchParams(location.search).get('intent'); if (q && window.__setIntent) window.__setIntent(q); });
-
-  /* Locations map: Leaflet + Esri light tiles, with a plain list that always works */
+  /* Locations map: Leaflet + Esri light tiles, loaded when near the screen */
   safe('map', () => { const el = $('#ncMap'); if (!el) return;
     const L0 = [{ k: 'newcastle', n: 'Newcastle, NSW', lat: -32.9283, lng: 151.7817, cur: true }, { k: 'central', n: 'Central Coast, NSW', lat: -33.4255, lng: 151.3421 }, { k: 'sydney', n: 'Sydney, NSW', lat: -33.8688, lng: 151.2093 }];
     const btns = $$('.loccard'); let map = null;
@@ -580,18 +628,76 @@
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles &copy; Esri', maxZoom: 16 }).addTo(map)
         .on('load', () => { const fb = $('.map__fb'); if (fb) fb.remove(); });
       L0.forEach(p => L.marker([p.lat, p.lng], { icon: L.divIcon({ className: '', iconSize: [0, 0], html: '<div class="ncpin' + (p.cur ? '' : ' fut') + '"><span>' + p.n + '</span><i></i><em></em></div>' }) }).addTo(map).on('click', () => pick(p.k)));
-      map.fitBounds(L0.map(p => [p.lat, p.lng]), { padding: [60, 60], maxZoom: 9 }); };
+      const pad = DESK.matches ? { paddingTopLeft: [Math.min(500, el.offsetWidth * .4), 60], paddingBottomRight: [60, 60] } : { padding: [40, 40] };
+      map.fitBounds(L0.map(p => [p.lat, p.lng]), Object.assign({ maxZoom: 9 }, pad)); };
     const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io.disconnect();
       const css = d.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; d.head.appendChild(css);
       const s = d.createElement('script'); s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; s.onload = init; d.head.appendChild(s); }, { rootMargin: '300px' });
     io.observe(el); });
 
-  /* Blog article page: show the post chosen in ?slug= */
+  /* Blog index: category filter */
+  safe('blogfilter', () => { const bar = $('.xblog__filters'); if (!bar) return; const bs = $$('button', bar), items = $$('.xblog__grid li');
+    bs.forEach(b => b.addEventListener('click', () => { bs.forEach(x => x.setAttribute('aria-pressed', x === b)); const c = b.dataset.cat; items.forEach(li => li.classList.toggle('is-hide', c !== 'all' && li.dataset.cat !== c)); })); });
+
+  /* Article page: show the post chosen in ?slug= */
   safe('post', () => { const a = $('#art'); if (!a) return;
     const P = window.NC_POSTS || [], slug = new URLSearchParams(location.search).get('slug');
     const p = P.find(x => x.slug === slug) || P[0]; if (!p) return;
     $('#artMeta').textContent = p.cat + ' · ' + p.date; $('#artTitle').textContent = p.title; d.title = p.title + ' | NewCoast Business Brokers';
-    const im = $('#artImg'); im.src = p.img; im.alt = '';
-    $$('.post').forEach(li => { const h = $('a', li).getAttribute('href'); if (h && h.indexOf('slug=' + p.slug) > -1) li.remove(); });
-    $$('.posts .post').slice(3).forEach(li => li.remove()); });
+    $('#artImg').src = p.img;
+    $$('.xbl__list li, .xbl__big').forEach(n => { const h = (n.getAttribute('href') || ($('a', n) || {}).getAttribute && $('a', n).getAttribute('href')) || ''; if (h.indexOf('slug=' + p.slug) > -1 && n.tagName === 'LI') n.remove(); }); });
+
+  /* Reading progress (article + agreement pages) */
+  safe('progress', () => { const b = $('.xprog'); if (!b) return; const upd = () => { const h = d.documentElement.scrollHeight - innerHeight; b.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')'; }; addEventListener('scroll', upd, { passive: true }); upd(); });
+})();
+
+/* Sell page: sale process roadmap (#sale-process) */
+(() => {
+  'use strict';
+  const sec = document.getElementById('sale-process'); if (!sec) return;
+  try {
+    const $ = s => sec.querySelector(s), $$ = s => Array.from(sec.querySelectorAll(s));
+    const steps = $$('.sp2__step'), dots = $$('.sp2__dot'), imgs = $$('.sp2__imgs img'), n = steps.length;
+    const list = $('#sp2List'), rail = $('.sp2__rail'), big = $('#sp2Big'), ttl = $('#sp2Ttl'), ring = $('#sp2Ring'), pct = $('#sp2Pct'), cnt = $('#sp2Cnt');
+    const arws = $$('.sp2__arw'), DESK = matchMedia('(min-width:1024px)'), C = 326.73;
+    const data = steps.map(s => [s.querySelector('.sp2__node b').textContent, s.querySelector('h3').textContent]);
+    let cur = -1;
+    const flip = el => { el.classList.remove('is-flip'); void el.offsetWidth; el.classList.add('is-flip'); };
+    const set = i => {
+      i = Math.max(0, Math.min(n - 1, i)); if (i === cur) return; cur = i;
+      steps.forEach((s, j) => { s.classList.toggle('is-on', j === i); s.classList.toggle('is-done', j < i); });
+      dots.forEach((d, j) => { d.classList.toggle('is-on', j === i); d.classList.toggle('is-done', j < i); d.setAttribute('aria-current', j === i ? 'step' : 'false'); });
+      imgs.forEach((im, j) => im.classList.toggle('is-on', j === i));
+      big.textContent = data[i][0]; ttl.textContent = data[i][1]; flip(big); flip(ttl);
+      ring.style.setProperty('--o', (C * (1 - (i + 1) / n)).toFixed(2)); pct.textContent = i + 1;
+      cnt.textContent = data[i][0];
+    };
+    /* desktop: the step crossing the middle of the screen is the active one */
+    const desk = () => {
+      const mid = innerHeight * .5, cards = steps.map(s => s.querySelector('.sp2__card').getBoundingClientRect());
+      let i = 0; cards.forEach((r, j) => { if (r.top < mid) i = j; }); set(i);
+      const nodes = steps.map(s => s.querySelector('.sp2__node').getBoundingClientRect()), L = list.getBoundingClientRect();
+      const y0 = nodes[0].top + nodes[0].height / 2, y1 = nodes[n - 1].top + nodes[n - 1].height / 2, f = Math.max(0, Math.min(1, (mid - y0) / (y1 - y0)));
+      rail.style.setProperty('--rt', (y0 - L.top) + 'px'); rail.style.setProperty('--rh', (y1 - y0) + 'px'); rail.style.setProperty('--rf', (f * (y1 - y0)) + 'px');
+      sec.querySelector('#sp2Meter').style.setProperty('--p', (f * 100).toFixed(1) + '%');
+    };
+    /* tablet/mobile: swipe deck */
+    const step = () => { const a = steps[0], b = steps[1]; return b ? b.offsetLeft - a.offsetLeft : a.offsetWidth; };
+    const mob = () => {
+      const max = list.scrollWidth - list.clientWidth, f = max > 0 ? list.scrollLeft / max : 0;
+      set(Math.round(list.scrollLeft / step()));
+      $('#sp2Pbar').style.setProperty('--p', Math.max(8, f * 100).toFixed(1) + '%');
+      arws[0].disabled = list.scrollLeft < 4; arws[1].disabled = list.scrollLeft > max - 4;
+    };
+    let raf = 0; const tick = () => { raf = 0; DESK.matches ? desk() : mob(); };
+    const req = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    addEventListener('scroll', req, { passive: true }); addEventListener('resize', req); list.addEventListener('scroll', req, { passive: true });
+    if (DESK.addEventListener) DESK.addEventListener('change', () => { cur = -1; req(); });
+    dots.forEach(d => d.addEventListener('click', () => {
+      const card = steps[+d.dataset.go].querySelector('.sp2__card'), off = -(innerHeight / 2 - Math.min(card.offsetHeight, innerHeight * .4) / 2) + 40;
+      if (window.__ncScroll) window.__ncScroll(card, off); else card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }));
+    arws.forEach(a => a.addEventListener('click', () => list.scrollBy({ left: +a.dataset.dir * step(), behavior: document.documentElement.classList.contains('rm') ? 'auto' : 'smooth' })));
+    cur = -1; set(0); req();
+  } catch (e) { console.warn('[NewCoast] sale process failed', e); }
 })();
