@@ -1012,6 +1012,97 @@ html.rm .cursor,html.rm .cdot,html.rm .ld,html.rm .grain{display:none!important}
 html.rm [data-reveal],html.rm .chip{opacity:1!important;transform:none!important}
 html.rm [data-split] .w>span,html.rm .w>span{transform:none!important}
 html.rm .scroll-cue::after{animation:none}
+
+/* 26 Oct single-viewport pass (phones + tablets only) */
+.contact__more{display:contents}
+@media (max-width:1023px){
+  .jrny{padding-top:44px!important;padding-bottom:36px!important}
+  .jrny:not(.is-pinned) .step h3{padding-top:10px!important;padding-bottom:10px!important}
+  .jrny:not(.is-pinned) .step__n{top:6px}
+}
+@media (min-width:600px) and (max-width:1023px){
+  .team__cards .pf__stage{aspect-ratio:16/10}
+  .contact__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:22px;align-items:start}
+  .contact__copy.m-scene{margin-bottom:0}
+  .direct{grid-template-columns:1fr}
+  .direct a:last-child{grid-column:auto}
+}
+@media (max-width:599px){
+  .team__more.m-collapsed{display:none}
+  .team .m-more-btn{display:flex;margin-top:4px}
+  .team__intro .lead{margin-top:10px}
+  .team__stat{margin-top:12px;padding-top:12px}
+  .team__intro .btn{margin-top:14px}
+  .team__cards.m-scene{margin-top:18px}
+  .team__cards{flex-direction:row!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--gut));padding:2px var(--gut) 6px;scroll-padding-inline:var(--gut);scrollbar-width:none}
+  .team__cards::-webkit-scrollbar{display:none}
+  .team__cards .pf{flex:0 0 86%;scroll-snap-align:start}
+  .contact .h2{font-size:30px}
+  .contact__copy.m-scene{margin-bottom:12px}
+  .contact__copy>.m-more-btn{margin-top:6px;padding:4px 0}
+  .direct{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+  .direct a,.direct a:last-child{grid-column:auto;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:10px 6px}
+  .direct b{display:none}
+  .direct small{font-size:12.5px;font-weight:600}
+  .form{padding:14px 14px 12px;margin-bottom:24px}
+  .form .demo-flag{font-size:10px}
+  .form h3{font-size:20px;margin-top:6px}
+  .form__sub{font-size:12.5px;margin-top:2px}
+  .form fieldset legend{font-size:13px}
+  .pill span{min-height:34px;padding:0 11px;font-size:13px}
+  .pills{gap:6px}
+  .fields{gap:6px 10px;margin-top:8px}
+  .fields .field:nth-child(3),.fields .field:nth-child(4){grid-column:auto}
+  .field label{font-size:13px}
+  .field input{min-height:42px}
+  .field textarea{min-height:60px;height:60px}
+  .captcha{margin-top:8px}
+  .form__foot{gap:8px;margin-top:8px}
+  .form__priv{font-size:11.5px}
+}
+@media (max-width:599px){
+  .form .field input{height:42px;min-height:0;padding-top:0;padding-bottom:0}
+  .form .field{gap:4px}
+  .form fieldset{margin-top:10px}
+  .form .pills{margin-top:6px}
+  .form .cap{min-height:46px;padding:6px 10px}
+  .form .captcha{margin-top:10px}
+  .form__foot{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
+  .form__foot .btn{flex:none;min-height:44px}
+  .form__priv{margin:0;line-height:1.4}
+  .form__priv a{min-height:0}
+}
+@media (max-width:599px){
+  .form{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:start}
+  .form>*{grid-column:1/-1}
+  .form>.captcha{grid-column:1}
+  .form__foot{display:contents}
+  .form__foot .btn{grid-column:2;margin-top:10px;min-height:46px}
+  .form__priv{grid-column:1/-1;order:1;margin-top:8px!important}
+  .form>.status{order:2}
+  .form>.demo-flag{justify-self:start}
+  .form__sub{display:none}
+  .direct i{width:32px!important;height:32px!important;font-size:15px}
+}
+@media (min-width:600px) and (max-width:1023px){
+  .contact .h2{font-size:clamp(34px,5.4vw,44px)}
+  .form{padding:20px 18px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:start}
+  .form>*{grid-column:1/-1}
+  .form>.captcha{grid-column:1}
+  .form__foot{display:contents}
+  .form__foot .btn{grid-column:2;margin-top:10px;min-height:46px}
+  .form__priv{grid-column:1/-1;order:1;margin-top:8px!important;font-size:12px}
+  .form>.status{order:2}
+  .form>.demo-flag{justify-self:start}
+  .form__sub{font-size:13px}
+  .pill span{min-height:36px;padding:0 12px;font-size:13.5px}
+  .fields{gap:8px 10px}
+  .fields .field:nth-child(3),.fields .field:nth-child(4){grid-column:auto}
+  .form .field input{height:44px;min-height:0;padding-top:0;padding-bottom:0}
+  .field textarea{min-height:76px;height:76px}
+  .form .captcha{margin-top:10px}
+  .direct a{flex-direction:row;align-items:center;padding:10px 12px}
+}
 </style>
 </head>
 <body>
@@ -1371,7 +1462,7 @@ html.rm .scroll-cue::after{animation:none}
   <div class="team__grid">
     <div class="team__intro m-scene">
       <h2 class="h2" id="tm-h" data-split>Get to <em>Know Us</em></h2>
-      <p class="lead" data-reveal>NewCoast Business Brokers was founded by award-winning broker, Anthony Manks, to create a specialised brokerage that delivers a reliable and personalised service for hospitality business owners. NewCoast is a team of experienced hospitality business brokers and licensed real estate agents with over 25 years experience in operating and selling hospitality businesses. Whether you own a cafe, restaurant, bar or franchised food business, our team can help you sell your business or find your next venture.</p>
+      <p class="lead" data-reveal>NewCoast Business Brokers was founded by award-winning broker, Anthony Manks, to create a specialised brokerage that delivers a reliable and personalised service for hospitality business owners. <span class="team__more" data-m-more="More about us">NewCoast is a team of experienced hospitality business brokers and licensed real estate agents with over 25 years experience in operating and selling hospitality businesses. Whether you own a cafe, restaurant, bar or franchised food business, our team can help you sell your business or find your next venture.</span></p>
       <div class="team__stat" data-reveal><b data-count="25" data-suffix="+">25+</b><span>years creating, operating and selling hospitality businesses</span></div>
       <a class="btn" href="#contact" data-intent="">Get In Touch <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
     </div>
@@ -1435,8 +1526,8 @@ html.rm .scroll-cue::after{animation:none}
   <div class="contact__grid">
     <div class="contact__copy m-scene">
       <h2 class="h2" id="ct-h" data-split>Let’s Talk About <em>Your Business</em></h2>
-      <p class="lead">Whether you’re looking to sell your hospitality business, purchase your next opportunity, or simply want to understand what your business could be worth, our experienced business brokers are here to help.</p>
-      <p class="lead" style="margin-top:14px">Ask how NewCoast Business Brokers can help you take the next step. <strong>Call, email or fill out the contact form, to have a free confidential conversation today.</strong></p>
+      <div class="contact__more" data-m-more="Read more"><p class="lead">Whether you’re looking to sell your hospitality business, purchase your next opportunity, or simply want to understand what your business could be worth, our experienced business brokers are here to help.</p>
+      <p class="lead" style="margin-top:14px">Ask how NewCoast Business Brokers can help you take the next step. <strong>Call, email or fill out the contact form, to have a free confidential conversation today.</strong></p></div>
       <div class="direct">
         <a href="tel:0439877717"><i aria-hidden="true">☏</i><span><small>Call Anthony</small><b>0439 877 717</b></span></a>
         <a href="tel:0406856882"><i aria-hidden="true">☏</i><span><small>Call Kate</small><b>0406 856 882</b></span></a>
