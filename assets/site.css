@@ -2292,6 +2292,7 @@ html.rm .xhz__card{transition:none}
 .xph__fig{max-width:1080px}
 .xph__img{aspect-ratio:2/1}
 .xpa__toc .xpa__share .xpa__mail{padding:8px 14px;margin:0;border:1.5px solid var(--line);opacity:1;font-size:13.5px;font-weight:600}.xpa__toc .xpa__share .xpa__mail:hover{border-color:var(--ink)}.xpa__toc>.xlink{padding:0;margin:0;border:0;opacity:1}
+[data-split],[data-words]{text-wrap:wrap}
 
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
