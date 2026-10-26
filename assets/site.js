@@ -772,7 +772,7 @@
     const set = i => { its.forEach((it, j) => { it.classList.toggle('is-on', j === i); it.classList.toggle('is-done', i >= 0 && j < i); it.querySelector('.xck__tab').setAttribute('aria-expanded', j === i); });
       const k = Math.max(i, 0); cnt.textContent = String(k + 1).padStart(2, '0'); bar.style.setProperty('--p', ((k + 1) / n * 100) + '%'); };
     its.forEach((it, i) => {
-      it.querySelector('.xck__tab').addEventListener('click', () => { if (SMALL.matches && it.classList.contains('is-on')) { set(-1); its.forEach((x, j) => x.classList.toggle('is-done', j < i)); return; } set(i); });
+      it.querySelector('.xck__tab').addEventListener('click', () => { set(i); });
       const nx = it.querySelector('.xck__next'); if (nx) nx.addEventListener('click', () => { const t = +nx.dataset.next; set(t); const tab = its[t].querySelector('.xck__tab'); tab.focus({ preventScroll: true });
         if (SMALL.matches) tab.scrollIntoView({ behavior: rm() ? 'auto' : 'smooth', block: 'start' }); }); });
     set(0);
