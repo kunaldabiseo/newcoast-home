@@ -1103,6 +1103,8 @@ html.rm .scroll-cue::after{animation:none}
   .form .captcha{margin-top:10px}
   .direct a{flex-direction:row;align-items:center;padding:10px 12px}
 }
+/* 26 Oct: hero content sits a little higher on desktop */
+@media (min-width:1024px){.hero__frame{padding-bottom:clamp(48px,8vh,84px)}}
 </style>
 </head>
 <body>
@@ -1402,16 +1404,15 @@ html.rm .scroll-cue::after{animation:none}
       <div class="incl" data-m-more="What every appraisal includes">
         <h3>Every appraisal includes</h3>
         <ul>
-          <li>A comprehensive key metric assessment</li>
-          <li>A confidential site inspection</li>
-          <li>A Zoom consultation</li>
-          <li>A specific appraisal overview for your business</li>
+          <li>Business performance assessment</li>
+          <li>Personalised consultation</li>
+          <li>Confidential site inspection</li>
+          <li>Detailed PDF appraisal summary</li>
         </ul>
       </div>
       <div class="val__cta">
-        <a class="btn btn--light" href="#contact" data-intent="Business appraisal">Request an appraisal <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
+        <a class="btn btn--light" href="#contact" data-intent="Business appraisal">Request an Appraisal <span class="ic"><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M3.5 2H8V6.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></a>
       </div>
-      <p class="val__note">This is a guide to the factors we review, not a valuation. A figure for your business comes from the appraisal itself.</p>
     </div>
   </div>
 </section>
