@@ -2293,6 +2293,14 @@ html.rm .xhz__card{transition:none}
 .xph__img{aspect-ratio:2/1}
 .xpa__toc .xpa__share .xpa__mail{padding:8px 14px;margin:0;border:1.5px solid var(--line);opacity:1;font-size:13.5px;font-weight:600}.xpa__toc .xpa__share .xpa__mail:hover{border-color:var(--ink)}.xpa__toc>.xlink{padding:0;margin:0;border:0;opacity:1}
 [data-split],[data-words]{text-wrap:wrap}
+/* 26 Oct: Sell My Business hero (this page only) */
+.phero--sell .xh__row{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:22px}
+.phero--sell .xh__s{max-width:none}
+.phero--sell .xh__body{padding-bottom:clamp(36px,4vw,64px)}
+@media (min-width:1024px){
+  .phero--sell .xh__t{font-size:clamp(40px,5.2vw,80px)}
+  .phero--sell .xh__mphone{display:none}
+}
 
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
