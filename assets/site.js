@@ -874,3 +874,9 @@
     if (cp) cp.addEventListener('click', async () => { try { await navigator.clipboard.writeText(location.href); cp.textContent = 'Link copied'; } catch (e) { cp.textContent = 'Copy failed'; } cp.classList.add('is-done'); setTimeout(() => { cp.textContent = 'Copy link'; cp.classList.remove('is-done'); }, 2200); });
   } catch (e) { console.warn('[NewCoast] contents list failed', e); }
 })();
+
+/* results chart: start the moment it enters the screen */
+(function(){var el=document.querySelector('.xrv__panel');if(!el)return;
+  if(!('IntersectionObserver' in window)){el.classList.add('is-in');return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){el.classList.add('is-in');io.disconnect();}});},{rootMargin:'0px 0px -10% 0px',threshold:0});
+  io.observe(el);})();
