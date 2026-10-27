@@ -420,6 +420,7 @@
     f.addEventListener('submit', e => { e.preventDefault();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value.trim())) { m.className = 'sub__msg is-err'; m.textContent = 'Please enter a valid email address.'; i.setAttribute('aria-invalid', 'true'); i.focus(); return; }
       i.removeAttribute('aria-invalid'); m.className = 'sub__msg';
+      if (window.ncSend) { window.ncSend('subscribe', { first: (f.first || {}).value || '', last: (f.last || {}).value || '', email: i.value.trim() }, f, m); return; }
       m.innerHTML = 'Listing alerts aren’t connected in this preview, so you haven’t been subscribed. Email <a href="mailto:contact@newcoastbrokers.com.au?subject=Please%20add%20me%20to%20business%20listings">contact@newcoastbrokers.com.au</a> to be added.'; }); });
 
   /* ---------- In-page links: smooth scroll, intents, journey shortcuts ---------- */
@@ -592,6 +593,7 @@
       if (!v.msg) bad('xmsg', 'Add a short message.', $('#xmsg'));
       const cap = $('.captcha', f); if (!capOk(cap)) { $('.ferr', cap).textContent = 'Please tick “I’m not a robot”.'; if (!first) first = $('input', cap); }
       if (first) { first.focus(); ok.hidden = true; return; }
+      if (window.ncSend) { window.ncSend('enquiry', { interest: v.interest, first: v.first, last: v.last, email: v.email, phone: v.phone, message: v.msg }, f, ok); return; }
       const body = `Interested in: ${v.interest}\nName: ${v.first} ${v.last}\nEmail: ${v.email}\nPhone: ${v.phone}\n\n${v.msg}`;
       $('#xMail').href = 'mailto:contact@newcoastbrokers.com.au?subject=' + encodeURIComponent('Website enquiry: ' + v.interest) + '&body=' + encodeURIComponent(body);
       ok.hidden = false; ok.focus(); }); });
@@ -605,6 +607,7 @@
       if (!capOk(box)) { $('.ferr', box).textContent = 'Please tick “I’m not a robot”.'; $('input', box).focus(); return; }
       const v = Object.fromEntries(new FormData(f)), ok = $('#finderOk');
       $('#finderSum').textContent = [v.type, v.where, v.involve, v.budget].filter(x => x && x !== '$').join(' · ') || 'No preferences chosen yet';
+      if (window.ncFinder) { window.ncFinder(v); return; }
       ok.hidden = false; ok.focus(); }); });
 
   /* Confidentiality agreement form (preview only) */
@@ -615,7 +618,9 @@
       if (!v.agree) errs.push('agreement to the terms');
       if (!capOk($('.captcha', f))) errs.push('the “I’m not a robot” check');
       if (errs.length) { msg.textContent = 'Please complete ' + errs.join(', ') + '.'; msg.hidden = false; msg.focus(); ok.hidden = true; return; }
-      msg.hidden = true; ok.hidden = false; ok.focus(); }); });
+      msg.hidden = true;
+      if (window.ncSend) { window.ncSend('nda', { first: v.first || '', last: v.last || '', email: (v.email || '').trim(), phone: v.phone || '', agree: v.agree ? 'Yes' : '' }, f, ok); return; }
+      ok.hidden = false; ok.focus(); }); });
 
   /* Locations map: Leaflet + Esri light tiles, loaded when near the screen */
   safe('map', () => { const el = $('#ncMap'); if (!el) return;
@@ -880,3 +885,63 @@
   if(!('IntersectionObserver' in window)){el.classList.add('is-in');return;}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){el.classList.add('is-in');io.disconnect();}});},{rootMargin:'0px 0px -10% 0px',threshold:0});
   io.observe(el);})();
+
+/* ===== 27 Oct round 5: accordions, story timeline, finder, listing sign-up ===== */
+(function () {
+  var d = document, $$ = function (s, r) { return Array.prototype.slice.call((r || d).querySelectorAll(s)); };
+  /* Services grid (several can be open) and selling process (one open at a time) */
+  $$('.xsa, .xpa2').forEach(function (sec) {
+    var single = sec.classList.contains('xpa2'), items = $$('[data-acc]', sec);
+    items.forEach(function (it) {
+      var b = it.querySelector('button');
+      b.addEventListener('click', function () {
+        var open = !it.classList.contains('is-open');
+        if (single) items.forEach(function (o) { o.classList.remove('is-open'); o.querySelector('button').setAttribute('aria-expanded', 'false'); });
+        it.classList.toggle('is-open', open); b.setAttribute('aria-expanded', String(open));
+      });
+    });
+  });
+  /* Story timeline */
+  $$('.xs2').forEach(function (sec) {
+    var tabs = $$('.xs2__stop', sec), panels = $$('.xs2__p', sec), rail = sec.querySelector('.xs2__rail i'), cur = 0;
+    var go = function (i, focus) {
+      cur = (i + tabs.length) % tabs.length;
+      tabs.forEach(function (t, j) { t.setAttribute('aria-selected', String(j === cur)); t.tabIndex = j === cur ? 0 : -1; t.classList.toggle('is-past', j < cur); });
+      panels.forEach(function (p, j) { p.hidden = j !== cur; p.classList.toggle('is-on', j === cur); });
+      if (rail) rail.style.width = (tabs.length > 1 ? cur / (tabs.length - 1) * 100 : 0) + '%';
+      if (focus) tabs[cur].focus();
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { go(i); });
+      t.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1, true); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1, true); } });
+    });
+    $$('.xs2__arw', sec).forEach(function (a) { a.addEventListener('click', function () { go(cur + (+a.dataset.d)); }); });
+    go(0);
+  });
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  /* Business finder: multiple choices + details */
+  var f2 = d.getElementById('finder2');
+  if (f2) f2.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var err = d.getElementById('f2Err'), ok = d.getElementById('f2Ok'), em = f2.email.value.trim();
+    var pick = function (n) { return $$('input[name="' + n + '"]:checked', f2).map(function (x) { return x.value; }); };
+    var v = { type: pick('type'), where: pick('where'), involve: pick('involve'), budget: pick('budget') };
+    if (!v.type.length && !v.where.length && !v.involve.length && !v.budget.length) { err.textContent = 'Choose at least one option above.'; return; }
+    if (!EMAIL.test(em)) { err.textContent = 'Enter your email address so we can send you listings.'; f2.email.focus(); return; }
+    err.textContent = '';
+    var msg = [['Business type', v.type], ['Location', v.where], ['Involvement', v.involve], ['Budget', v.budget]].filter(function (x) { return x[1].length; }).map(function (x) { return x[0] + ': ' + x[1].join(', '); }).join('\n');
+    var done = function () { $$('.xf2__groups, .xf2__you', f2).forEach(function (n) { n.hidden = true; }); ok.hidden = false; ok.focus(); };
+    if (window.ncSend) { window.ncSend('finder', { first: f2.first.value.trim(), email: em, phone: f2.phone.value.trim(), message: msg, finder: v }, f2, null, done); return; }
+    done();
+  });
+  /* Free listings sign-up (Buy page) */
+  var lf = d.getElementById('listForm');
+  if (lf) lf.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = d.getElementById('listMsg'), em = lf.email.value.trim();
+    if (!EMAIL.test(em)) { m.className = 'xls__msg is-err'; m.textContent = 'Please enter a valid email address.'; lf.email.focus(); return; }
+    var ok = function () { m.className = 'xls__msg is-ok'; m.textContent = 'Thank you. We will send you new hospitality business listings.'; lf.reset(); };
+    if (window.ncSend) { window.ncSend('subscribe', { first: lf.first.value.trim(), last: lf.last.value.trim(), email: em, phone: lf.phone.value.trim() }, lf, null, ok); return; }
+    ok();
+  });
+})();
