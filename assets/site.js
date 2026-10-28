@@ -690,6 +690,7 @@
     /* tablet/mobile: swipe deck */
     const step = () => { const a = steps[0], b = steps[1]; return b ? b.offsetLeft - a.offsetLeft : a.offsetWidth; };
     const mob = () => {
+      if (list.classList.contains('r7-on')) return; /* round 7 stepper owns phones/tablets */
       const max = list.scrollWidth - list.clientWidth, f = max > 0 ? list.scrollLeft / max : 0;
       set(Math.round(list.scrollLeft / step()));
       $('#sp2Pbar').style.setProperty('--p', Math.max(8, f * 100).toFixed(1) + '%');
@@ -944,5 +945,252 @@
     var ok = function () { m.className = 'xls__msg is-ok'; m.textContent = 'Thank you. We will send you new hospitality business listings.'; lf.reset(); };
     if (window.ncSend) { window.ncSend('subscribe', { first: lf.first.value.trim(), last: lf.last.value.trim(), email: em, phone: lf.phone.value.trim() }, lf, null, ok); return; }
     ok();
+  });
+})();
+/* 28 Oct round 7: phones + tablets only (max-width 1023px).
+   Every section reads as one complete screen: no sideways scrolling strips inside sections.
+   - Testimonials: one review at a time with arrows, counter and swipe.
+   - Process lists: numbered step buttons + one step panel with Back / Next and swipe.
+   - Business finder: one question at a time.
+   Desktop (1024px and up) keeps its own layouts and scripts untouched. */
+(function () {
+  'use strict';
+  var d = document, MQ = matchMedia('(max-width:1023px)');
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches || d.documentElement.classList.contains('rm');
+  var $ = function (s, c) { return (c || d).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+  var ARR_L = '<svg width="18" height="14" viewBox="0 0 20 16" aria-hidden="true"><path d="M18 8H3M8 3L3 8l5 5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var ARR_R = '<svg width="18" height="14" viewBox="0 0 20 16" aria-hidden="true"><path d="M2 8h15M12 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var safe = function (n, f) { try { f(); } catch (e) { if (window.console) console.warn('r7 ' + n, e); } };
+  var fade = function (el) {
+    if (RM || !el) return;
+    if (window.gsap) window.gsap.fromTo(el, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: .35, ease: 'power2.out', clearProps: 'transform,opacity,visibility' });
+  };
+  /* horizontal swipe on an element, without blocking vertical page scroll */
+  var swipe = function (el, cb) {
+    var x0 = 0, y0 = 0, on = false;
+    el.addEventListener('touchstart', function (e) { if (!MQ.matches) return; var t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; on = true; }, { passive: true });
+    el.addEventListener('touchend', function (e) {
+      if (!on) return; on = false; var t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) cb(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  };
+
+  /* ---------- 1. Testimonials: one review at a time ---------- */
+  function stage(box, cards, prev, next, count, dots) {
+    var i = 0, n = cards.length;
+    var show = function (k, anim) {
+      i = (k + n) % n;
+      cards.forEach(function (c, j) { var on = j === i; c.classList.toggle('r7-on', on); if (MQ.matches) c.setAttribute('aria-hidden', on ? 'false' : 'true'); else c.removeAttribute('aria-hidden'); });
+      if (count) count.textContent = (i + 1) + ' / ' + n;
+      if (dots) dots.forEach(function (b, j) { b.classList.toggle('is-on', j === i); b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+      if (prev) prev.disabled = false; if (next) next.disabled = false;
+      if (anim) fade(cards[i]);
+    };
+    var go = function (dir) { show(i + dir, true); };
+    var guard = function (dir) { return function (e) { if (!MQ.matches) return; e.preventDefault(); e.stopPropagation(); if (e.stopImmediatePropagation) e.stopImmediatePropagation(); go(dir); }; };
+    /* capture on the parent so the desktop rail scroller never sees the click on phones */
+    if (prev && prev.parentNode) prev.parentNode.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('button') === prev) guard(-1)(e); }, true);
+    if (next && next.parentNode) next.parentNode.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('button') === next) guard(1)(e); }, true);
+    if (dots) dots.forEach(function (b, j) { b.parentNode.addEventListener('click', function (e) { if (MQ.matches && e.target.closest('button') === b) { e.preventDefault(); e.stopPropagation(); show(j, true); } }, true); });
+    swipe(box, go);
+    box.addEventListener('keydown', function (e) { if (!MQ.matches) return; if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } });
+    var mode = function () { box.classList.toggle('r7-stage', MQ.matches); if (MQ.matches) box.scrollLeft = 0; show(i, false); if (!MQ.matches) cards.forEach(function (c) { c.removeAttribute('aria-hidden'); }); };
+    MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
+    mode();
+  }
+  safe('home-reviews', function () {
+    var rail = $('#rail'); if (!rail) return;
+    stage(rail, $$('.quote', rail), $('#tPrev'), $('#tNext'), $('#tCount'), null);
+    rail.setAttribute('aria-label', 'Client testimonials');
+  });
+  safe('inner-reviews', function () {
+    $$('.xqs').forEach(function (row) {
+      var sec = row.closest('section'), nav = $('.xqs__nav', sec); if (!nav) return;
+      var arr = d.createElement('div'); arr.className = 'r7-arrows';
+      arr.innerHTML = '<span class="r7-count" aria-live="polite">1 / ' + row.children.length + '</span><button type="button" class="r7-prev" aria-label="Previous review">' + ARR_L + '</button><button type="button" class="r7-next" aria-label="Next review">' + ARR_R + '</button>';
+      nav.appendChild(arr);
+      stage(row, Array.prototype.slice.call(row.children), $('.r7-prev', arr), $('.r7-next', arr), $('.r7-count', arr), $$('.xqs__dot', nav));
+    });
+  });
+
+  /* ---------- 2. Process lists: numbered steps + one panel ---------- */
+  function stepper(cfg) {
+    var list = cfg.list, items = cfg.items; if (!list || items.length < 2) return;
+    var n = items.length, i = 0;
+    list.classList.add('r7-steps');
+    var nav = d.createElement('div'); nav.className = 'r7-snav'; nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', cfg.label || 'Steps');
+    var pills = items.map(function (it, j) {
+      var t = (cfg.title(it) || '').trim(), b = d.createElement('button');
+      b.type = 'button'; b.className = 'r7-pill'; b.textContent = String(j + 1).padStart(2, '0');
+      b.setAttribute('aria-label', 'Step ' + (j + 1) + ' of ' + n + ': ' + t);
+      b.addEventListener('click', function () { show(j, true); });
+      nav.appendChild(b); return b;
+    });
+    var foot = d.createElement('div'); foot.className = 'r7-sfoot';
+    foot.innerHTML = '<span class="r7-sk" aria-live="polite"></span><span class="r7-sbtns"><button type="button" class="r7-sprev" aria-label="Previous step">' + ARR_L + '</button><button type="button" class="r7-snext"><span>Next</span> ' + ARR_R + '</button></span>';
+    list.parentNode.insertBefore(nav, list);
+    list.parentNode.insertBefore(foot, list.nextSibling);
+    var prev = $('.r7-sprev', foot), next = $('.r7-snext', foot), k = $('.r7-sk', foot);
+    var show = function (j, anim) {
+      i = Math.max(0, Math.min(n - 1, j));
+      items.forEach(function (it, m) { it.classList.toggle('r7-cur', m === i); if (cfg.open) cfg.open(it, m === i); });
+      pills.forEach(function (p, m) { p.classList.toggle('is-on', m === i); p.classList.toggle('is-past', m < i); if (m === i) p.setAttribute('aria-current', 'step'); else p.removeAttribute('aria-current'); });
+      k.textContent = 'Step ' + (i + 1) + ' of ' + n;
+      prev.disabled = i === 0;
+      var last = i === n - 1;
+      next.disabled = last;
+      list.classList.toggle('r7-last', last);
+      if (anim) fade(items[i]);
+    };
+    prev.addEventListener('click', function () { show(i - 1, true); });
+    next.addEventListener('click', function () {
+      if (i < n - 1) show(i + 1, true);
+    });
+    if (cfg.end) cfg.end.classList.add('r7-end');
+    swipe(list, function (dir) { show(i + dir, true); });
+    var mode = function () {
+      var on = MQ.matches;
+      list.classList.toggle('r7-on', on); nav.hidden = !on; foot.hidden = !on;
+      if (on) show(i, false);
+      else { items.forEach(function (it) { it.classList.remove('r7-cur'); }); if (cfg.reset) cfg.reset(); }
+    };
+    MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
+    mode();
+    /* lists that live inside a tab panel (home: selling / buying) hide their controls with the panel */
+    var vis = function () { var h = !MQ.matches || list.hidden; nav.hidden = h; foot.hidden = h; };
+    new MutationObserver(vis).observe(list, { attributes: true, attributeFilter: ['hidden'] });
+    vis();
+  }
+  safe('steps', function () {
+    var openAcc = function (btnSel) { return function (it, on) { var b = $(btnSel, it); it.classList.toggle('is-open', on); if (b) b.setAttribute('aria-expanded', on ? 'true' : 'false'); }; };
+    /* Sell: sale process deck */
+    var sp = $('#sp2List');
+    if (sp) stepper({ list: sp, items: $$('.sp2__step', sp), title: function (it) { return $('h3', it).textContent; }, label: 'Sale process steps', end: $('.sp2__end', sp) });
+    /* Buy: buying process line */
+    $$('.xsl__row').forEach(function (l) { stepper({ list: l, items: $$('.xsl__s', l), title: function (it) { return $('h3', it).textContent; }, label: 'Process steps', end: $('.xsl__end', l), open: function (it, on) { it.classList.toggle('is-open', on); } }); });
+    /* Retail: steps in cells */
+    $$('.xsc__grid').forEach(function (l) { stepper({ list: l, items: $$('.xsc__c:not(.xsc__c--end)', l), title: function (it) { return $('h3', it).textContent; }, label: 'Process steps', end: $('.xsc__c--end', l), open: function (it, on) { it.classList.toggle('is-open', on); } }); });
+    /* Hospitality: selling process accordion */
+    $$('.xpa2__list').forEach(function (l) { stepper({ list: l, items: $$('.xpa2__c', l), title: function (it) { return $('.xpa2__q span', it).textContent; }, label: 'Selling process steps', open: openAcc('.xpa2__q') }); });
+    /* Home: what to expect (selling / buying tracks) */
+    $$('.jrny__track').forEach(function (l) {
+      var items = $$('.step:not(.step--end)', l); if (!items.length) return;
+      stepper({ list: l, items: items, title: function (it) { return $('h3', it).textContent; }, label: 'Process steps', end: $('.step--end', l), open: function (it, on) { it.classList.toggle('is-open', on); } });
+    });
+  });
+
+  /* ---------- 3. Business finder: one question at a time ---------- */
+  safe('finder', function () {
+    var f = $('#finder2'); if (!f) return;
+    var groups = $$('.xf2__g', f); if (groups.length < 2) return;
+    var last = $('.xf2__you', f);
+    var steps = groups.concat(last ? [last] : []), n = steps.length, i = 0;
+    var bar = d.createElement('div'); bar.className = 'r7-fbar';
+    bar.innerHTML = '<span class="r7-fk" aria-live="polite"></span><span class="r7-fprog"><i></i></span>';
+    var foot = d.createElement('div'); foot.className = 'r7-ffoot';
+    foot.innerHTML = '<button type="button" class="r7-fback">' + ARR_L + ' Back</button><button type="button" class="btn r7-fnext">Next ' + ARR_R + '</button>';
+    groups[0].parentNode.insertBefore(bar, groups[0]);
+    (last || groups[groups.length - 1]).parentNode.insertBefore(foot, (last || groups[groups.length - 1]).nextSibling);
+    var back = $('.r7-fback', foot), nx = $('.r7-fnext', foot);
+    var show = function (j, anim) {
+      i = Math.max(0, Math.min(n - 1, j));
+      steps.forEach(function (s, m) { s.classList.toggle('r7-cur', m === i); });
+      $('.r7-fk', bar).textContent = 'Question ' + (i + 1) + ' of ' + n;
+      $('.r7-fprog i', bar).style.width = ((i + 1) / n * 100) + '%';
+      back.disabled = i === 0; nx.hidden = i === n - 1;
+      if (anim) { fade(steps[i]); var h = steps[i].querySelector('legend,h3,label,input'); if (h && h.tabIndex < 0) h.tabIndex = -1; }
+    };
+    back.addEventListener('click', function () { show(i - 1, true); });
+    nx.addEventListener('click', function () { show(i + 1, true); });
+    var mode = function () { f.classList.toggle('r7-on', MQ.matches); bar.hidden = foot.hidden = !MQ.matches; if (MQ.matches) show(i, false); else steps.forEach(function (s) { s.classList.remove('r7-cur'); }); };
+    MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
+    mode();
+  });
+
+  /* ---------- 4. Two-way tabs for paired cards (Own Boss / Own Landlord) ---------- */
+  safe('duo', function () {
+    $$('.xduo2').forEach(function (sec) {
+      var cards = $$('.xduo2__c', sec); if (cards.length !== 2) return;
+      var tabs = d.createElement('div'); tabs.className = 'r7-duo'; tabs.setAttribute('role', 'tablist'); tabs.setAttribute('aria-label', 'Choose a topic');
+      cards.forEach(function (c, j) {
+        var t = $('.xduo2__tag', c), b = d.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = t ? t.textContent : 'Option ' + (j + 1);
+        b.addEventListener('click', function () { set(j, true); }); tabs.appendChild(b);
+      });
+      sec.insertBefore(tabs, cards[0]);
+      var bs = $$('button', tabs);
+      var set = function (j, anim) { cards.forEach(function (c, m) { c.classList.toggle('r7-cur', m === j); }); bs.forEach(function (b, m) { b.setAttribute('aria-selected', m === j ? 'true' : 'false'); b.tabIndex = m === j ? 0 : -1; }); if (anim) fade(cards[j]); };
+      tabs.addEventListener('keydown', function (e) { var k = bs.indexOf(d.activeElement); if (k < 0) return; if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var m = (k + (e.key === 'ArrowRight' ? 1 : -1) + bs.length) % bs.length; bs[m].focus(); set(m, true); } });
+      swipe(sec, function (dir) { var cur = cards.findIndex(function (c) { return c.classList.contains('r7-cur'); }); set(Math.max(0, Math.min(1, cur + dir)), true); });
+      var mode = function () { sec.classList.toggle('r7-on', MQ.matches); tabs.hidden = !MQ.matches; if (MQ.matches) set(Math.max(0, cards.findIndex(function (c) { return c.classList.contains('r7-cur'); })), false); };
+      MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
+      mode();
+    });
+  });
+
+  /* ---------- 5. Quick contact bar steps aside while reading down, returns on scroll up ---------- */
+  safe('mbar', function () {
+    var bar = $('#mbar'), hdr = $('#hdr'); if (!bar || !hdr) return;
+    var sync = function () { bar.classList.toggle('r7-away', MQ.matches && hdr.classList.contains('is-hidden')); };
+    new MutationObserver(sync).observe(hdr, { attributes: true, attributeFilter: ['class'] });
+    sync();
+  });
+
+  /* ---------- 6. Values (About): three short cards as tabs ---------- */
+  safe('values', function () {
+    $$('.xv2__row').forEach(function (row) {
+      var cards = $$('.xv2__c', row); if (cards.length < 2) return;
+      var tabs = d.createElement('div'); tabs.className = 'r7-duo r7-vtabs'; tabs.setAttribute('role', 'tablist'); tabs.setAttribute('aria-label', 'Our values');
+      cards.forEach(function (c, j) { var b = d.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = ($('h3', c) || {}).textContent || ('Value ' + (j + 1)); b.addEventListener('click', function () { set(j, true); }); tabs.appendChild(b); });
+      row.parentNode.insertBefore(tabs, row);
+      var bs = $$('button', tabs), cur = 0;
+      var set = function (j, anim) { cur = j; cards.forEach(function (c, m) { c.classList.toggle('r7-cur', m === j); }); bs.forEach(function (b, m) { b.setAttribute('aria-selected', m === j ? 'true' : 'false'); b.tabIndex = m === j ? 0 : -1; }); if (anim) fade(cards[j]); };
+      tabs.addEventListener('keydown', function (e) { var k = bs.indexOf(d.activeElement); if (k < 0) return; if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var m = (k + (e.key === 'ArrowRight' ? 1 : -1) + bs.length) % bs.length; bs[m].focus(); set(m, true); } });
+      swipe(row, function (dir) { set(Math.max(0, Math.min(cards.length - 1, cur + dir)), true); });
+      var mode = function () { row.classList.toggle('r7-vrow', MQ.matches); tabs.hidden = !MQ.matches; set(cur, false); };
+      MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
+      mode();
+    });
+  });
+
+  /* ---------- 7. Agreement terms: first paragraph + 'Read the full terms' (no box scrolling inside the form) ---------- */
+  safe('terms', function () {
+    $$('.terms__b').forEach(function (t) {
+      if (!t.children.length) return;
+      var b = d.createElement('button'); b.type = 'button'; b.className = 'r7-more'; b.setAttribute('aria-expanded', 'false');
+      if (!t.id) t.id = 'r7terms'; b.setAttribute('aria-controls', t.id); b.textContent = 'Read the full terms';
+      t.parentNode.insertBefore(b, t.nextSibling);
+      b.addEventListener('click', function () { var o = t.classList.toggle('r7-open'); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.textContent = o ? 'Show less' : 'Read the full terms'; });
+      var mode = function () { t.classList.toggle('r7-terms', MQ.matches); b.hidden = !MQ.matches; if (MQ.matches) { t.removeAttribute('tabindex'); } };
+      MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
+      mode();
+    });
+  });
+
+  /* ---------- 8. Blog list: first four articles, then 'Show more articles' ---------- */
+  safe('blog', function () {
+    var g = $('.xblog__grid'); if (!g) return;
+    var items = Array.prototype.slice.call(g.children); if (items.length <= 4) return;
+    var b = d.createElement('button'); b.type = 'button'; b.className = 'btn btn--ghost r7-bmore'; b.textContent = 'Show more articles';
+    g.parentNode.insertBefore(b, g.nextSibling);
+    var shown = 4;
+    var apply = function () { items.forEach(function (it, j) { it.classList.toggle('r7-later', MQ.matches && j >= shown && !it.hidden); }); var left = items.filter(function (it) { return it.classList.contains('r7-later'); }).length; b.hidden = !MQ.matches || !left; };
+    b.addEventListener('click', function () { var first = items[shown]; shown += 4; apply(); if (first) { var a = first.querySelector('a'); if (a) a.focus(); } });
+    new MutationObserver(apply).observe(g, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
+    MQ.addEventListener ? MQ.addEventListener('change', apply) : MQ.addListener(apply);
+    apply();
+  });
+
+  /* ---------- 9. Mark sections that are read as two or more screens (chapters) ---------- */
+  safe('chapters', function () {
+    var mark = function (sec, sels) { if (!sec) return; sec.setAttribute('data-r7-chapters', ''); sels.forEach(function (s) { $$(s, sec).forEach(function (c) { c.setAttribute('data-r7-chap', ''); }); }); };
+    $$('section.contact').forEach(function (s) { mark(s, ['.contact__copy', '.form']); });
+    $$('section.xct').forEach(function (s) { mark(s, ['.xct__info', '.xct__form', '.xct__copy', 'form']); });
+    $$('section.team').forEach(function (s) { mark(s, ['.team__intro', '.team__cards .pf']); });
+    $$('section.xnda').forEach(function (s) { mark(s, ['.xnda__info', '.xnda__form']); });
+    $$('section.xpp').forEach(function (s) { mark(s, ['.xpp__head', '.xpp__p']); });
+    $$('section.xtp').forEach(function (s) { mark(s, ['.xtp__head', '.xtp__cards .pf']); });
+    $$('section.xls').forEach(function (s) { mark(s, ['.xls__copy', '.xls__form']); });
+    $$('section.xblog').forEach(function (s) { mark(s, ['.xblog__feat', '.xblog__grid>li']); });
   });
 })();
