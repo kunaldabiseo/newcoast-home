@@ -112,9 +112,10 @@
     $('#nextChip').addEventListener('click', () => show(cur + 1));
     frame.addEventListener('mouseenter', () => hover = true); frame.addEventListener('mouseleave', () => hover = false);
     frame.addEventListener('focusin', () => hover = true); frame.addEventListener('focusout', e => { if (!frame.contains(e.relatedTarget)) hover = false; });
-    const loop = t => { const dt = t - last; last = t; if (!RM && !hover && !d.hidden) acc += dt; const p = clamp(acc / DUR); $('#nextBar').style.setProperty('--p', p); if (p >= 1) show(cur + 1); requestAnimationFrame(loop); };
+    const ONE = matchMedia('(max-width:1023px)');
+    const loop = t => { const dt = t - last; last = t; if (ONE.matches) { if (cur) show(0); acc = 0; requestAnimationFrame(loop); return; } if (!RM && !hover && !d.hidden) acc += dt; const p = clamp(acc / DUR); $('#nextBar').style.setProperty('--p', p); if (p >= 1) show(cur + 1); requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
-    $$('[data-hero]').forEach(a => a.addEventListener('mouseenter', () => { if (cur !== +a.dataset.hero) show(+a.dataset.hero); }));
+    $$('[data-hero]').forEach(a => a.addEventListener('mouseenter', () => { if (!ONE.matches && cur !== +a.dataset.hero) show(+a.dataset.hero); }));
   });
 
   /* ---------- Tabs (roving focus + sliding pill) ---------- */
@@ -336,7 +337,7 @@
   safe('svcTabs', () => {
     if (!$('#svcList')) return;
     const sec = $('#services'), list = $('#svcList'), items = $$('.svc__item', list);
-    const short = ['Sell a business', 'Buy a business', 'Business appraisal', 'Consulting', 'Property leasing', 'Property sales'];
+    const short = ['Sell a Business', 'Buy a Business', 'Business Appraisal', 'Consulting', 'Property Leasing', 'Property Sales'];
     const wrap = d.createElement('div'); wrap.className = 'svc__layout'; list.before(wrap);
     const bar = d.createElement('div'); bar.className = 'svc__tabs'; bar.setAttribute('role', 'tablist'); bar.setAttribute('aria-label', 'Choose a service');
     wrap.append(bar, list);
@@ -510,7 +511,7 @@
         svcItems.forEach((c, i) => c.classList.toggle('is-on', i === a));
         svcImgs.forEach((im, i) => { im.classList.toggle('was-on', i === prev); im.classList.toggle('is-on', i === a); });
         svcNum.textContent = '0' + (a + 1); svcBar.style.transform = 'scaleX(' + ((a + 1) / svcItems.length) + ')'; svcCap.textContent = $('h3', svcItems[a]).textContent; } }
-    if (proto.length) proto.forEach(li => li.classList.toggle('is-on', li.getBoundingClientRect().top < vh * .62));
+    if (proto.length && innerWidth >= 1024) proto.forEach(li => li.classList.toggle('is-on', li.getBoundingClientRect().top < vh * .62));
 
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
@@ -929,7 +930,7 @@
     if (!v.type.length && !v.where.length && !v.involve.length && !v.budget.length) { err.textContent = 'Choose at least one option above.'; return; }
     if (!EMAIL.test(em)) { err.textContent = 'Enter your email address so we can send you listings.'; f2.email.focus(); return; }
     err.textContent = '';
-    var msg = [['Business type', v.type], ['Location', v.where], ['Involvement', v.involve], ['Budget', v.budget]].filter(function (x) { return x[1].length; }).map(function (x) { return x[0] + ': ' + x[1].join(', '); }).join('\n');
+    var msg = [['Business Type', v.type], ['Location', v.where], ['Business Model', v.involve], ['Approximate Budget', v.budget]].filter(function (x) { return x[1].length; }).map(function (x) { return x[0] + ': ' + x[1].join(', '); }).join('\n');
     var done = function () { $$('.xf2__groups, .xf2__you', f2).forEach(function (n) { n.hidden = true; }); ok.hidden = false; ok.focus(); };
     if (window.ncSend) { window.ncSend('finder', { first: f2.first.value.trim(), email: em, phone: f2.phone.value.trim(), message: msg, finder: v }, f2, null, done); return; }
     done();

@@ -2719,6 +2719,73 @@ html.rm .xrv__bar,html.rm .xrv__card,html.rm .xrv__line,html.rm .xrv__area,html.
 /* Home hero broker pill: no phone call from a computer */
 .xck__side .btn{margin-left:0!important;margin-right:auto;align-self:flex-start!important}
 
+/* ===== 28 Oct round 6 ===== */
+/* Buy: checklist intro on one line, calmer spacing */
+.xck__side{max-width:none}
+.xck__side .lead{max-width:none}
+@media (min-width:1024px){.xck__side .lead{white-space:nowrap}}
+.xck__board{margin-top:clamp(40px,4vw,56px)}
+.xck__top{padding:16px 18px 8px}
+/* Sell + Buy: home page 'Businesses We Work With' with the toggle; Buy keeps its dark colours */
+.types.xtyp--dark .tabs{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
+.types.xtyp--dark .tabs__pill{background:#fff}
+.types.xtyp--dark .tab{color:rgba(255,255,255,.8)}
+.types.xtyp--dark .tab[aria-selected="true"]{color:var(--ink)}
+/* Services We Offer: boxes line up with the heading, text and button */
+.xsa{align-items:center}
+.xsa__side .lead{margin-top:clamp(16px,1.4vw,20px)}
+.xsa__grid{grid-auto-rows:auto}
+.xsa__q{min-height:80px}
+/* Own Landlord photo: no extra dark layer, same as the Own Boss photo */
+.xduo2__c+.xduo2__c .xduo2__img::after{display:none}
+/* Retail steps: last square tidy, button sized to its text */
+.xsc__c--end{justify-content:center}
+.xsc__c--end h3{min-height:0}
+.xsc__c--end p{margin-top:12px}
+.xsc__c--end .btn{width:auto;display:inline-flex;align-self:flex-start;margin-top:22px}
+/* About: space between the hero and the dark story section */
+.phero:has(+ .xs2){padding-bottom:clamp(20px,2vw,28px)}
+/* About: story with one static image beside it */
+.xs2--img{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.75fr);gap:clamp(36px,5vw,80px);align-items:center}
+.xs2--img .xs2__img{grid-column:2;grid-row:1;margin:0;border-radius:26px;overflow:hidden;aspect-ratio:4/5}
+.xs2--img .xs2__img img{width:100%;height:100%;object-fit:cover}
+.xs2--img .xs2__main{grid-column:1;grid-row:1;min-width:0}
+.xs2--img .xs2__panels{max-width:none;min-height:clamp(230px,18vw,270px)}
+.xs2--img .xs2__p p{font-size:clamp(16px,1.2vw,18px)}
+/* About: Anthony then Kate, one after the other */
+.xpp{padding:var(--sp) var(--gut);background:var(--ink);color:#fff}
+.xpp__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:24px 60px;align-items:end}
+.xpp__head .h2{margin-top:12px;color:#fff}
+.xpp__head .lead{color:rgba(255,255,255,.82)}
+.xpp__list{margin-top:clamp(44px,5vw,70px);display:grid;gap:clamp(44px,5vw,72px)}
+.xpp__p{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;padding-top:clamp(44px,5vw,72px);border-top:1px solid rgba(255,255,255,.14)}
+.xpp__p:first-child{padding-top:0;border-top:0}
+.xpp__p--r .xpp__photo{order:2}
+.xpp__photo{border-radius:26px;overflow:hidden;aspect-ratio:4/5;background:#fff;max-width:440px;width:100%}
+.xpp__p--r .xpp__photo{justify-self:end}
+.xpp__photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.xpp__name{font-size:clamp(28px,2.6vw,40px);color:#fff}
+.xpp__role{margin-top:6px;color:#9FD9E4;font-weight:600;font-size:15px}
+.xpp__q{margin:clamp(20px,2vw,28px) 0 0;font-size:clamp(19px,1.6vw,24px);line-height:1.45;color:#fff;max-width:30ch}
+.xpp__creds{list-style:none;padding:0;margin:clamp(20px,2vw,26px) 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.xpp__creds li{padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.22);font-size:13.5px;color:rgba(255,255,255,.9)}
+.xpp__more{margin-top:20px;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)}
+.xpp__more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-weight:600}
+.xpp__more summary::-webkit-details-marker{display:none}
+.xpp__more summary i{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);display:grid;place-items:center;transition:transform .3s}
+.xpp__more summary i svg{width:12px;height:12px}
+.xpp__more[open] summary i{transform:rotate(45deg)}
+.xpp__bio{padding-bottom:16px}
+.xpp__bio p{font-size:15.5px;line-height:1.7;color:rgba(255,255,255,.85)}
+.xpp__bio p+p{margin-top:12px}
+.xpp__lic{font-size:13px!important;color:rgba(255,255,255,.6)!important}
+.xpp__acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:clamp(24px,2.4vw,32px)}
+.xpp__mail{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-size:15px}
+.xpp__mail svg{width:20px;height:20px}
+.xpp__mail:hover span{text-decoration:underline}
+/* mobile menu arrows (shared header) */
+.mnav__arr{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.22);color:var(--acc2);flex:none}
+
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
    Desktop (1024px+) is untouched by everything in this file.
@@ -3658,4 +3725,42 @@ html.rm .xrv__bar,html.rm .xrv__card,html.rm .xrv__line,html.rm .xrv__area,html.
   .xf2__g legend small{display:none}
   .xf2__you b{display:none}
   .xf2__row{margin-top:0}
+}
+
+/* ===== 28 Oct round 6 (phones + tablets) ===== */
+@media (max-width:1023px){
+  html,html:has(body.inner){scroll-snap-type:none!important}
+  .inner main>*,.inner .m-fit{scroll-snap-align:none!important}
+  .ftr__grid>nav:nth-child(1){order:2}
+  .ftr__grid>nav:nth-child(2){order:1}
+  .ftr__grid>div:nth-child(3){order:3}
+  .ftr__grid>.sub{order:4}
+  .xs2--img{display:block}
+  .xs2--img .xs2__img{display:none}
+  .xpp{padding-block:40px}
+  .xpp__head{grid-template-columns:1fr;gap:12px}
+  .xpp__list{margin-top:26px;gap:26px}
+  .xpp__p,.xpp__p--r{grid-template-columns:clamp(96px,26vw,160px) minmax(0,1fr);gap:16px 18px;align-items:start;padding-top:26px}
+  .xpp__p--r .xpp__photo{order:0}
+  .xpp__photo{border-radius:18px;aspect-ratio:3/4}
+  .xpp__name{font-size:22px}
+  .xpp__role{font-size:13.5px}
+  .xpp__q{font-size:16px;margin-top:12px}
+  .xpp__creds{grid-column:1/-1;margin-top:0;gap:6px}
+  .xpp__creds li{font-size:12.5px;padding:6px 10px}
+  .xpp__more,.xpp__acts{grid-column:1/-1}
+  .xpp__body{display:contents}
+  .xpp__body>.xpp__name,.xpp__body>.xpp__role,.xpp__body>.xpp__q{grid-column:2}
+  .xpp__more{margin-top:0}
+  .xpp__acts{margin-top:0}
+  .xsc__c--end .btn{margin-top:14px}
+}
+@media (max-width:1023px){.xsa__q{min-height:0}}
+@media (max-width:1023px){
+  .xpp__photo{grid-column:1;grid-row:1/span 3;align-self:start}
+  .xpp__body>.xpp__name{grid-row:1;align-self:end}
+  .xpp__body>.xpp__role{grid-row:2;margin-top:0}
+  .xpp__body>.xpp__q{grid-row:3;margin-top:4px;font-size:15px}
+  .xpp__p,.xpp__p--r{grid-template-rows:auto auto 1fr;row-gap:6px}
+  .xpp__creds{margin-top:8px}
 }
