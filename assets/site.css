@@ -2786,6 +2786,21 @@ html.rm .xrv__bar,html.rm .xrv__card,html.rm .xrv__line,html.rm .xrv__area,html.
 /* mobile menu arrows (shared header) */
 .mnav__arr{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.22);color:var(--acc2);flex:none}
 
+/* ===== 29 Oct: Buy 'We Believe In What We Sell', calmer editorial panel (text only) ===== */
+.xbel__in{position:relative;max-width:1200px;padding:clamp(48px,5vw,80px) clamp(28px,5vw,84px);border-radius:clamp(26px,2.6vw,38px);background:linear-gradient(180deg,#F3F8F8 0%,#FAFCFC 100%);border:1px solid rgba(0,42,54,.07);box-shadow:0 40px 80px -60px rgba(0,42,54,.35)}
+.xbel__h{position:relative;padding-bottom:clamp(22px,2vw,30px)}
+.xbel__h::after{content:"";position:absolute;left:50%;bottom:0;width:56px;height:3px;border-radius:3px;background:var(--acc);transform:translateX(-50%)}
+.xbel__grid{border-top:0;padding-top:0;margin-top:clamp(40px,4vw,60px);grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(30px,4.5vw,72px);align-items:center}
+.xbel__grid::before{content:"";grid-column:2;grid-row:1;align-self:stretch;background:linear-gradient(180deg,transparent,rgba(0,42,54,.14) 18%,rgba(0,42,54,.14) 82%,transparent)}
+.xbel__lead{grid-column:1;grid-row:1;position:relative;padding-top:clamp(34px,3vw,46px);font-size:clamp(22px,1.9vw,29px);line-height:1.4}
+.xbel__lead::before{content:"\201C";position:absolute;left:-4px;top:-18px;font-size:clamp(84px,7vw,110px);line-height:1;font-weight:600;color:var(--acc);opacity:.28}
+.xbel__body{grid-column:3;grid-row:1}
+.xbel__body .lead{color:rgba(0,42,54,.82)}
+.xbel__lead::before{font-family:Georgia,'Times New Roman',serif;font-weight:400}
+/* 29 Oct: desktop-only line break in long headings */
+br.dbr{display:none}
+@media (min-width:1024px){br.dbr{display:inline}}
+
 /* =====================================================================
    NewCoast inner pages: small-screen scenes (1023px and below only).
    Desktop (1024px+) is untouched by everything in this file.
@@ -3763,6 +3778,27 @@ html.rm .xrv__bar,html.rm .xrv__card,html.rm .xrv__line,html.rm .xrv__area,html.
   .xpp__body>.xpp__q{grid-row:3;margin-top:4px;font-size:15px}
   .xpp__p,.xpp__p--r{grid-template-rows:auto auto 1fr;row-gap:6px}
   .xpp__creds{margin-top:8px}
+}
+/* 29 Oct: believe panel on phones/tablets */
+@media (max-width:1023px){
+  .xbel{padding-inline:var(--gut)}
+  .xbel__in{padding:30px 20px;border-radius:24px}
+  .xbel__h{padding-bottom:16px}
+  .xbel__grid{grid-template-columns:1fr;gap:16px;margin-top:22px}
+  .xbel__grid::before{display:none}
+  .xbel__lead,.xbel__body{grid-column:1;grid-row:auto}
+  .xbel__lead{padding-top:26px}
+  .xbel__lead::before{font-size:70px;top:-12px}
+}
+@media (max-width:599px){
+  .xbel{padding-block:28px!important}
+  .xbel__in{padding:24px 18px}
+  .xbel__h{padding-bottom:12px;font-size:28px}
+  .xbel__grid{margin-top:16px;gap:12px}
+  .xbel__lead{padding-top:18px;font-size:17.5px;line-height:1.45}
+  .xbel__lead::before{font-size:54px;top:-10px}
+  .xbel__body .lead{font-size:14.5px;line-height:1.6}
+  .xbel__body .btn{margin-top:18px!important}
 }
 
 /* ===== 28 Oct round 7: one complete screen per section on phones and tablets (desktop untouched) ===== */
