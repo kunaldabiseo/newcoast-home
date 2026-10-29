@@ -947,6 +947,13 @@
     ok();
   });
 })();
+
+/* 29 Oct: business finder shows how many options are picked in each question */
+(() => { try {
+  const f = document.getElementById('finder2'); if (!f) return;
+  const sync = () => f.querySelectorAll('.xf2__g').forEach(g => { const n = g.querySelectorAll('input:checked').length, c = g.querySelector('.xf2__cnt'); if (c) c.textContent = n ? n + ' selected' : ''; g.classList.toggle('has-pick', n > 0); });
+  f.addEventListener('change', sync); f.addEventListener('reset', () => setTimeout(sync, 0)); sync();
+} catch (e) { console.warn('[NewCoast] finder count', e); } })();
 /* 28 Oct round 7: phones + tablets only (max-width 1023px).
    Every section reads as one complete screen: no sideways scrolling strips inside sections.
    - Testimonials: one review at a time with arrows, counter and swipe.
