@@ -1661,6 +1661,12 @@ body:has(.mnav.is-open) .mbar{visibility:hidden}
 @media (max-width:1023px){
   .xrv__card{opacity:1!important;transform:none!important}
 }
+
+/* Retail (desktop): less empty space between 'Request a Confidential Business Appraisal' and 'We Can Help You Find Your Next Retail Business' (both white, so their padding stacked to ~300px) */
+@media (min-width:1024px){
+  .xc2:has(+ .xcsp){padding-bottom:clamp(40px,4vw,64px)!important}
+  .xc2+.xcsp{padding-top:clamp(40px,4vw,64px)!important}
+}
 </style>
 </head>
 <body>
