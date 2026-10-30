@@ -4360,3 +4360,10 @@ body:has(.mnav.is-open) .mbar{visibility:hidden}
   .xc2:has(+ .xcsp){padding-bottom:clamp(40px,4vw,64px)!important}
   .xc2+.xcsp{padding-top:clamp(40px,4vw,64px)!important}
 }
+
+/* About 'The NewCoast Story' (desktop): the text area is exactly as tall as the longest chapter, so the arrows sit right under the text and never jump between chapters */
+@media (min-width:1024px){
+  .xs2--img .xs2__panels{display:grid!important;min-height:0!important}
+  .xs2--img .xs2__p{grid-area:1/1}
+  .xs2--img .xs2__p[hidden]{display:block!important;visibility:hidden;pointer-events:none}
+}
