@@ -4314,3 +4314,10 @@ br.dbr{display:none}
   .val__cta,.xcp__cta,.buyers__acts{margin-top:32px!important}
   .exp__copy>.btn,.faq__side>.btn,.xbel__body>.btn,.xhm__body>.btn,.xsa__side>.btn,.xc2__copy>.btn,.xed__copy>.btn,.xtp__head>.btn,.xed__copy .btn,.intro__copy>.btn,.conf .btn{margin-top:32px!important}
 }
+
+/* Home contact boxes (phones/tablets): show 'Call Us' / 'Email Us' under the icons */
+@media (max-width:1023px){
+  .direct .d-lbl{display:none!important}
+  .direct .m-lbl{display:inline!important}
+  .direct small{color:var(--ink)!important}
+}
