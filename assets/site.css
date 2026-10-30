@@ -4297,3 +4297,9 @@ br.dbr{display:none}
   .xct__info>.xct__more:not(.m-collapsed){display:block!important;grid-column:1/-1!important}
   .xct__info>.xct__more p+p{margin-top:12px}
 }
+
+/* Hospitality + Retail 'Businesses We Work With' (desktop): 'We' starts line two, intro text sits up level with the top of the heading */
+@media (min-width:1024px){
+  .xtyp .types__top{align-items:start!important}
+  .xtyp .types__top .lead{padding-top:6px!important;margin-top:0!important}
+}
