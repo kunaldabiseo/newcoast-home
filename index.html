@@ -1631,6 +1631,12 @@ html.rm .scroll-cue::after{animation:none}
 @media (max-width:1023px){
   .xpa2 .r7-snav:not([hidden]),.xsc .r7-snav:not([hidden]){justify-content:center}
 }
+
+/* Headshot cards (phones/tablets): every card fills the full row width, so it sits centred with even space either side */
+@media (max-width:1023px){
+  .team__cards{align-items:stretch!important}
+  body .team__cards .pf{align-self:stretch!important;margin-inline:0!important}
+}
 </style>
 </head>
 <body>
