@@ -1637,6 +1637,30 @@ html.rm .scroll-cue::after{animation:none}
   .team__cards{align-items:stretch!important}
   body .team__cards .pf{align-self:stretch!important;margin-inline:0!important}
 }
+
+/* Menu always on top (all sizes): the map's own layers stay inside the map, and the header + open menu sit above every section */
+.leaflet-container,.xmap__el,.map__fb{isolation:isolate;z-index:0}
+.hdr{z-index:10000!important}
+.mnav{z-index:9999!important}
+
+/* Bottom Call / Enquire bar stays above every section too (under the open menu) */
+.mbar{z-index:9990!important}
+body:has(.mnav.is-open) .mbar{visibility:hidden}
+
+/* Phones/tablets: headings and text stay still while scrolling (no slide-in words or blocks; iPhone showed this as headings jumping) */
+@media (max-width:1023px){
+  .js [data-split] .w>span,.js [data-split].is-in .w>span{transform:none!important;transition:none!important}
+  .js [data-reveal],.js [data-reveal].is-in{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* Home 'Dedicated and Confidential Support' (phones/tablets): each row is tall enough for its number circle, so circles sit inside the lines */
+@media (max-width:1023px){
+  .proto.m-acc h3{min-height:52px!important;display:flex!important;align-items:center;padding-top:8px!important;padding-bottom:8px!important;box-sizing:border-box}
+  .proto.m-acc li::before{top:9px!important}
+}
+@media (max-width:1023px){
+  .xrv__card{opacity:1!important;transform:none!important}
+}
 </style>
 </head>
 <body>
@@ -2591,7 +2615,7 @@ html.rm .scroll-cue::after{animation:none}
 
   /* Gentle entrance for each scene's items on small screens (skipped when motion is turned off) */
   safe('mMotion', () => {
-    if (!G || RM) return;
+    return; // 30 Oct: phones/tablets keep content still while scrolling (iPhone glitch report)
     gsap.matchMedia().add('(max-width:1023px)', () => {
       const grp = (sel, trig) => { if (!$$(sel).length) return; gsap.from(sel, { y: 16, opacity: 0, duration: .55, ease: 'power2.out', stagger: .05, clearProps: 'transform,opacity', scrollTrigger: { trigger: trig, start: 'top 78%', once: true } }); };
       grp('.svc__tab', '#services'); grp('#p-sell .step', '#journey'); grp('#p-hosp .chip', '#types'); grp('.factor', '#value');

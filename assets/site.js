@@ -393,7 +393,7 @@
 
   /* Gentle entrance for each scene's items on small screens (skipped when motion is turned off) */
   safe('mMotion', () => {
-    if (!G || RM) return;
+    return; // 30 Oct: phones/tablets keep content still while scrolling (iPhone glitch report)
     gsap.matchMedia().add('(max-width:1023px)', () => {
       const grp = (sel, trig) => { if (!$$(sel).length) return; trig = $(trig) || $(sel).parentElement; gsap.from(sel, { y: 16, opacity: 0, duration: .55, ease: 'power2.out', stagger: .05, clearProps: 'transform,opacity', scrollTrigger: { trigger: trig, start: 'top 78%', once: true } }); };
       grp('.svc__tab', '#services'); grp('#p-sell .step', '#journey'); grp('#p-hosp .chip', '#types'); grp('.factor', '#value');
@@ -758,7 +758,7 @@
     addEventListener('load', run); addEventListener('resize', refit); if (d.fonts && d.fonts.ready) d.fonts.ready.then(run); run(); });
 
   /* Gentle entrances for small screens only (GSAP matchMedia reverts everything on desktop / reduced motion) */
-  safe('mgsap', () => { if (!window.gsap || !window.ScrollTrigger) return;
+  safe('mgsap', () => { return; /* 30 Oct: phones/tablets keep content still while scrolling */ if (!window.gsap || !window.ScrollTrigger) return;
     gsap.matchMedia().add({ small: '(max-width:1023px) and (prefers-reduced-motion: no-preference)' }, ctx => {
       if (d.documentElement.classList.contains('rm')) return;
       const grp = (sel, trig, o) => { const els = $$(sel); if (!els.length) return; gsap.from(els, Object.assign({ y: 18, opacity: 0, duration: .6, ease: 'power2.out', stagger: .06, clearProps: 'transform,opacity', scrollTrigger: { trigger: trig || els[0].parentElement, start: 'top 82%', once: true } }, o || {})); };
