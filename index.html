@@ -1168,11 +1168,6 @@ html.rm .scroll-cue::after{animation:none}
   /* form: more room above the spam check and Submit */
   .form .captcha{margin-top:22px!important}
   .form__foot .btn{margin-top:22px!important}
-  /* footer: Buy & Sell on the left, Quick Links on the right */
-  .ftr__grid>nav:nth-child(1){order:2}
-  .ftr__grid>nav:nth-child(2){order:1}
-  .ftr__grid>div:nth-child(3){order:3}
-  .ftr__grid>.sub{order:4}
 }
 @media (max-width:599px){
   .m-br{display:inline}
@@ -1203,7 +1198,6 @@ html.rm .scroll-cue::after{animation:none}
 .r7-bmore[hidden],.r7-more[hidden]{display:none!important}
 @media (max-width:1023px){
   /* quick contact bar steps aside while reading down */
-  .mbar.r7-away{transform:translateY(160%)!important}
 
   /* ---- testimonials: one review at a time ---- */
   .r7-stage{display:grid!important;grid-template-columns:minmax(0,1fr);overflow:hidden!important;scroll-snap-type:none!important;gap:0!important}
@@ -1324,8 +1318,6 @@ html.rm .scroll-cue::after{animation:none}
   .xtp .team__cards.xtp__cards{display:flex!important;flex-direction:column!important;overflow:visible!important;margin-inline:0!important;padding:0!important;gap:12px!important;scroll-snap-type:none!important}
   .xtp .team__cards.xtp__cards .pf{flex:none!important;width:auto!important;scroll-snap-align:none!important}
   /* agreement terms: no scrolling box */
-  .terms__b.r7-terms{max-height:none!important;overflow:visible!important}
-  .terms__b.r7-terms:not(.r7-open)>*:not(:first-child){display:none}
   .r7-more{all:unset;cursor:pointer;display:inline-flex;align-items:center;min-height:40px;margin:2px 0 4px;font-weight:600;font-size:14px;color:var(--acc);text-decoration:underline;text-underline-offset:3px}
   .r7-more[hidden]{display:none}
   .r7-more:focus-visible{outline:3px solid var(--acc);outline-offset:2px;border-radius:6px}
@@ -1390,8 +1382,6 @@ html.rm .scroll-cue::after{animation:none}
   .xsa{gap:18px!important}
   .xc2__imgs{height:150px!important}
   /* agreement: the terms open on request, so the form stays one screen */
-  .terms__b.r7-terms:not(.r7-open)>*{display:none}
-  .terms__b.r7-terms:not(.r7-open){padding:0!important}
 }
 @media (max-width:599px){
   .val{padding-bottom:24px!important}
@@ -1405,10 +1395,11 @@ html.rm .scroll-cue::after{animation:none}
   :root{--scene-top:32px;--scene-bot:32px}
   .h2{font-size:clamp(25px,6.6vw,30px)!important}
   .exp .exp__img{aspect-ratio:16/6!important}
-  .conf__vis{display:none!important}
+  .conf__vis{aspect-ratio:16/5!important}
   .stack{height:clamp(130px,20vh,170px)!important}
   .intro__a,.intro__b{height:clamp(96px,16vh,130px)!important}
-  .xcsp__img,.xc2__imgs{display:none!important}
+  .xcsp__img{aspect-ratio:16/5!important}
+  .xc2__imgs{height:120px!important}
   .xbl__big{aspect-ratio:16/7!important}
   .xhw__img{aspect-ratio:16/5!important}
   .xh--poster .xh__frame{min-height:0!important}
@@ -1425,8 +1416,7 @@ html.rm .scroll-cue::after{animation:none}
   .xck__img{aspect-ratio:16/5!important}
 }
 @media (max-width:599px) and (max-height:700px){
-  .xv2__row.r7-vrow .xv2__c .xv2__img{display:none!important}
-  .xmap__el,.map__fb{height:170px!important}
+  .xv2__row.r7-vrow .xv2__c .xv2__img{aspect-ratio:16/6!important}
   .xed__img{aspect-ratio:16/6!important}
   .factor{min-height:38px!important;padding:6px!important}
   .val .lead{font-size:14px;line-height:1.5}
@@ -1446,6 +1436,167 @@ html.rm .scroll-cue::after{animation:none}
   .xblog__filters button,.xblog__filters a{min-height:38px!important;padding-block:0!important}
 }
 @media (max-width:599px){.xblog__feat .xblog__fi{aspect-ratio:16/7!important}}
+
+/* ===== 30 Oct round 8: Katherine's mobile review of every page (phones/tablets unless noted) ===== */
+.m-br{display:none}
+.m-lbl{display:none}
+.nowrap{white-space:nowrap}
+.r8-hide{display:none!important}
+.r8-more{display:none}
+
+/* Sell page (desktop too): less empty space between 'Businesses We Work With' and the sale process */
+.types:has(+ .sp2){padding-bottom:clamp(48px,5vw,72px)!important}
+.types+.sp2{padding-top:clamp(36px,4vw,56px)!important}
+.types+.sp2 .wrap,.types+.sp2>.wrap{padding-top:0!important}
+
+/* Own Boss / Own Landlord: both photos get the same light shade (the landlord photo is now a clean copy) */
+.xduo2__c+.xduo2__c .xduo2__img::after{display:block!important}
+
+/* Buyer checklist (all sizes): a little more room under each item's heading */
+.xck__txt h4{margin-bottom:12px}
+.xck__txt p{margin-top:0}
+
+@media (max-width:1023px){
+  /* paragraphs fill their box evenly (Safari's 'pretty' wrapping left short ragged lines) */
+  p,.lead{text-wrap:wrap!important}
+  .m-br{display:inline}
+
+  /* one rhythm for every section on every page: same top and bottom space as the home page */
+  .inner main>section:not(.xh):not(.phero):not(.xbel){padding-top:44px!important;padding-bottom:44px!important}
+  .inner main>section.xbel{padding-top:32px!important;padding-bottom:32px!important}
+
+  /* home-style 'Businesses We Work With' spacing on every page */
+  .types__top{gap:16px!important;margin-bottom:22px!important}
+  .types__top .tabs{margin-top:20px!important}
+  .types__top .lead{margin-top:0!important}
+
+  /* appraisal (home): more room around 'Every appraisal includes' and its button */
+  .val .incl{margin-top:24px!important}
+  .val .incl h3{margin-bottom:6px}
+  .val__cta{margin-top:26px!important}
+
+  /* contact form message box: placeholder sits higher */
+  .form .field textarea,.xform textarea{padding-top:10px!important;padding-bottom:10px!important;line-height:1.45!important}
+  .form .field textarea::placeholder,.xform textarea::placeholder{line-height:1.45}
+
+  /* contact sections on inner pages: Call Us + Email Us boxes, then the form; 'Read more' text no longer squeezes the boxes */
+  .xct__kate{display:none!important}
+  .xct .d-lbl{display:none}.xct .m-lbl{display:inline}
+  .xct__info{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important}
+  .xct__info>*:not(.xct__tile){grid-column:1/-1!important}
+  .xct__info .m-more-btn,.xct__info [data-m-more],.xct__info .xct__more{grid-column:1/-1!important;width:auto!important}
+  .xct__info [data-m-more] p{max-width:none!important}
+  .xct__tile{flex-direction:column!important;align-items:center!important;text-align:center!important;gap:8px!important;padding:14px 8px!important}
+  .xct__tile b{display:none!important}
+  .xct__loc{display:none!important}
+  .xct__grid{gap:24px!important}
+
+  /* headshot cards (home 'Get to Know Us', Retail and Contact brokers): same width, same photo size, qualifications shown, full email visible */
+  body .team__cards .pf{display:grid!important;grid-template-columns:118px minmax(0,1fr)!important;grid-template-rows:auto auto 1fr!important;column-gap:14px!important;width:100%!important;max-width:none!important;flex:none!important;padding:12px!important;border-radius:18px!important;transform:none!important}
+  body .team__cards .pf__stage{grid-column:1;grid-row:1/4;aspect-ratio:3/4!important;height:auto!important;min-height:0!important;width:118px!important;border-radius:12px!important;overflow:hidden;border:0!important}
+  body .team__cards .pf__stage img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  body .team__cards .pf__badge{display:none!important}
+  body .team__cards .pf__body{display:contents!important}
+  body .team__cards .pf__name{grid-column:2;grid-row:1;padding-top:2px}
+  body .team__cards .pf h3{font-size:18px!important}
+  body .team__cards .pf__lead{font-size:13px!important}
+  body .team__cards .pf__creds{grid-column:2;grid-row:2;display:flex!important;flex-direction:column;gap:3px!important;margin-top:8px!important}
+  body .team__cards .pf__creds li{font-size:12.5px!important;line-height:1.35}
+  body .team__cards .pf__acts{grid-column:1/-1!important;grid-row:4;padding:10px 0 0!important;margin-top:10px;border-top:1px solid #EAF1F0}
+  body .team__cards .pf__call,body .team__cards .pf__mail{min-height:42px!important;font-size:14px!important}
+  body .team__cards .pf__mail{flex:1;min-width:0}
+  body .team__cards .pf__mail span{white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;font-size:13.5px!important}
+  body .team__cards .pf__copy{margin-left:auto!important;flex:none}
+  body .team__cards .pf__acts>a+a{margin-top:2px}
+  .xtp .team__cards.xtp__cards{display:flex!important;flex-direction:column!important;overflow:visible!important;margin-inline:0!important;padding:0!important;gap:12px!important}
+
+  /* Sell: 'Support From Listing to Settlement' laid out like 'Maximise Your Sale Price' (heading, photo, text; no short line) */
+  .xcm{display:flex!important;flex-direction:column!important;gap:0!important}
+  .xcm__copy{display:contents!important}
+  .xcm__copy .eyebrow{order:0}
+  .xcm__copy .h2{order:1;margin-top:0}
+  .xcm__img{order:2;margin-top:18px}
+  .xcm__body{order:3;margin-top:18px}
+  .xcm .xfg__rule,.xmt .xfg__rule{display:none!important}
+  .xmt__img,.xcm__img{height:200px!important;aspect-ratio:auto!important;border-radius:22px!important}
+  .xmt__body{margin-top:18px}
+
+  /* Sell: statement reads in full colour on phones, bigger pictures */
+  .xs__t .xw{opacity:1!important}
+  .xs__pills{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px!important;width:100%;margin-top:22px!important}
+  .xs__pill{width:auto!important;aspect-ratio:4/3!important;border-radius:16px!important}
+
+  /* hero buttons sized like the home page (not stretched across the screen) */
+  .phero .xh__cta{display:flex!important;flex-wrap:wrap!important;gap:10px!important}
+  .phero .xh__cta .btn{width:auto!important;flex:0 0 auto!important;min-height:44px;font-size:15px;padding:0 6px 0 15px}
+
+  /* About + Contact heroes: text sits lower, clear of the menu bar; body text uses the full width */
+  .xh--poster:not(.r8-sell) .xh__frame{padding-top:110px!important}
+  .xh--poster .xh__s{max-width:none!important}
+  .xh--poster .xh__row{display:block!important}
+  .xh--poster .xh__cta{margin-top:18px!important}
+
+  /* Retail hero buttons: same as Hospitality */
+  .xh--wide .xh__cta{flex-direction:column!important;align-items:stretch!important}
+  .xh--wide .xh__cta .btn{width:100%!important;justify-content:center}
+
+  /* Buy: buyer guide intro runs under the heading (no button) */
+  .xck__side{display:block!important}
+  .xck__side .lead{margin-top:10px!important}
+
+  /* Buy + Retail process steppers keep the page margin */
+  .xsl .r7-steps.r7-on,.xsl .r7-snav,.xsl .r7-sfoot{margin-left:var(--gut)!important;margin-right:var(--gut)!important}
+  .xsl .xhead{padding-inline:var(--gut)}
+  .r7-steps.r7-on>.r7-cur h3{margin-bottom:10px!important}
+  .r7-steps.r7-on>.r7-cur p{margin-top:0!important}
+
+  /* clamped intros get a real 'Read more' */
+  .r8-clamp.r8-open{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important}
+  .r8-more{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 0;border:0;background:none;font:inherit;font-size:15px;font-weight:600;color:var(--acc);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .on-dark .r8-more{color:#fff}
+
+  /* About people: even spacing, phone number with an icon */
+  .xpp__creds{margin-bottom:18px!important}
+  .xpp__more{margin-top:4px!important}
+  .xpp__acts{display:flex!important;flex-direction:column;align-items:flex-start;gap:10px!important;margin-top:16px!important}
+  .xpp__mail{font-size:15px}
+  .xpp__p,.xpp__p--r{row-gap:10px!important}
+
+  /* About story: more room between the dots and the labels */
+  .xs2__stop{gap:12px!important}
+
+  /* Map: bigger, all three city buttons the same size */
+  .xmap__el,.map__fb{height:340px!important}
+  .xmap__list{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+  .loccard{width:100%!important;min-height:56px;justify-content:center!important;text-align:center;padding:8px 6px!important;flex-direction:column!important;gap:4px!important}
+  .loccard b{font-size:13px!important;line-height:1.25}
+  .loccard__dot{margin:0 auto}
+
+  /* Confidentiality form: terms snippet scrolls inside the light blue box, like the computer version */
+  .xform--nda .terms__b{display:block!important;max-height:170px!important;overflow:auto!important;padding:12px 14px!important;font-size:13px!important}
+  .xform--nda .terms__b>*{display:block!important}
+  .xform--nda .cap,.xform--nda .captcha{width:100%!important;max-width:none!important}
+  .xform--nda .captcha .cap{width:100%!important}
+}
+
+/* Sell hero on phones: photo on top, words below on a calm background (easier to read) */
+@media (max-width:767px){
+  .r8-sell{padding:84px var(--gut) 8px!important}
+  .r8-sell .xh__frame{display:flex!important;flex-direction:column!important;min-height:0!important;padding:0!important;background:none!important;overflow:visible!important;border-radius:0!important;color:var(--ink)!important}
+  .r8-sell .xh__img{position:relative!important;inset:auto!important;width:100%!important;height:230px!important;border-radius:22px!important;object-fit:cover;order:0}
+  .r8-sell .xh__shade{display:none!important}
+  .r8-sell .xh__body{position:static!important;order:1;padding:20px 0 0!important;color:var(--ink)!important;max-width:none!important}
+  .r8-sell .xcrumbs,.r8-sell .xcrumbs a,.r8-sell .xcrumbs span{color:rgba(0,42,54,.7)!important}
+  .r8-sell .xh__t{color:var(--ink)!important;font-size:clamp(34px,10vw,44px)!important;margin-top:10px!important}
+  .r8-sell .xh__t em{color:var(--acc)!important}
+  .r8-sell .xh__s{color:rgba(0,42,54,.85)!important;font-size:16px!important;line-height:1.55!important;margin-top:12px!important}
+  .r8-sell .xh__cta .btn--light{--bg:transparent;--fg:var(--ink);--bd:rgba(0,42,54,.25)}
+}
+@media (max-width:1023px){
+  body .team__cards .pf__name,body .team__cards .pf__creds{text-align:left!important;align-items:flex-start!important}
+  .xcm__img{width:100%!important}
+  .xcm__img img{width:100%;height:100%;object-fit:cover}
+}
 </style>
 </head>
 <body>
@@ -2506,7 +2657,7 @@ html.rm .scroll-cue::after{animation:none}
     lastY = y;
     d.body.classList.toggle('hdr-off', hdr.classList.contains('is-hidden'));
     const hb = heroEl.getBoundingClientRect().bottom, cr = contactEl.getBoundingClientRect();
-    mbar.classList.toggle('is-on', hb < 0 && !(cr.top < vh && cr.bottom > 0));
+    mbar.classList.toggle('is-on', hb < 0); /* 30 Oct: stays put once past the hero (no flicker) */
     if (!RM) {
       if (DESK.matches) pars.forEach(img => { const r = img.parentElement.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return; const c = (r.top + r.height / 2 - vh / 2) / vh; img.style.transform = `translate3d(0,${c * parseFloat(img.dataset.speed || .1) * -100}%,0) scale(1.12)`; });
     }
@@ -2714,14 +2865,6 @@ html.rm .scroll-cue::after{animation:none}
     });
   });
 
-  /* ---------- 5. Quick contact bar steps aside while reading down, returns on scroll up ---------- */
-  safe('mbar', function () {
-    var bar = $('#mbar'), hdr = $('#hdr'); if (!bar || !hdr) return;
-    var sync = function () { bar.classList.toggle('r7-away', MQ.matches && hdr.classList.contains('is-hidden')); };
-    new MutationObserver(sync).observe(hdr, { attributes: true, attributeFilter: ['class'] });
-    sync();
-  });
-
   /* ---------- 6. Values (About): three short cards as tabs ---------- */
   safe('values', function () {
     $$('.xv2__row').forEach(function (row) {
@@ -2734,20 +2877,6 @@ html.rm .scroll-cue::after{animation:none}
       tabs.addEventListener('keydown', function (e) { var k = bs.indexOf(d.activeElement); if (k < 0) return; if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var m = (k + (e.key === 'ArrowRight' ? 1 : -1) + bs.length) % bs.length; bs[m].focus(); set(m, true); } });
       swipe(row, function (dir) { set(Math.max(0, Math.min(cards.length - 1, cur + dir)), true); });
       var mode = function () { row.classList.toggle('r7-vrow', MQ.matches); tabs.hidden = !MQ.matches; set(cur, false); };
-      MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
-      mode();
-    });
-  });
-
-  /* ---------- 7. Agreement terms: first paragraph + 'Read the full terms' (no box scrolling inside the form) ---------- */
-  safe('terms', function () {
-    $$('.terms__b').forEach(function (t) {
-      if (!t.children.length) return;
-      var b = d.createElement('button'); b.type = 'button'; b.className = 'r7-more'; b.setAttribute('aria-expanded', 'false');
-      if (!t.id) t.id = 'r7terms'; b.setAttribute('aria-controls', t.id); b.textContent = 'Read the full terms';
-      t.parentNode.insertBefore(b, t.nextSibling);
-      b.addEventListener('click', function () { var o = t.classList.toggle('r7-open'); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.textContent = o ? 'Show less' : 'Read the full terms'; });
-      var mode = function () { t.classList.toggle('r7-terms', MQ.matches); b.hidden = !MQ.matches; if (MQ.matches) { t.removeAttribute('tabindex'); } };
       MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
       mode();
     });
@@ -2779,6 +2908,62 @@ html.rm .scroll-cue::after{animation:none}
     $$('section.xls').forEach(function (s) { mark(s, ['.xls__copy', '.xls__form']); });
     $$('section.xblog').forEach(function (s) { mark(s, ['.xblog__feat', '.xblog__grid>li']); });
   });
+})();
+
+/* 30 Oct round 8: Katherine's mobile review. Phones/tablets unless noted. */
+(function () {
+  'use strict';
+  var d = document, MQ = matchMedia('(max-width:1023px)'), PH = matchMedia('(max-width:767px)');
+  var $ = function (s, c) { return (c || d).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+  var safe = function (n, f) { try { f(); } catch (e) { if (window.console) console.warn('r8 ' + n, e); } };
+  var on = function (mq, f) { mq.addEventListener ? mq.addEventListener('change', f) : mq.addListener(f); };
+
+  /* Sell hero gets its own phone layout */
+  safe('sell-hero', function () { var h = $('.xh--poster[data-chapter="Sell My Business"]'); if (h) h.classList.add('r8-sell'); });
+
+  /* Review arrows never look switched off on phones (the desktop rail script greys them out) */
+  safe('arrows', function () {
+    $$('#tPrev,#tNext').forEach(function (b) {
+      var fix = function () { if (MQ.matches && b.disabled) b.disabled = false; };
+      new MutationObserver(fix).observe(b, { attributes: true, attributeFilter: ['disabled'] }); fix();
+    });
+  });
+
+  /* One 'Read more' only: the inline one also opens the paragraphs that follow */
+  safe('one-more', function () {
+    $$('.m-tail-btn').forEach(function (tb) {
+      var p = tb.parentElement, nb = p && p.nextElementSibling, box = nb && nb.nextElementSibling;
+      if (!nb || !nb.classList.contains('m-more-btn') || !box || !box.hasAttribute('data-m-more')) return;
+      nb.classList.add('r8-hide');
+      tb.addEventListener('click', function () {
+        var open = tb.getAttribute('aria-expanded') === 'true';
+        box.classList.toggle('m-collapsed', !open);
+        tb.setAttribute('aria-controls', (tb.getAttribute('aria-controls') || '') + ' ' + (box.id || ''));
+      });
+    });
+  });
+
+  /* Clamped intro paragraphs get a 'Read more' instead of being cut off */
+  safe('clamp', function () {
+    $$('.xpa2__head .lead, .xf2 .xhead--c .lead').forEach(function (p, i) {
+      p.classList.add('r8-clamp'); if (!p.id) p.id = 'r8c' + i;
+      var b = d.createElement('button'); b.type = 'button'; b.className = 'r8-more'; b.setAttribute('aria-controls', p.id); b.setAttribute('aria-expanded', 'false'); b.textContent = 'Read more';
+      p.after(b);
+      b.addEventListener('click', function () { var o = p.classList.toggle('r8-open'); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.textContent = o ? 'Show less' : 'Read more'; });
+      var sync = function () { if (!MQ.matches) { b.hidden = true; return; } var open = p.classList.contains('r8-open'); if (open) { b.hidden = false; return; } b.hidden = !(p.scrollHeight > p.clientHeight + 2); };
+      on(MQ, sync); addEventListener('resize', sync); setTimeout(sync, 300); sync();
+    });
+  });
+
+  /* Contact page (phones only): the enquiry form comes after the broker profiles */
+  safe('contact-order', function () {
+    var ct = $('#contact'), br = $('#brokers'); if (!ct || !br || !$('.phero[data-chapter="Contact Us"]')) return;
+    var mark = d.createComment('contact-home'); ct.parentNode.insertBefore(mark, ct);
+    var place = function () { if (PH.matches) { if (br.nextElementSibling !== ct) br.after(ct); } else if (mark.nextSibling !== ct) mark.after(ct); };
+    on(PH, place); place();
+  });
+
 })();
 </script>
 </body>

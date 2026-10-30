@@ -499,7 +499,7 @@
     lastY = y;
     d.body.classList.toggle('hdr-off', hdr.classList.contains('is-hidden'));
     const hb = heroEl ? heroEl.getBoundingClientRect().bottom : -1, cr = contactEl ? contactEl.getBoundingClientRect() : { top: 1e9, bottom: -1e9 };
-    if (mbar) mbar.classList.toggle('is-on', hb < 0 && !(cr.top < vh && cr.bottom > 0));
+    if (mbar) mbar.classList.toggle('is-on', hb < 0); /* 30 Oct: stays put once past the hero (no flicker) */
     if (!RM) {
       if (DESK.matches) pars.forEach(img => { const r = img.parentElement.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return; const c = (r.top + r.height / 2 - vh / 2) / vh; img.style.transform = `translate3d(0,${c * parseFloat(img.dataset.speed || .1) * -100}%,0) scale(1.12)`; });
     }
@@ -634,7 +634,7 @@
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles &copy; Esri', maxZoom: 16 }).addTo(map)
         .on('load', () => { const fb = $('.map__fb'); if (fb) fb.remove(); });
       L0.forEach(p => L.marker([p.lat, p.lng], { icon: L.divIcon({ className: '', iconSize: [0, 0], html: '<div class="ncpin' + (p.cur ? '' : ' fut') + '"><span>' + p.n + '</span><i></i><em></em></div>' }) }).addTo(map).on('click', () => pick(p.k)));
-      const pad = DESK.matches ? { paddingTopLeft: [Math.min(500, el.offsetWidth * .4), 60], paddingBottomRight: [60, 60] } : { padding: [40, 40] };
+      const pad = DESK.matches ? { paddingTopLeft: [Math.min(500, el.offsetWidth * .4), 60], paddingBottomRight: [60, 60] } : { paddingTopLeft: [80, 46], paddingBottomRight: [80, 26] };
       map.fitBounds(L0.map(p => [p.lat, p.lng]), Object.assign({ maxZoom: 9 }, pad)); };
     const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io.disconnect();
       const css = d.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; d.head.appendChild(css);
@@ -1135,14 +1135,6 @@
     });
   });
 
-  /* ---------- 5. Quick contact bar steps aside while reading down, returns on scroll up ---------- */
-  safe('mbar', function () {
-    var bar = $('#mbar'), hdr = $('#hdr'); if (!bar || !hdr) return;
-    var sync = function () { bar.classList.toggle('r7-away', MQ.matches && hdr.classList.contains('is-hidden')); };
-    new MutationObserver(sync).observe(hdr, { attributes: true, attributeFilter: ['class'] });
-    sync();
-  });
-
   /* ---------- 6. Values (About): three short cards as tabs ---------- */
   safe('values', function () {
     $$('.xv2__row').forEach(function (row) {
@@ -1155,20 +1147,6 @@
       tabs.addEventListener('keydown', function (e) { var k = bs.indexOf(d.activeElement); if (k < 0) return; if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var m = (k + (e.key === 'ArrowRight' ? 1 : -1) + bs.length) % bs.length; bs[m].focus(); set(m, true); } });
       swipe(row, function (dir) { set(Math.max(0, Math.min(cards.length - 1, cur + dir)), true); });
       var mode = function () { row.classList.toggle('r7-vrow', MQ.matches); tabs.hidden = !MQ.matches; set(cur, false); };
-      MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
-      mode();
-    });
-  });
-
-  /* ---------- 7. Agreement terms: first paragraph + 'Read the full terms' (no box scrolling inside the form) ---------- */
-  safe('terms', function () {
-    $$('.terms__b').forEach(function (t) {
-      if (!t.children.length) return;
-      var b = d.createElement('button'); b.type = 'button'; b.className = 'r7-more'; b.setAttribute('aria-expanded', 'false');
-      if (!t.id) t.id = 'r7terms'; b.setAttribute('aria-controls', t.id); b.textContent = 'Read the full terms';
-      t.parentNode.insertBefore(b, t.nextSibling);
-      b.addEventListener('click', function () { var o = t.classList.toggle('r7-open'); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.textContent = o ? 'Show less' : 'Read the full terms'; });
-      var mode = function () { t.classList.toggle('r7-terms', MQ.matches); b.hidden = !MQ.matches; if (MQ.matches) { t.removeAttribute('tabindex'); } };
       MQ.addEventListener ? MQ.addEventListener('change', mode) : MQ.addListener(mode);
       mode();
     });
@@ -1200,4 +1178,59 @@
     $$('section.xls').forEach(function (s) { mark(s, ['.xls__copy', '.xls__form']); });
     $$('section.xblog').forEach(function (s) { mark(s, ['.xblog__feat', '.xblog__grid>li']); });
   });
+})();
+/* 30 Oct round 8: Katherine's mobile review. Phones/tablets unless noted. */
+(function () {
+  'use strict';
+  var d = document, MQ = matchMedia('(max-width:1023px)'), PH = matchMedia('(max-width:767px)');
+  var $ = function (s, c) { return (c || d).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+  var safe = function (n, f) { try { f(); } catch (e) { if (window.console) console.warn('r8 ' + n, e); } };
+  var on = function (mq, f) { mq.addEventListener ? mq.addEventListener('change', f) : mq.addListener(f); };
+
+  /* Sell hero gets its own phone layout */
+  safe('sell-hero', function () { var h = $('.xh--poster[data-chapter="Sell My Business"]'); if (h) h.classList.add('r8-sell'); });
+
+  /* Review arrows never look switched off on phones (the desktop rail script greys them out) */
+  safe('arrows', function () {
+    $$('#tPrev,#tNext').forEach(function (b) {
+      var fix = function () { if (MQ.matches && b.disabled) b.disabled = false; };
+      new MutationObserver(fix).observe(b, { attributes: true, attributeFilter: ['disabled'] }); fix();
+    });
+  });
+
+  /* One 'Read more' only: the inline one also opens the paragraphs that follow */
+  safe('one-more', function () {
+    $$('.m-tail-btn').forEach(function (tb) {
+      var p = tb.parentElement, nb = p && p.nextElementSibling, box = nb && nb.nextElementSibling;
+      if (!nb || !nb.classList.contains('m-more-btn') || !box || !box.hasAttribute('data-m-more')) return;
+      nb.classList.add('r8-hide');
+      tb.addEventListener('click', function () {
+        var open = tb.getAttribute('aria-expanded') === 'true';
+        box.classList.toggle('m-collapsed', !open);
+        tb.setAttribute('aria-controls', (tb.getAttribute('aria-controls') || '') + ' ' + (box.id || ''));
+      });
+    });
+  });
+
+  /* Clamped intro paragraphs get a 'Read more' instead of being cut off */
+  safe('clamp', function () {
+    $$('.xpa2__head .lead, .xf2 .xhead--c .lead').forEach(function (p, i) {
+      p.classList.add('r8-clamp'); if (!p.id) p.id = 'r8c' + i;
+      var b = d.createElement('button'); b.type = 'button'; b.className = 'r8-more'; b.setAttribute('aria-controls', p.id); b.setAttribute('aria-expanded', 'false'); b.textContent = 'Read more';
+      p.after(b);
+      b.addEventListener('click', function () { var o = p.classList.toggle('r8-open'); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.textContent = o ? 'Show less' : 'Read more'; });
+      var sync = function () { if (!MQ.matches) { b.hidden = true; return; } var open = p.classList.contains('r8-open'); if (open) { b.hidden = false; return; } b.hidden = !(p.scrollHeight > p.clientHeight + 2); };
+      on(MQ, sync); addEventListener('resize', sync); setTimeout(sync, 300); sync();
+    });
+  });
+
+  /* Contact page (phones only): the enquiry form comes after the broker profiles */
+  safe('contact-order', function () {
+    var ct = $('#contact'), br = $('#brokers'); if (!ct || !br || !$('.phero[data-chapter="Contact Us"]')) return;
+    var mark = d.createComment('contact-home'); ct.parentNode.insertBefore(mark, ct);
+    var place = function () { if (PH.matches) { if (br.nextElementSibling !== ct) br.after(ct); } else if (mark.nextSibling !== ct) mark.after(ct); };
+    on(PH, place); place();
+  });
+
 })();
