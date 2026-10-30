@@ -1681,6 +1681,11 @@ body:has(.mnav.is-open) .mbar{visibility:hidden}
   .xqw .xhead--c>div{width:100%}
   .xqw .xhead--c>*{margin-left:0!important;margin-right:0!important;text-align:left!important}
 }
+
+/* Phones: when the photo-on-top hero is followed by a coloured section (About Us story, Contact brokers), leave the same space under the buttons as other sections */
+@media (max-width:767px){
+  .r8-sell:has(+ section.on-dark),.r8-sell:has(+ .xtp--c){padding-bottom:44px!important}
+}
 </style>
 </head>
 <body>
