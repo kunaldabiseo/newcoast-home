@@ -4303,3 +4303,8 @@ br.dbr{display:none}
   .xtyp .types__top{align-items:start!important}
   .xtyp .types__top .lead{padding-top:6px!important;margin-top:0!important}
 }
+
+/* Phones/tablets: no snapping back to the start of a section after the visitor stops scrolling (seen as a glitch on iPhone) */
+@media (max-width:1023px){
+  html,html:has(body.inner){scroll-snap-type:none!important}
+}

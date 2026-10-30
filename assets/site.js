@@ -12,7 +12,7 @@
   const fine = matchMedia('(pointer:fine)').matches;
   const safe = (n, f) => { try { f(); } catch (e) { console.warn('[NewCoast] module failed:', n, e); } };
   let lenis = null;
-  if (G) { gsap.registerPlugin(ScrollTrigger); root.classList.add('gsp'); }
+  if (G) { gsap.registerPlugin(ScrollTrigger); root.classList.add('gsp'); ScrollTrigger.config({ ignoreMobileResize: true }); }
 
   /* ---------- Smooth scroll ---------- */
   // Smooth-scroll engine runs on desktop widths only. Phones and tablets keep native scrolling (momentum, find, accessibility tools).
@@ -185,7 +185,7 @@
       onScroll();
     });
     $$('[data-journey]').forEach(a => a.addEventListener('click', () => tabSets.journey && tabSets.journey.select(a.dataset.journey)));
-    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { buildJourney(); onScroll(); }, 250); });
+    let rt, rw = innerWidth; addEventListener('resize', () => { if (innerWidth < 1024 && innerWidth === rw) return; rw = innerWidth; clearTimeout(rt); rt = setTimeout(() => { buildJourney(); onScroll(); }, 250); });
     addEventListener('load', () => { buildJourney(); onScroll(); });
     J.sec.addEventListener('focusin', e => { // keep a focused button inside the moving track on screen
       if (!J.pinned) return; const c = e.target.closest('.step'); if (!c) return;
@@ -477,7 +477,7 @@
       gsap.from($$('.pf__creds li', c), { y: 16, opacity: 0, stagger: .06, duration: .8, ease: 'power3.out', delay: .6 + i * .15, scrollTrigger: { trigger: c, start: 'top 85%' } });
     });
     if ($('.marq')) { const skew = gsap.quickTo('.marq', 'skewX', { duration: .5, ease: 'power3' });
-    ScrollTrigger.create({ onUpdate: s => { const v = s.getVelocity(); skew(clamp(v / -300, -7, 7)); $$('.marq').forEach(m => m.getAnimations().forEach(a => a.playbackRate = 1 + Math.min(5, Math.abs(v) / 400))); } }); }
+    ScrollTrigger.create({ onUpdate: s => { const v = s.getVelocity(); if (innerWidth < 1024) return; skew(clamp(v / -300, -7, 7)); $$('.marq').forEach(m => m.getAnimations().forEach(a => a.playbackRate = 1 + Math.min(5, Math.abs(v) / 400))); } }); }
     if ($('#expImg')) gsap.from('.exp__tags span', { y: 30, opacity: 0, stagger: .08, duration: .9, ease: 'back.out(1.8)', scrollTrigger: { trigger: '#expImg', start: 'top 60%' } });
     if ($('#dial')) gsap.from('.dial', { rotate: -100, scale: .75, opacity: 0, duration: 1.8, ease: 'expo.out', scrollTrigger: { trigger: '#dial', start: 'top 80%' } });
   });
@@ -494,8 +494,8 @@
     bar.style.transform = 'scaleX(' + (docH > 0 ? y / docH : 0) + ')';
     const menuOpen = $('#mnav').classList.contains('is-open');
     hdr.classList.toggle('is-compact', y > 40);
-    if (!menuOpen && !hdr.contains(d.activeElement) && y > lastY && y > 400) hdr.classList.add('is-hidden');
-    if (y < lastY) hdr.classList.remove('is-hidden');
+    if (innerWidth >= 1024 && !menuOpen && !hdr.contains(d.activeElement) && y > lastY && y > 400) hdr.classList.add('is-hidden');
+    if (y < lastY || innerWidth < 1024) hdr.classList.remove('is-hidden');
     lastY = y;
     d.body.classList.toggle('hdr-off', hdr.classList.contains('is-hidden'));
     const hb = heroEl ? heroEl.getBoundingClientRect().bottom : -1, cr = contactEl ? contactEl.getBoundingClientRect() : { top: 1e9, bottom: -1e9 };
