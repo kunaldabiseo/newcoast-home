@@ -4292,3 +4292,8 @@ br.dbr{display:none}
   .xcm__img{width:100%!important}
   .xcm__img img{width:100%;height:100%;object-fit:cover}
 }
+@media (max-width:1023px){
+  /* contact 'Read more': the opened text stays one full-width block above the two boxes */
+  .xct__info>.xct__more:not(.m-collapsed){display:block!important;grid-column:1/-1!important}
+  .xct__info>.xct__more p+p{margin-top:12px}
+}
