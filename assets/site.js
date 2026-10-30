@@ -1188,8 +1188,8 @@
   var safe = function (n, f) { try { f(); } catch (e) { if (window.console) console.warn('r8 ' + n, e); } };
   var on = function (mq, f) { mq.addEventListener ? mq.addEventListener('change', f) : mq.addListener(f); };
 
-  /* Sell hero gets its own phone layout */
-  safe('sell-hero', function () { var h = $('.xh--poster[data-chapter="Sell My Business"]'); if (h) h.classList.add('r8-sell'); });
+  /* Sell hero phone layout (photo on top, words below); 30 Oct: Katherine asked for the same on Buy, About Us and Contact Us */
+  safe('sell-hero', function () { $$('.xh--poster[data-chapter="Sell My Business"],.xh--poster[data-chapter="Buy a Business"],.xh--poster[data-chapter="About Us"],.xh--poster[data-chapter="Contact Us"]').forEach(function (h) { h.classList.add('r8-sell'); }); });
 
   /* Review arrows never look switched off on phones (the desktop rail script greys them out) */
   safe('arrows', function () {
