@@ -4324,5 +4324,5 @@ br.dbr{display:none}
 
 /* Hospitality selling process (phones/tablets): the step numbers sit centred under the centred heading */
 @media (max-width:1023px){
-  .xpa2 .r7-snav:not([hidden]){justify-content:center}
+  .xpa2 .r7-snav:not([hidden]),.xsc .r7-snav:not([hidden]){justify-content:center}
 }
