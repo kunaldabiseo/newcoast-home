@@ -4367,3 +4367,10 @@ body:has(.mnav.is-open) .mbar{visibility:hidden}
   .xs2--img .xs2__p{grid-area:1/1}
   .xs2--img .xs2__p[hidden]{display:block!important;visibility:hidden;pointer-events:none}
 }
+
+/* Phones/tablets: 'What Our Clients Say About Us' heading sits left on every page, like the home page and the sections around it */
+@media (max-width:1023px){
+  .xqw .xhead--c{text-align:left!important;align-items:flex-start!important;justify-items:start!important;justify-content:flex-start!important;margin-left:0!important;margin-right:0!important}
+  .xqw .xhead--c>div{width:100%}
+  .xqw .xhead--c>*{margin-left:0!important;margin-right:0!important;text-align:left!important}
+}
